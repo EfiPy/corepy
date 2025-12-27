@@ -205,7 +205,7 @@ def test_c_popc():
   count = proc.execute(code, mode='mbox', params = params)
 
   assert(count == 60)
-  print 'test_syn_c passed'
+  print ('test_syn_c passed')
   return
 
 
@@ -229,12 +229,12 @@ def test_syn(kernel):
 
 def test_syn_popc():
   test_syn(syn_popc)
-  print 'test_syn_popc passed'
+  print ('test_syn_popc passed')
   return
 
 def test_syn_popc_var():
   test_syn(syn_popc_var)
-  print 'test_syn_popc_var passed'  
+  print ('test_syn_popc_var passed')
   return
 
 def test_stream_popc():
@@ -263,7 +263,7 @@ def test_stream_popc():
   popc.synthesize(code)
 
   count = proc.execute(code, mode='mbox')
-  print '-->', count
+  print ('-->', count)
   assert(count == 60 * 1024 / 4)
 
   return

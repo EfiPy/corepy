@@ -46,11 +46,11 @@ def lyapunov(pattern, r1_range, r2_range, max_init, max_n, size = SIZE):
   r1 = r1_range[0] + r1_inc
   r2 = r2_range[0] + r2_inc
 
-  print r1_range, r2_range, r1_inc, r2_inc, r1, r2
+  print (r1_range, r2_range, r1_inc, r2_inc, r1, r2)
 
   for x in range(size[0]):
     r2 = r2_range[0] + r2_inc
-    print 'col:', x, r1, r2
+    print ('col:', x, r1, r2)
   
     for y in range(size[1]):
       results[y, x] = lyapunov_point(pattern, r1, r2, max_init, max_n)
@@ -70,8 +70,8 @@ def lyapunov_point(pattern, r1, r2, max_init, max_n, x0 = 0.5):
   # Init
   for i in range(max_init):
     x = r[i % r_max] * x * (1.0 - x)
-    # print (r[i % r_max], x),
-  # print
+    # print ((r[i % r_max], x), end = '')
+  # print ()
   if x == float('-infinity'):
     return -10.0
   
@@ -82,12 +82,12 @@ def lyapunov_point(pattern, r1, r2, max_init, max_n, x0 = 0.5):
     for i in range(max_n):
       ri = r[i % r_max]
       x = ri * x * (1.0 - x)
-      # print ri, x, math.log(abs(ri - 2 * ri * x)), math.log(2)
+      # print (ri, x, math.log(abs(ri - 2 * ri * x)), math.log(2))
       total = total + math.log(abs(ri - 2.0 * ri * x), 2) # / math.log(2)
   except:
-    print 'oops:', ri, x
+    print ('oops:', ri, x)
 
-  # print total, float(max_n), total / float(max_n)
+  # print (total, float(max_n), total / float(max_n))
   return total / float(max_n)
 
 
@@ -224,12 +224,12 @@ class FractalData:
     mn = -1.0 # min(self._data)
     self._data.shape = (h,w)
 
-    # print mn
+    # print (mn)
     shaded = self._data / mn * 255.0
 
     for y in range(h):
       for x in range(w):
-        # print self._data[y, x]
+        # print (self._data[y, x])
         if self._data[y, x] < 0.0:
           if self._data[y, x] > -1.0:
             shade = int(shaded[y, x]) % 255
@@ -237,10 +237,10 @@ class FractalData:
             shade = 255 - int(shaded[y, x]) % 255
           else:
             shade = 1.0
-          # print shade
+          # print (shade)
           dc.SetPen(wx.Pen(wx.Colour(shade, shade, shade)))
           dc.DrawPoint(x, y)
-      # print '------------------------------'
+      # print ('------------------------------')
     return
   
 class FractalPlot(wx.Window):
@@ -296,10 +296,10 @@ class FractalPlot(wx.Window):
     Draw everything!
     """
 
-    print 'Drawing...'
+    print ('Drawing...')
     for data in self._data:
       data.Draw(dc)
-    print 'Done.'
+    print ('Done.')
     return
 
   # Event handlers

@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -33,7 +34,7 @@ Base classes for the Synthetic Programming Environment.
 import corepy.lib.extarray as extarray
 import collections
 
-from syn_util import *
+from .syn_util import *
 #import syn_util as util
 
 
@@ -97,7 +98,7 @@ class Register(object):
   def __eq__(self, other):
     if isinstance(other, Register):
       return self.name == other.name
-    elif isinstance(other, (int, long)):
+    elif isinstance(other, (int, int)):
       return self.reg == other
     elif isinstance(other, str):
       return self.name == other
@@ -121,7 +122,7 @@ class Type(object):
     newinst = None
     if isinstance(other, Expression):
       newinst = cls.expr_cls(other._inst, *other._operands, **other._koperands)
-      # print 'Casting to:', cls.expr_cls
+      # print ('Casting to:', cls.expr_cls)
       
     elif isinstance(other, Variable):
       newinst = cls(reg = other.reg, code = other.code)
@@ -332,7 +333,7 @@ def _expression_method(cls, *operands, **koperands):
   keyword parameter, an optional type_cls attribute on the class
   itself, or if neither are present, the type defaults to Expression.
   """
-  if koperands.has_key('type_cls'):
+  if 'type_cls' in koperands.keys ():
     expr_cls = koperands['type_cls'].expr_cls
     del koperands['type_cls']
     return expr_cls(cls, *operands, **koperands)
@@ -396,7 +397,7 @@ class Instruction(object):
 
     # Allow the user to create an instruction without adding it to active code.
     ignore_active = False
-    if koperands.has_key('ignore_active'):
+    if 'ignore_active' in koperands.keys():
       ignore_active = koperands['ignore_active']
       del koperands['ignore_active']
 
@@ -435,7 +436,7 @@ class Instruction(object):
     # TODO - include keyword operands in ordered array? 
     for op_type in self.machine_inst.opt_kw:
       kw = op_type.name
-      if koperands.has_key(kw):
+      if kw in koperands.keys():
         if op_type.check(koperands[kw]):
           dops[kw] = koperands[kw]
       elif op_type.default is not None:
@@ -498,13 +499,13 @@ class DispatchInstruction(Instruction):
     self.machine_inst = None
 
     for machine_inst, params in self.dispatch:
-      #print "[check] (%s)" % (
-      #  ','.join([str(arg_type.name) for arg_type in entry[0].signature],)),
+      #print ("[check] (%s)" % (
+      #  ','.join([str(arg_type.name) for arg_type in entry[0].signature],)), end = '')
 
       # entry[0].signature contains the fields to check
       if len(operands) != len(machine_inst.signature):
         # Signature is a different length, so it can't match.
-        #print "LEN FAIL"
+        #print ("LEN FAIL")
         continue
 
       match = True
@@ -514,7 +515,7 @@ class DispatchInstruction(Instruction):
           break
 
       if match:
-        #print "MATCH"
+        #print ("MATCH")
         # Entire signature matched, break out.
         self.machine_inst = machine_inst
         self.params = params
@@ -545,7 +546,7 @@ class DispatchInstruction(Instruction):
         
     for op_type in self.machine_inst.opt_kw:
       kw = op_type.name
-      if koperands.has_key(kw):
+      if kw in koperands.keys ():
         if op_type.check(koperands[kw]):
           self._operands[kw] = koperands[kw]
       elif op_type.default is not None:
@@ -560,7 +561,7 @@ class DispatchInstruction(Instruction):
 
     # Allow the user to create an instruction without adding it to active code.
     ignore_active = False
-    if koperands.has_key('ignore_active'):
+    if 'ignore_active' in koperands.keys():
       ignore_active = koperands['ignore_active']
       del koperands['ignore_active']
 
@@ -911,7 +912,7 @@ class InstructionStream(object):
     else:
       addr = self.render_code.buffer_info()[0]
       last = (None, None)
-      for i in xrange(0, len(self._objects)):
+      for i in range(0, len(self._objects)):
         inst = self._objects[i]
         stack_info = self._stack_info[i]
         
@@ -919,7 +920,7 @@ class InstructionStream(object):
 
         # if file == 'spu_types.py':
         #  for frame in stack_info:
-        #    print frame
+        #    print (frame)
             
         if last == (user_frame, file):
           ssource = '  ""  ""'
@@ -940,7 +941,7 @@ class InstructionStream(object):
         saddr   = '%08X' % (addr + i * 4)
         sinst   = '%4d %-30s' % (i, str(inst))
         last = (user_frame, file)
-        print "%s %s %s" % (saddr, sinst, ssource)
+        print ("%s %s %s" % (saddr, sinst, ssource))
 
     return
 
@@ -1123,7 +1124,7 @@ class Program(object):
   # ------------------------------
 
   def has_label(self, name):
-    return self._labels.has_key(name)
+    return name in self._labels.keys ()
 
   def get_label(self, name):
     try:
@@ -1231,7 +1232,8 @@ class Program(object):
         fmtstr = "No more registers of type %s available"
         raise Exception(fmtstr % str(reg_type))
 
-    self._used_registers[reg_type][reg] = True
+    # self._used_registers[reg_type][reg] = True
+    self._used_registers[reg_type][id (reg)] = True # Using reg id for workaround to avoid reg is non-hashable type
     return reg
 
   def release_register(self, reg):
@@ -1275,7 +1277,7 @@ class Program(object):
  
 
   def acquire_registers(self, n, reg_type = None):
-    return [self.acquire_register(reg_type) for i in xrange(n)]
+    return [self.acquire_register(reg_type) for i in range(n)]
 
   def release_registers(self, regs):
     for reg in regs:
@@ -1366,7 +1368,7 @@ class Program(object):
         relref = False
         sig = obj.machine_inst.signature
 
-        #for iop in xrange(0, len(sig)):
+        #for iop in range(0, len(sig)):
         for iop, op in enumerate(obj._operand_iter):
           opsig = sig[iop]
           if hasattr(opsig, "relative_op") and opsig.relative_op == True:
@@ -1512,7 +1514,7 @@ class Processor(object):
   The execute method takes an InstructionStream and an optional
   execution mode.  The 'void', 'fp', and 'int' modes execute the
   stream synchronously and return None, the value in fp_return, or the
-  value in gp_return, respectively.  'async' mode executes the stream
+  value in gp_return, respectively.  '_async' mode executes the stream
   in a new thread and returns the thread id immediately.  
   """
 
@@ -1523,7 +1525,7 @@ class Processor(object):
 
   def __init__(self):  object.__init__(self)
   
-  def execute(self, prgm, mode = 'int', async = False, params = None, debug = False):
+  def execute(self, prgm, mode = 'int', _async = False, params = None, debug = False):
     """
     Execute the code in the Program object.
 
@@ -1535,7 +1537,7 @@ class Processor(object):
                when execution is complete
       'void' - return None
 
-    If async is True, a thread id and mode tuple is returned immediately
+    If _async is True, a thread id and mode tuple is returned immediately
     and the code is executed asynchronously in its own thread.  The execution
     mode then controls what kind of value is returned from the join method.
 
@@ -1555,7 +1557,7 @@ class Processor(object):
     addr = prgm.inst_addr()
 
     if debug:
-      print 'prgm info: 0x%x %d' % (addr, len(prgm.render_code))
+      print ('prgm info: 0x%x %d' % (addr, len(prgm.render_code)))
       prgm.print_code(hex = True, pro = True, epi = True)
      
 
@@ -1567,7 +1569,7 @@ class Processor(object):
       _params.p1, _params.p2, _params.p3 = params
       params = _params
 
-    if async:
+    if _async:
       result = None
       if mode == 'void':
         result = self.exec_module.execute_int_async(addr, params)

@@ -493,17 +493,17 @@ class MailboxLyapunov:
 
     proc = synspu.Processor()
 
-    spe_id = proc.execute(code, async=True)
+    spe_id = proc.execute(code, _async=True)
 
     for i in range(size[0] * size[1]):
       while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-      print 'ly said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+      print ('ly said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
     proc.join(spe_id)
 
     # for x in range(size[0]):
     #   r2 = r2_range[0] + r2_inc
-    #   print 'col:', x, r1, r2
+    #   print ('col:', x, r1, r2)
     
     #   for y in range(size[1]):
     #     results[y, x] = lyapunov_point(pattern, r1, r2, max_init, max_n)
@@ -544,7 +544,7 @@ class FramebufferLyapunov:
         ranges[ispu][4 + i]  = r2_range[0] + offset
         ranges[ispu][8 + i]  = r1_inc * 4.0
         ranges[ispu][12 + i] = r2_inc
-      # print ranges
+      # print (ranges)
 
       # Copy the paramters to aligned buffers
       #a_ranges[ispu] = synspu.aligned_memory(len(ranges[ispu]), typecode='I')
@@ -609,11 +609,11 @@ class FramebufferLyapunov:
     for i in range(n):
       #a_pattern.copy_to(bits[ipattern].buffer_info()[0], len_bits)
       # TODO - better/faster
-      for j in xrange(0, len_bits):
+      for j in range(0, len_bits):
         pattern[j] = bits[ipattern][j]
 
       for ispu in range(n_spus):
-        ids[ispu] = proc.execute(codes[ispu], async=True)
+        ids[ispu] = proc.execute(codes[ispu], _async=True)
 
       for ispu in range(n_spus):
         proc.join(ids[ispu])
@@ -625,11 +625,11 @@ class FramebufferLyapunov:
       if (ipattern == (n_patterns - 1)) or (ipattern == 0):
         pattern_inc *= -1
 
-      print ipattern
+      print (ipattern)
       
     stop= time.time()
 
-    print '%.2f fps (%.6f)' % (float(n) / (stop - start), (stop - start))
+    print ('%.2f fps (%.6f)' % (float(n) / (stop - start), (stop - start)))
     cell_fb.fb_close(fb)
 
     return
@@ -667,7 +667,7 @@ class PNGLyapunov:
         ranges[ispu][4 + i]  = r2_range[0] + offset
         ranges[ispu][8 + i]  = r1_inc * 4.0
         ranges[ispu][12 + i] = r2_inc
-      # print ranges
+      # print (ranges)
 
       # Copy the paramters to aligned buffers
       #a_ranges[ispu] = synspu.aligned_memory(len(ranges[ispu]), typecode='I')
@@ -736,11 +736,11 @@ class PNGLyapunov:
     for i in range(n):
       #a_pattern.copy_to(bits[ipattern].buffer_info()[0], len_bits)
       # TODO - better/faster
-      for j in xrange(0, len_bits):
+      for j in range(0, len_bits):
         pattern[j] = bits[ipattern][j]
 
       for ispu in range(n_spus):
-        ids[ispu] = proc.execute(codes[ispu], async=True)
+        ids[ispu] = proc.execute(codes[ispu], _async=True)
 
       for ispu in range(n_spus):
         proc.join(ids[ispu])
@@ -751,7 +751,7 @@ class PNGLyapunov:
       #im = Image.frombuffer("RGBA", size, buffer.tostring(), "raw", "RGBA", 0, 1)
       imgbuf = Image.new("RGBA", size)
 
-      arr = [(buffer[i + 3], buffer[i + 2], buffer[i + 1], 0xFF) for i in xrange(0, len(buffer), 4)]
+      arr = [(buffer[i + 3], buffer[i + 2], buffer[i + 1], 0xFF) for i in range(0, len(buffer), 4)]
       imgbuf.putdata(arr)
       imgbuf.save("lyapunov_%d.png" % ipattern)
 
@@ -759,11 +759,11 @@ class PNGLyapunov:
       if (ipattern == (n_patterns - 1)) or (ipattern == 0):
         pattern_inc *= -1
 
-      print ipattern
+      print (ipattern)
       
     stop= time.time()
 
-    print '%.2f fps (%.6f)' % (float(n) / (stop - start), (stop - start))
+    print ('%.2f fps (%.6f)' % (float(n) / (stop - start), (stop - start)))
     #cell_fb.fb_close(fb)
 
     return

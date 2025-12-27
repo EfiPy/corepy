@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -28,7 +29,7 @@
 
 
 # import platform_conf
-from ppc_isa import *
+from .ppc_isa import *
 
 # Nothing to see here, move along... ;)
 __active_code = None
@@ -58,7 +59,7 @@ def get_active_code():
 # _ppc_active_code_prop = property(get_active_code)
 
 # Build the instructions
-for l in locals().values():
+for l in list (locals().values()):
   if isinstance(l, type) and issubclass(l, (Instruction, DispatchInstruction)):
     l.active_code = property(__get_active_code) 
 

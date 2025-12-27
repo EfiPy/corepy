@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -27,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.          
 
 from corepy.spre.spe import Instruction, DispatchInstruction
-from ppc_insts import *
+from .ppc_insts import *
 
 __doc__="""
 PowerPC User Model Instruction Set Architectre (ISA) and User
@@ -814,4 +815,4 @@ if __name__=='__main__':
   from corepy.spre.syn_util import DecToBin
   a = addx(1,2,3)
   d = a.render()
-  print '0x%08X: %s' % (d, DecToBin(d))
+  print ('0x%08X: %s' % (d, DecToBin(d)))

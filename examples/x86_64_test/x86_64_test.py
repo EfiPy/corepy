@@ -49,7 +49,7 @@ def get_nasm_output(prgm, inst):
   if ret != 0:
     return
 
-  output = subprocess.Popen(["xxd", "-ps", "x86_64_test"], stdout=subprocess.PIPE).communicate()[0]
+  output = subprocess.Popen(["xxd", "-ps", "x86_64_test"], stdout=subprocess.PIPE).communicate()[0].decode('utf-8')
   hex = ''.join(output.splitlines())
 
   # If the prolog/epilog change, these need to be updated
@@ -146,26 +146,26 @@ def test_inst(code, inst):
   corepy_hex_str = get_corepy_output(prgm, inst)
 
   if nasm_hex_str == None:
-      print "***************************  NASM ERROR"
-      print "corepy output:", corepy_hex_str
+      print ("***************************  NASM ERROR")
+      print ("corepy output:", corepy_hex_str)
       printer.PrintProgram(prgm,
           printer.x86_64_Nasm(show_epilogue = False, show_prologue = False))
       return 'nasm_fail'
   elif nasm_hex_str == corepy_hex_str:
-    print "PASS"
+    print ("PASS")
     return 'pass'
   else:
     nasm_rex = int(nasm_hex_str[0:2], 16)
     corepy_rex = int(corepy_hex_str[0:2], 16)
     if corepy_rex - nasm_rex == 8 and (nasm_rex & 0xF0 == 0x40):
-      print "WARNING CorePy is enabling 64bit for this inst, NASM is not"
-      print "nasm output:   ", nasm_hex_str
-      print "corepy output: ", corepy_hex_str
+      print ("WARNING CorePy is enabling 64bit for this inst, NASM is not")
+      print ("nasm output:   ", nasm_hex_str)
+      print ("corepy output: ", corepy_hex_str)
       return 'rex_pass'
     else:
-      print "***************************  ERROR"
-      print "nasm output:   ", nasm_hex_str
-      print "corepy output: ", corepy_hex_str
+      print ("***************************  ERROR")
+      print ("nasm output:   ", nasm_hex_str)
+      print ("corepy output: ", corepy_hex_str)
       printer.PrintProgram(prgm,
           printer.x86_64_Nasm(show_epilogue = False, show_prologue = False))
       return 'fail'
@@ -203,11 +203,11 @@ if __name__ == '__main__':
       code.add(inst)
       corepy_hex_str = get_corepy_output(prgm, inst)
       if corepy_hex_str == 'cc':
-        print "PASS"
+        print ("PASS")
         results['pass'] += 1
       else:
-        print "***************************  ERROR"
-        print "corepy output:", corepy_hex_str
+        print ("***************************  ERROR")
+        print ("corepy output:", corepy_hex_str)
         results['pass'] += 1
     elif issubclass(c, spe.DispatchInstruction):
       for d in c.dispatch:
@@ -218,7 +218,7 @@ if __name__ == '__main__':
         ops = ops_from_sig(prgm, d[0].signature)
         inst = c(*ops)
 
-        print "Testing instruction:", inst
+        print ("Testing instruction:", inst)
 
         r = test_inst(code, inst)
         results[r] += 1
@@ -232,7 +232,7 @@ if __name__ == '__main__':
       ops = ops_from_sig(prgm, c.machine_inst.signature)
       inst = c(*ops)
 
-      print "Testing instruction:", inst
+      print ("Testing instruction:", inst)
 
       r = test_inst(code, inst)
       results[r] += 1
@@ -240,7 +240,7 @@ if __name__ == '__main__':
       sys.stderr.flush()
 
 
-  print "%d passes %d rex_passes" % (results['pass'], results['rex_pass'])
-  print "%d failures %d NASM failures" % (results['fail'], results['nasm_fail'])
-  print "%d total" % (results['pass'] + results['rex_pass'] + results['nasm_fail'] + results['fail'])
+  print ("%d passes %d rex_passes" % (results['pass'], results['rex_pass']))
+  print ("%d failures %d NASM failures" % (results['fail'], results['nasm_fail']))
+  print ("%d total" % (results['pass'] + results['rex_pass'] + results['nasm_fail'] + results['fail']))
 

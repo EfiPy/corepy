@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -135,21 +136,21 @@ class TYPEField(CALField):
 
 class RESOURCEField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0 and value < 256
+    return isinstance(value, (int, int)) and value >= 0 and value < 256
   
   def render(self, value):
     return '_resource(' + str(value) + ')'
 
 class RESOURCEIDField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0 and value < 256
+    return isinstance(value, (int, int)) and value >= 0 and value < 256
   
   def render(self, value):
     return '_id(' + str(value) + ')'
 
 class SAMPLERField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0 and value < 16
+    return isinstance(value, (int, int)) and value >= 0 and value < 16
   
   def render(self, value):
     return '_sampler(' + str(value) + ')'
@@ -249,7 +250,7 @@ class STAGEField(CALField):
   def check(self, value):
     if value == None:
       return True
-    if isinstance(value, (int, long)) and value >= 0 and value < 256:
+    if isinstance(value, (int, int)) and value >= 0 and value < 256:
       return True
     return False
   
@@ -282,7 +283,7 @@ class LOFFSETField(CALField):
 
 class STREAMField(CALField):
   def check(self, value):
-    if isinstance(value, (int, long)) and value >= 0 and value < 16:
+    if isinstance(value, (int, int)) and value >= 0 and value < 16:
       return True
     return False
   
@@ -291,7 +292,7 @@ class STREAMField(CALField):
 
 class OFFSETField(CALField):
   def check(self, value):
-    if isinstance(value, (int, long)) and value >= 0 and value < 512:
+    if isinstance(value, (int, int)) and value >= 0 and value < 512:
       return True
     return False
   
@@ -300,7 +301,7 @@ class OFFSETField(CALField):
 
 class ELEMField(CALField):
   def check(self, value):
-    if isinstance(value, (int, long)) and value >= 0 and value < 16:
+    if isinstance(value, (int, int)) and value >= 0 and value < 16:
       return True
     return False
   
@@ -309,7 +310,7 @@ class ELEMField(CALField):
 
 class VELEMField(CALField):
   def check(self, value):
-    if isinstance(value, (int, long)) and value >= 0 and value < 64:
+    if isinstance(value, (int, int)) and value >= 0 and value < 64:
       return True
     return False
   
@@ -325,16 +326,16 @@ class AOFFIMMIField(CALField):
       return False
 
     p = 2 ** 16
-    return False not in [isinstance(v, (int, long)) and v >= 0 and v < p for v in value]
+    return False not in [isinstance(v, (int, int)) and v >= 0 and v < p for v in value]
 
     #try:
     #  valid = True
     #  if len(value) == 3:
-    #    if not isinstance(value[0], (int, long)) or value[0] < 0 or value[0] > pow(2, 16):
+    #    if not isinstance(value[0], (int, int)) or value[0] < 0 or value[0] > pow(2, 16):
     #      valid = False
-    #    if not isinstance(value[1], (int, long)) or value[1] < 0 or value[1] > pow(2, 16):
+    #    if not isinstance(value[1], (int, int)) or value[1] < 0 or value[1] > pow(2, 16):
     #      valid = False
-    #    if not isinstance(value[2], (int, long)) or value[2] < 0 or value[2] > pow(2, 16):
+    #    if not isinstance(value[2], (int, int)) or value[2] < 0 or value[2] > pow(2, 16):
     #      valid = False
     #    return valid
     #  return False
@@ -450,21 +451,21 @@ class OUTPUTTOPOLOGYField(CALField):
 
 class LiteralField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long, float))
+    return isinstance(value, (int, int, float))
   
   def render(self, value):
     return str(value)
 
 class IntegerLiteralField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long))
+    return isinstance(value, (int, int))
   
   def render(self, value):
     return str(value)
 
 class IntegerLabelField(IntegerLiteralField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0
+    return isinstance(value, (int, int)) and value >= 0
 
   def render(self, value):
     return str(value)
@@ -495,14 +496,14 @@ class MATRIXField(CALField):
 
 class USAGEINDEXField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0 and value < 256
+    return isinstance(value, (int, int)) and value >= 0 and value < 256
   
   def render(self, value):
     return '_usageIndex(' + str(value) + ')'
 
 class PARAMField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0 and value < 256
+    return isinstance(value, (int, int)) and value >= 0 and value < 256
   
   def render(self, value):
     return '_param(' + str(value) + ')'
@@ -516,7 +517,7 @@ class COORDMODEField(CALField):
 
 class BOOLField(CALField):
   def check(self, value):
-    return isinstance(value, (int, long)) and value >= 0 and value < 2
+    return isinstance(value, (int, int)) and value >= 0 and value < 2
   
   def render(self, value):
     return str(value)

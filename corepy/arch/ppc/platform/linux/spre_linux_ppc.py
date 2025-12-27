@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -33,7 +34,7 @@ SPE for the Cell PPU.
 import array
 import corepy.lib.extarray as extarray
 import corepy.spre.spe as spe
-import ppc_exec
+from . import ppc_exec
 
 import corepy.arch.ppc.isa as ppc
 import corepy.arch.vmx.isa as vmx
@@ -124,9 +125,9 @@ gp_param_3 = 5
 #gp_return = 3
 
 # Callee save registers
-gp_save = ["r%d" % i for i in xrange(14, 31)]
-fp_save = ["f%d" % i for i in xrange(14, 32)]
-vx_save = ["v%d" % i for i in xrange(20, 32)]  # !!! NOT SURE ABOUT VMX !!!
+gp_save = ["r%d" % i for i in range(14, 31)]
+fp_save = ["f%d" % i for i in range(14, 32)]
+vx_save = ["v%d" % i for i in range(20, 32)]  # !!! NOT SURE ABOUT VMX !!!
 #vx_save = [VMXRegister(i) for i in range(0, 32)]  # !!! NOT SURE ABOUT VMX !!!
 
 # ------------------------------------------------------------
@@ -202,13 +203,13 @@ class Program(spe.Program):
     return 
 
   def create_register_files(self):
-    self._register_files[GPRegister] = [GPRegister(i) for i in xrange(3,31)]
+    self._register_files[GPRegister] = [GPRegister(i) for i in range(3,31)]
     self._reg_type['gp'] = GPRegister
 
-    self._register_files[FPRegister] = [FPRegister(i) for i in xrange(0,32)]
+    self._register_files[FPRegister] = [FPRegister(i) for i in range(0,32)]
     self._reg_type['fp'] = FPRegister
 
-    self._register_files[VMXRegister] = [VMXRegister(i) for i in xrange(0,32)]
+    self._register_files[VMXRegister] = [VMXRegister(i) for i in range(0,32)]
     self._reg_type['vector'] = VMXRegister
     return
 
@@ -261,7 +262,7 @@ class Program(spe.Program):
 
     if len(save_gp) > 0:    
       # Save GP registers
-      self._saved_gp_registers = array.array('I', xrange(len(save_gp)))
+      self._saved_gp_registers = array.array('I', range(len(save_gp)))
 
       self._load_word(self._prologue, r_addr,
           self._saved_gp_registers.buffer_info()[0])
@@ -275,7 +276,7 @@ class Program(spe.Program):
 
     if len(save_fp) > 0:
       # Save FP registers
-      self._saved_fp_registers = array.array('d', xrange(len(save_fp)))
+      self._saved_fp_registers = array.array('d', range(len(save_fp)))
 
       self._load_word(self._prologue, r_addr,
           self._saved_fp_registers.buffer_info()[0])
@@ -383,7 +384,7 @@ def TestInt():
 
   r = proc.execute(prgm)
   assert(r == 12)
-  print 'int result:', r
+  print ('int result:', r)
   return
 
 def TestFloat():
@@ -398,7 +399,7 @@ def TestFloat():
 
   r = proc.execute(prgm, mode='fp')
   assert(r == 3.14)
-  print 'float result:', r
+  print ('float result:', r)
   return
 
 

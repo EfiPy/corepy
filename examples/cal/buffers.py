@@ -11,12 +11,12 @@ def test_4comp():
   inp = proc.alloc_remote('i', 1, 4, 1)
   out = proc.alloc_remote('i', 4, 1, 1)
 
-  for i in xrange(0, 4):
+  for i in range(0, 4):
     inp[i] = i + 1
     out[i] = 0
 
-  print "inp", inp[0:4]
-  print "out", out[0:4]
+  print ("inp", inp[0:4])
+  print ("out", out[0:4])
   
   cal.set_active_code(code)
 
@@ -28,7 +28,7 @@ def test_4comp():
 
   cal.mov(r_cnt, r_cnt('0000'))
 
-  for i in xrange(0, 4):
+  for i in range(0, 4):
     cal.sample(0, 0, r[i].x000, r_cnt.x)
     cal.add(r_cnt, r_cnt, r_cnt('1111'))
 
@@ -46,9 +46,9 @@ def test_4comp():
 
   proc.execute(prgm, (0, 0, 1, 1))
 
-  print "inp", inp[0:4]
-  print "out", out[0:4]
-  for i in xrange(0, 4):
+  print ("inp", inp[0:4])
+  print ("out", out[0:4])
+  for i in range(0, 4):
     assert(out[i] == (i + 1) * 2)
   return
 
@@ -61,12 +61,12 @@ def test_1comp():
   inp = proc.alloc_remote('i', 4, 1, 1)
   out = proc.alloc_remote('i', 1, 4, 1)
 
-  for i in xrange(0, 4):
+  for i in range(0, 4):
     inp[i] = i + 1
     out[i] = 0
 
-  print "inp", inp[0:4]
-  print "out", out[0:4]
+  print ("inp", inp[0:4])
+  print ("out", out[0:4])
   
   cal.set_active_code(code)
 
@@ -92,9 +92,9 @@ def test_1comp():
 
   proc.execute(prgm, (0, 0, 4, 1))
 
-  print "inp", inp[0:4]
-  print "out", out[0:4]
-  for i in xrange(0, 4):
+  print ("inp", inp[0:4])
+  print ("out", out[0:4])
+  for i in range(0, 4):
     assert(out[i] == 2)
   
   return
@@ -111,7 +111,7 @@ def test_foo():
   out = proc.alloc_remote('i', 4, 1, 1)
   gb = proc.alloc_remote('i', 1, 4, 1, True)
 
-  for i in xrange(0, 4):
+  for i in range(0, 4):
     cb[i] = i + 1
     out[i] = 42
     gb[i] = 67
@@ -136,9 +136,9 @@ def test_foo():
 
   proc.execute(prgm, (0, 0, 1, 1))
 
-  print "cb ", cb[0:4]
-  print "out", out[0:4]
-  print "gb ", gb[0:4]
+  print ("cb ", cb[0:4])
+  print ("out", out[0:4])
+  print ("gb ", gb[0:4])
   return
 
 

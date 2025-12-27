@@ -205,12 +205,12 @@ def TestLog():
 
     spu.wrch(result, dma.SPU_WrOutMbox)
     
-  spe_id = proc.execute(code, mode = 'async')
+  spe_id = proc.execute(code, mode = '_async')
 
   x = 1
   for i in range(N):
     while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-    print 'log said: 0x%08X  (%d)' %(synspu.spu_exec.read_out_mbox(spe_id), x)
+    print ('log said: 0x%08X  (%d)' %(synspu.spu_exec.read_out_mbox(spe_id), x))
     x = x * 10
 
   proc.join(spe_id)
@@ -232,10 +232,10 @@ def _sp_to_float(x):
   sign = (x >> 31) & 1
   # exp  = (x >> 23) & 0xFF - 126
   exp  = ((x >> 23) & 0xFF) - 127
-  # print hex(x), ((x >> 23) & 0xFF) - 127
+  # print (hex(x), ((x >> 23) & 0xFF) - 127)
   m    = x & 0x7ffffff
 
-  # print sign, exp, m, 1.0 + (1.0 / m)
+  # print (sign, exp, m, 1.0 + (1.0 / m))
 
   mv = 1.0
   p = 2.0
@@ -249,7 +249,7 @@ def _sp_to_float(x):
   if sign == 1: 
     value = value * -1
 
-  # print '%.12f' % value
+  # print ('%.12f' % value)
   return value
 
 # _sp_to_float(0x41200000)
@@ -292,13 +292,13 @@ def TestFloats():
     spu.wrch(result, dma.SPU_WrOutMbox)
 
   # code.print_code()
-  spe_id = proc.execute(code, mode = 'async')
+  spe_id = proc.execute(code, mode = '_async')
 
   x = start
   for i in range(int((stop - start) / inc)):
     while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
     slog = synspu.spu_exec.read_out_mbox(spe_id)
-    print '%.3f 0x%08X  %.08f %.08f ' % (x, slog, _sp_to_float(slog), math.log(x, 2))
+    print ('%.3f 0x%08X  %.08f %.08f ' % (x, slog, _sp_to_float(slog), math.log(x, 2)))
     x += inc
 
   proc.join(spe_id)

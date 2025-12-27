@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -104,7 +105,7 @@ N_SPUS = 6
 
 class aligned_memory(object):
   def __init__(self, size, alignment = 128, typecode = 'B'):
-    print 'Using dummy aligned memory'
+    print ('Using dummy aligned memory')
     self.data = array.array(typecode, range(size))
     self.typecode = typecode
     return
@@ -407,7 +408,7 @@ class ParallelInstructionStream(InstructionStream):
       self._prologue.add(spu.shlqbyi(self.r_block_size, SPURegister(4, None), 4)) 
       self._prologue.add(spu.shlqbyi(self.r_offset, SPURegister(4, None), 8)) 
     else:
-      print 'no raw data'
+      print ('no raw data')
     return
 
   def acquire_block_registers(self):
@@ -416,7 +417,7 @@ class ParallelInstructionStream(InstructionStream):
     if self.r_offset is None:
       self.r_offset     = self.acquire_register()
 
-    # print 'offset/block_size', self.r_offset, self.r_block_size
+    # print ('offset/block_size', self.r_offset, self.r_block_size)
     return
   
     
@@ -472,7 +473,7 @@ class Processor(spe.Processor):
       'fp'   - return the floating point value in register fp_return
                when execution is complete
       'void' - return None
-      'async'- execute the code in a new thread and return the thread
+      '_async'- execute the code in a new thread and return the thread
                id immediately
 
     If debug is True, the buffer address and code length are printed
@@ -521,7 +522,7 @@ class Processor(spe.Processor):
       if n_spus > 8:
         raise Exception("Too many SPUs requests (%d > 8)" % n_spus)
 
-      # print 'Regs:', code.r_rank, code.r_size, code.r_block_size, code.r_offset
+      # print ('Regs:', code.r_rank, code.r_size, code.r_block_size, code.r_offset)
 
       # Set up the parameters and execute each spu thread
       for i in range(n_spus):
@@ -531,11 +532,11 @@ class Processor(spe.Processor):
           pi.p4 = int(code.raw_data_size / n_spus)  # block_size
           pi.p5 = pi.p4 * i                         # offset
 
-          # print 'Executing: 0x%x %d %d %d %d' % (pi.addr, pi.p1, pi.p2, pi.p4, pi.p5)
-        speids.append(spe.Processor.execute(self, code, debug=debug, params=pi, mode='async'))
+          # print ('Executing: 0x%x %d %d %d %d' % (pi.addr, pi.p1, pi.p2, pi.p4, pi.p5))
+        speids.append(spe.Processor.execute(self, code, debug=debug, params=pi, mode='_async'))
 
       # Handle blocking execution modes
-      if mode != 'async':
+      if mode != '_async':
         reterrs = [self.join(speid) for speid in speids]
         retval = reterrs
       else:
@@ -571,7 +572,7 @@ def TestInt():
 
   code.print_code()
   r = proc.execute(code) # , debug = True)
-  print 'int result:', r
+  print ('int result:', r)
   # while True:
   #   pass
   return
@@ -602,7 +603,7 @@ def TestParams():
 
 
   r = proc.execute(code, params = params)
-  # print 'int result:', r
+  # print ('int result:', r)
   # while True:
   #   pass
   return
@@ -616,14 +617,14 @@ def TestAlignedMemory():
   aa.copy_to(a.buffer_info()[0], len(a))
 
   # aa.print_memory()
-  print str(aa), '0x%X, %d' % a.buffer_info()
+  print (str(aa), '0x%X, %d' % a.buffer_info())
   
   code = InstructionStream()
   proc = Processor()
   
   md = spuiter.memory_desc('I')
   md.from_array(aa)
-  print str(md)
+  print (str(md))
   md.get(code, 0)
   
   ls = spuiter.memory_desc('I', 0, n)
@@ -632,17 +633,17 @@ def TestAlignedMemory():
   for i in seq_iter:
     i.v = i + i
 
-  print str(md)
+  print (str(md))
   md.put(code, 0)
 
   r = proc.execute(code, mode = 'int')
-  # print a
+  # print (a)
   aa.copy_from(a.buffer_info()[0], len(a))
   # aa.print_memory()  
-  print a[:20]
-  print a[4090:4105]
-  print a[8188:8200]    
-  print a[-20:]  
+  print (a[:20])
+  print (a[4090:4105])
+  print (a[8188:8200])
+  print (a[-20:])
   return
 
 def TestParallel():
@@ -657,7 +658,7 @@ def TestParallel():
   code.add(spu.ai(r, r, 0xBABE))    
   code.add(spu.stop(0x2000))
 
-  r = proc.execute(code, mode='async', n_spus = 6)
+  r = proc.execute(code, mode='_async', n_spus = 6)
 
   for speid in r:
     proc.join(speid)
@@ -682,8 +683,8 @@ def TestOptimization():
     s = time.time()
     proc.execute(code)
     e = time.time()
-    print "Total time: ", e - s
-  print "(First time is withOUT optimization.)"
+    print ("Total time: ", e - s)
+  print ("(First time is withOUT optimization.)")
 
 def TestInt2(i0 = 0, i1 = 1):
   i2 = i0 + i1
@@ -745,7 +746,7 @@ def TestInt2(i0 = 0, i1 = 1):
 
   r = proc.execute(code)
   # assert(r == 12)
-  # print 'int result:', r
+  # print ('int result:', r)
 
   return
 

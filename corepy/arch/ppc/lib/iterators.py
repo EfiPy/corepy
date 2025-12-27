@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -427,7 +428,7 @@ class memory_desc(object):
     l = repr(b).split(' ')
     self.size = int(l[l.index('size') + 1])
     self.addr = int(l[l.index('ptr') + 1][:-1], 0)
-    print l, self.size, self.addr
+    print (l, self.size, self.addr)
     return
 
   def from_ibuffer(self, m):
@@ -534,7 +535,7 @@ class var_iter(syn_iter):
     self.current_var = self.make_current()
     self.init_address()
 
-    # print self.r_count, self.r_stop, self.r_current, self.r_addr, self.data.buffer_info()[0]
+    # print (self.r_count, self.r_stop, self.r_current, self.r_addr, self.data.buffer_info()[0])
 
     return
 
@@ -674,7 +675,7 @@ def TestIter():
   proc = synppc.Processor()
   r = proc.execute(prgm)
   
-  # print 'should be 36:', r
+  # print ('should be 36:', r)
   assert(r == 36)
   return
 
@@ -723,7 +724,7 @@ def TestExternalStop():
 
   proc = synppc.Processor()
   r = proc.execute(prgm, mode = 'fp')
-  # print 'Test external stop: ', r
+  # print ('Test external stop: ', r)
   assert(r == 4900.0)
     
   return
@@ -749,7 +750,7 @@ def TestNestedIter():
   proc = synppc.Processor()
   r = proc.execute(prgm)
 
-  # print 'should be 750:', r
+  # print ('should be 750:', r)
   assert(r == 750)
   return
 
@@ -777,7 +778,7 @@ def TestRange():
   proc = synppc.Processor()
   r = proc.execute(prgm)
 
-  # print 'should be 21:', r
+  # print ('should be 21:', r)
   assert(r == 21)
 
   return
@@ -787,7 +788,7 @@ _expected = [10, 11, 12, 13]
 def _array_check(result, expected = _expected):
   #if result.typecode == 'b':
   #  for x, y in zip(result, expected):
-  #    print "types", type(x), type(y)
+  #    print ("types", type(x), type(y))
   #    assert(ord(x) == y)
   #else:
   for x, y in zip(result, expected):
@@ -840,14 +841,14 @@ def TestVarIter():
 
   _array_check(a)
   _array_check(ai)
-  #  print b
-  #  print bi
-  #  print c
-  #  print ci
+  #  print (b)
+  #  print (bi)
+  #  print (c)
+  #  print (ci)
   _array_check(f)
   _array_check(d)
 
-  # print 'TODO: Implememnt the rest of the integer types (or have a clean way of upcasting to signed/unsigned int)'
+  # print ('TODO: Implememnt the rest of the integer types (or have a clean way of upcasting to signed/unsigned int)')
   return
 
 
@@ -989,14 +990,14 @@ def TestZipIter():
   r = proc.execute(prgm, mode = 'int')
 
   assert(r == 16)
-  print a
-  print b
-  print c
+  print (a)
+  print (b)
+  print (c)
 
-  print av.data
-  print bv.data
-  print cv.data
-  print 'TODO: Finish checking TestZipIter values'
+  print (av.data)
+  print (bv.data)
+  print (cv.data)
+  print ('TODO: Finish checking TestZipIter values')
   return
 
 
@@ -1022,13 +1023,13 @@ def TestZipIter():
                              
 #   metavar.syn_return(code, a)
   
-#   t1 = proc.execute(code, mode='async', params=(0,2,0))
-#   t2 = proc.execute(code, mode='async', params=(1,2,0))
+#   t1 = proc.execute(code, mode='_async', params=(0,2,0))
+#   t2 = proc.execute(code, mode='_async', params=(1,2,0))
 
 #   proc.join(t1)
 #   proc.join(t2)
 
-#   print data
+#   print (data)
 
 #   return
 

@@ -56,7 +56,7 @@ code.add(subcode)
 prgm.add(code)
 prgm.print_code()
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 
 prgm = env.Program()
@@ -64,7 +64,7 @@ code = prgm.get_stream()
 
 # Use a register from the parent code in the subcode directly
 r_add = prgm.acquire_register()
-print "got reg", r_add
+print ("got reg", r_add)
 
 # Generate sub-stream
 # Multiple eax by 2, add 1
@@ -85,6 +85,6 @@ code.add(subcode)
 prgm.add(code)
 prgm.print_code()
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 

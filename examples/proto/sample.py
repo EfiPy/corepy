@@ -146,7 +146,7 @@ class I10(Literal):
     if (value & 0x3FF) == value:
       return value
     else:
-      print 'Warning: %d does not fit in 10 bits' 
+      print ('Warning: %d does not fit in 10 bits')
       return value
     return
     
@@ -285,7 +285,7 @@ a = spre.spe.Variable(SPURegister, Word_t, SignedInteger, code.acquire_register(
 b = spre.spe.Variable(SPURegister, Word_t, SignedInteger, code.acquire_register())
 c = spre.spe.Variable(SPURegister, Word_t, SignedInteger, code.acquire_register())
 
-print spu.a(a, b, c)
+print (spu.a(a, b, c))
 
 spu.a.ex(a, spu.ai.ex(b, 1)).eval()
 

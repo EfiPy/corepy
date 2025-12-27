@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -85,7 +86,7 @@ class ptxOptionField(ptxField):
 
 class ptxOperandField(ptxField):
   def check(self, value):
-    return isinstance(value, (regs.ptxVariable, spe.Variable)) or isinstance(value, (int, long, float))
+    return isinstance(value, (regs.ptxVariable, spe.Variable)) or isinstance(value, (int, int, float))
 
   def render(self, value):
     if isinstance(value, regs.ptxVariable):
@@ -108,7 +109,7 @@ class ptxPredicateField(ptxField):
 
 class ptxOperandOrAddressOrLabelField(ptxField):
   def check(self, value):
-    return isinstance(value, (regs.ptxVariable, spe.Variable)) or isinstance(value, regs.ptxAddress) or isinstance(value, Label) or isinstance(value, (float, int, long))
+    return isinstance(value, (regs.ptxVariable, spe.Variable)) or isinstance(value, regs.ptxAddress) or isinstance(value, Label) or isinstance(value, (float, int, int))
 
   def render(self, value):
     if isinstance(value, regs.ptxVariable):
@@ -145,7 +146,7 @@ class ptxAddressField(ptxField):
 class ptxImmediateField(ptxField):
   def check(self, value):
     # TODO: Real range checking for barrier number
-    return isinstance(value, (int, long)) and (value < 16)
+    return isinstance(value, (int, int)) and (value < 16)
 
   def render(self, value):
     return str(value)

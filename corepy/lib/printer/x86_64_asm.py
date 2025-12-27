@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -64,7 +65,7 @@ class x86_64_Asm(object):
 
   def header(self, fd):
     if self.function_name != "":
-      print >>fd, ".global %s\n%s:" % (self.function_name, self.function_name)
+      print (".global %s\n%s:" % (self.function_name, self.function_name), file = fd)
     return
 
   def footer(self, fd):
@@ -75,7 +76,7 @@ class x86_64_Asm(object):
         The return value should be a boolean indicating whether prologue
         instructions should be printed. """
     #if self.show_prologue:
-    #  print >>fd, "\nprologue:"
+    #  print ("\nprologue:", file = fd)
 
     return self.show_prologue
 
@@ -84,12 +85,12 @@ class x86_64_Asm(object):
         The return value should be a boolean indicating whether epilogue
         instructions should be printed. """
     #if self.show_epilogue:
-    #  print >>fd, "\nepilogue:"
+    #  print ("\nepilogue:", file = fd)
 
     return self.show_epilogue
 
   def body(self, fd):
-    #print >>fd, "\nbody:"
+    #print ("\nbody:", file = fd)
     return
 
   def str_op(self, op, op_sig):
@@ -110,7 +111,7 @@ class x86_64_Asm(object):
         return "(%%%s)" % (op.base.name)
       elif self.addr != None:
         return "0x%x" % (op.addr)
-    elif isinstance(op, (long, int)):
+    elif isinstance(op, (int, int)):
       # Need to differentiate between imm and reloff values
       # imm values need the $, reloff's do not
       if isinstance(op_sig, (x86_fields.Rel8off, x86_fields.Rel16off, x86_fields.Rel32off)):
@@ -141,11 +142,11 @@ class x86_64_Asm(object):
         elif op[0].data_size == 8:
           name += 'b'
         break
-    print >>fd, "\t%s %s" % (name, op_str)
+    print ("\t%s %s" % (name, op_str), file = fd)
     return
 
   def label(self, fd, lbl):
-    print >>fd, "\n%s:" % lbl.name
+    print ("\n%s:" % lbl.name, file = fd)
     return
 
 

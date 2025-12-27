@@ -61,6 +61,6 @@ if __name__ == '__main__':
 
   proc.execute(prgm, (0, 0, SIZE, SIZE))
 
-  print out
+  print (out)
   prgm.print_code()
 

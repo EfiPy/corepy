@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -28,8 +29,8 @@
 
 from corepy.spre.spe import Instruction, DispatchInstruction
 
-from x86_64_fields import *
-from x86_64_insts import *
+from .x86_64_fields import *
+from .x86_64_insts import *
 
 __annoy__ = True
 
@@ -1402,6 +1403,10 @@ class rcr(DispatchInstruction):
     (reg8_imm8,           {'opcode':[0xC0],             'modrm':0x18}),
     (mem8_imm8,           {'opcode':[0xC0],             'modrm':0x18}))
     
+class rdmsr(Instruction):
+  machine_inst = no_op
+  params = {'opcode':[0x0F, 0x32],       'modrm':None}
+  
 class rdtsc(Instruction):
   machine_inst = no_op
   params = {'opcode':[0x0F, 0x31],       'modrm':None}
@@ -2782,19 +2787,19 @@ class cvtsd2ss(DispatchInstruction):
     (xmm_mem64,    {'opcode':[0x0F, 0x5A], 'modrm':None, 'prefix':[0xF2]}))
   arch_ext = 2
 
-class cvtsi2sd(DispatchInstruction):
-  dispatch = (
-    (xmm_reg64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
-    (xmm_mem64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
-    (xmm_reg32,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
-    (xmm_mem32,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}))
-  arch_ext = 2
+# class cvtsi2sd(DispatchInstruction):
+#   dispatch = (
+#     (xmm_reg64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
+#     (xmm_mem64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
+#     (xmm_reg32,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
+#     (xmm_mem32,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}))
+#   arch_ext = 2
 
 class cvtsi2sd(DispatchInstruction):
   dispatch = (
     # TODO - reg64 version defined by intel manuals but not AMD
-    #(xmm_reg64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
-    #(xmm_mem64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
+    (xmm_reg64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
+    (xmm_mem64,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
     (xmm_reg32,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}),
     (xmm_mem32,      {'opcode':[0x0F, 0x2A], 'modrm':None, 'prefix':[0xF2]}))
   arch_ext = 2
@@ -2808,7 +2813,7 @@ class cvtss2sd(DispatchInstruction):
 class cvtss2si(DispatchInstruction):
   dispatch = (
     # TODO - reg64 version defined by intel manuals but not AMD
-    #(reg64_xmm,        {'opcode':[0x0F, 0x2D], 'modrm':None, 'prefix':[0xF3]}),
+    (reg64_xmm,        {'opcode':[0x0F, 0x2D], 'modrm':None, 'prefix':[0xF3]}),
     #(reg64_mem32,      {'opcode':[0x0F, 0x2D], 'modrm':None, 'prefix':[0xF3]}),
     (reg32_xmm,        {'opcode':[0x0F, 0x2D], 'modrm':None, 'prefix':[0xF3]}),
     (reg32_mem32,      {'opcode':[0x0F, 0x2D], 'modrm':None, 'prefix':[0xF3]}))
@@ -2841,7 +2846,7 @@ class cvttps2pi(DispatchInstruction):
 class cvttsd2si(DispatchInstruction):
   dispatch = (
     # TODO - reg64 version defined by intel manuals but not AMD
-    #(reg64_xmm,        {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF2]}),
+    (reg64_xmm,        {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF2]}),
     #(reg64_mem64,      {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF2]}),
     (reg32_xmm,        {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF2]}),
     (reg32_mem64,      {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF2]}))
@@ -2850,7 +2855,7 @@ class cvttsd2si(DispatchInstruction):
 class cvttss2si(DispatchInstruction):
   dispatch = (
     # TODO - reg64 version defined by intel manuals but not AMD
-    #(reg64_xmm,        {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF3]}),
+    (reg64_xmm,        {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF3]}),
     #(reg64_mem32,      {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF3]}),
     (reg32_xmm,        {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF3]}),
     (reg32_mem32,      {'opcode':[0x0F, 0x2C], 'modrm':None, 'prefix':[0xF3]}))
@@ -3032,14 +3037,14 @@ class movaps(DispatchInstruction):
 class movd(DispatchInstruction):
   dispatch = (
     # TODO - these are valid according to AMD64, but not according to Intel 64
-    #(xmm_reg64,        {'opcode':[0x0F, 0x6E], 'modrm':None, 'prefix':[0x66]}),
+    (xmm_reg64,        {'opcode':[0x0F, 0x6E], 'modrm':None, 'prefix':[0x66]}),
     #(xmm_mem64,        {'opcode':[0x0F, 0x6E], 'modrm':None, 'prefix':[0x66]}),
     #(mem64_xmm,        {'opcode':[0x0F, 0x7E], 'modrm':None, 'prefix':[0x66]}),
-    #(reg64_xmm_rev,    {'opcode':[0x0F, 0x7E], 'modrm':None, 'prefix':[0x66]}),
-    #(mmx_reg64,        {'opcode':[0x0F, 0x6E], 'modrm':None}),
+    (reg64_xmm_rev,    {'opcode':[0x0F, 0x7E], 'modrm':None, 'prefix':[0x66]}),
+    (mmx_reg64,        {'opcode':[0x0F, 0x6E], 'modrm':None}),
     #(mmx_mem64,        {'opcode':[0x0F, 0x6E], 'modrm':None}),
     #(mem64_mmx,        {'opcode':[0x0F, 0x7E], 'modrm':None}),
-    #(reg64_mmx_rev,    {'opcode':[0x0F, 0x7E], 'modrm':None}),
+    (reg64_mmx_rev,    {'opcode':[0x0F, 0x7E], 'modrm':None}),
     (xmm_reg32,        {'opcode':[0x0F, 0x6E], 'modrm':None, 'prefix':[0x66]}),
     (xmm_mem32,        {'opcode':[0x0F, 0x6E], 'modrm':None, 'prefix':[0x66]}),
     (mem32_xmm,        {'opcode':[0x0F, 0x7E], 'modrm':None, 'prefix':[0x66]}),
@@ -3719,7 +3724,7 @@ class pmovmskb(DispatchInstruction):
   dispatch = (
     # TODO - undocumented reg64 forms?
     #(reg64_xmm,     {'opcode':[0x0F, 0xD7], 'modrm':None, 'prefix':[0x66]}),
-    #(reg64_mmx,     {'opcode':[0x0F, 0xD7], 'modrm':None}),
+    (reg64_mmx,     {'opcode':[0x0F, 0xD7], 'modrm':None}),
     (reg32_xmm,     {'opcode':[0x0F, 0xD7], 'modrm':None, 'prefix':[0x66]}),
     (reg32_mmx,     {'opcode':[0x0F, 0xD7], 'modrm':None}))
   arch_ext = 2 # TODO - err, some are 2, some are 1
@@ -4297,6 +4302,10 @@ class unpcklps(DispatchInstruction):
     (xmm_mem128, {'opcode':[0x0F, 0x14], 'modrm':None, 'prefix':[]}))
   arch_ext = 1
 
+class wrmsr(Instruction):
+  machine_inst = no_op
+  params = {'opcode':[0x0F, 0x30],       'modrm':None}
+  
 class xorpd(DispatchInstruction):
   dispatch = (
     (xmm_xmm,    {'opcode':[0x0F, 0x57], 'modrm':None, 'prefix':[0x66]}),

@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -32,7 +33,7 @@
 #  params are: OPCD, XO
 
 from corepy.spre.spe import MachineInstruction
-from spu_fields import *
+from .spu_fields import *
 
 class OPCD(MachineInstruction):
   signature = ()
@@ -124,9 +125,9 @@ class OPCD_LBL9_LBL16(MachineInstruction):
     off16 = (operands['LBL16'].position - operands['position']) >> 2
 
     if abs(off9) > 255:
-      print RuntimeWarning("SPU hint offset to branch is too large: " + str(off9))
+      print (RuntimeWarning("SPU hint offset to branch is too large: " + str(off9)))
     if abs(off16) > 32767:
-      print RuntimeWarning("SPU hint offset to branch target is too large: " + str(off16))
+      print (RuntimeWarning("SPU hint offset to branch target is too large: " + str(off16)))
 
     return OPCD7.render(params['OPCD']) | ROA.render(off9) | I16.render(off16)
   render = staticmethod(_render)

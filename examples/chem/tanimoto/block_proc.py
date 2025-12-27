@@ -151,7 +151,7 @@ class PPU_BlockCompare(object):
       return
     
     for i in range(self.n_spus):
-      spu_id = proc.execute(self.prog, mode='async')
+      spu_id = proc.execute(self.prog, mode='_async')
 
     return
 

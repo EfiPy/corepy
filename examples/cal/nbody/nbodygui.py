@@ -24,7 +24,7 @@ glrender.render3.restype = None
 
 SQRT_BODIES = 64
 N_BODIES = SQRT_BODIES ** 2
-print "total bodies", N_BODIES
+print ("total bodies", N_BODIES)
 
 prgm = env.Program()
 
@@ -66,7 +66,7 @@ def DrawGL():
   #fps_count += 1
   #cur_time = time.time()
   #if cur_time - fps_time >= 1.0:
-  #  print "FPS:", fps_count
+  #  print ("FPS:", fps_count)
   #  fps_time = cur_time
   #  fps_count = 0
 
@@ -76,7 +76,7 @@ def ProcessStep():
   global pos, vel, prgm, step, proc
   global fps_time, fps_count
 
-  for i in xrange(0, 4):
+  for i in range(0, 4):
     inp = step % 2
     out = (step + 1) % 2
     prgm.set_binding('i0', pos[inp])
@@ -97,9 +97,9 @@ def ProcessStep():
 
   cur_time = time.time()
   if cur_time - fps_time >= 1.0:
-    print "FPS:", fps_count
-    #print "Vel", vel[out][0], vel[out][1], vel[out][16], vel[out][17]
-    #print "Vel", vx[0], vy[0], vx[2], vy[2]
+    print ("FPS:", fps_count)
+    #print ("Vel", vel[out][0], vel[out][1], vel[out][16], vel[out][17])
+    #print ("Vel", vx[0], vy[0], vx[2], vy[2])
     fps_time = cur_time
     fps_count = 0
 
@@ -115,7 +115,7 @@ def py_nbody():
   vy = extarray.extarray('f', N_BODIES)
   m = extarray.extarray('f', N_BODIES)
  
-  for i in xrange(0, N_BODIES): 
+  for i in range(0, N_BODIES): 
     x[i] = random.uniform(-1.0, 1.0)
     y[i] = random.uniform(-1.0, 1.0)
     #vx[i] = random.uniform(-1.0, 1.0)
@@ -131,15 +131,15 @@ def cal_nbody():
   step = 0
   proc = env.Processor(1)
 
-  pos = [proc.alloc_remote('f', 4, SQRT_BODIES, SQRT_BODIES) for i in xrange(0, 2)]
-  vel = [proc.alloc_remote('f', 4, SQRT_BODIES, SQRT_BODIES) for i in xrange(0, 2)]
+  pos = [proc.alloc_remote('f', 4, SQRT_BODIES, SQRT_BODIES) for i in range(0, 2)]
+  vel = [proc.alloc_remote('f', 4, SQRT_BODIES, SQRT_BODIES) for i in range(0, 2)]
 
   pos[0].clear()
   vel[0].clear()
   pos[1].clear()
   vel[1].clear()
 
-  for i in xrange(0, N_BODIES):
+  for i in range(0, N_BODIES):
     pos[0][i * 4] = random.uniform(-20.0, 20.0)
     pos[0][i * 4 + 1] = random.uniform(-12.0, 12.0)
     pos[0][i * 4 + 2] = 0.0

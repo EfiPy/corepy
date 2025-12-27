@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -91,7 +92,7 @@ def _most_specific(a, b, default = None):
     
   return default
   
-_int_literals = (spe.Immediate, int, long)
+_int_literals = (spe.Immediate, int, int)
 
 class PTXType(spe.Type):
   def _get_active_code(self):
@@ -107,7 +108,7 @@ class PTXType(spe.Type):
 
 class BitType(PTXType):
   register_type_id = 'b32'
-  literal_types = (int,long)
+  literal_types = (int,int)
 
   def _upcast(self, other, inst):
     return inst.ex(self, other, type_cls = _most_specific(self, other))
@@ -166,7 +167,7 @@ class BitType(PTXType):
     #return self.code.add(ptx.add(self, other, 0))
 
   def load(self, addr, offset = 0, space='global'):
-    if isinstance(offset, (int, long)):
+    if isinstance(offset, (int, int)):
       self.code.add(ptx.ld(space, self, regs.ptxAddress(addr, offset)))
     else:
 
@@ -176,7 +177,7 @@ class BitType(PTXType):
       self.code.prgm.release_register(temp)
 
   def store(self, addr, offset = 0, space='global'):
-    if isinstance(offset, (int, long)):
+    if isinstance(offset, (int, int)):
       self.code.add(ptx.st(space, regs.ptxAddress(addr, offset), self))
     else:
 
@@ -311,7 +312,7 @@ class SingleFloatType(PTXType):
     #return self.code.add(ptx.add(self, other, 0))
   
   def load(self, addr, offset = 0, space='global'):
-    if isinstance(offset, (int, long)):
+    if isinstance(offset, (int, int)):
       self.code.add(ptx.ld(space, self, regs.ptxAddress(addr, offset)))
     else:
 
@@ -340,7 +341,7 @@ class SingleFloatType(PTXType):
 #     return
 
   def store(self, addr, offset = 0, space='global'):
-    if isinstance(offset, (int, long)):
+    if isinstance(offset, (int, int)):
       self.code.add(ptx.st(space, regs.ptxAddress(addr, offset), self))
     else:
 
@@ -422,7 +423,7 @@ class DoubleFloatType(PTXType):
     #return self.code.add(ptx.add(self, other, 0))
 
   def load(self, addr, offset = 0, space='global'):
-    if isinstance(offset, (int, long)):
+    if isinstance(offset, (int, int)):
       self.code.add(ptx.ld(space, self, regs.ptxAddress(addr, offset)))
     else:
       temp = self.code.prgm.acquire_register('u64')
@@ -450,7 +451,7 @@ class DoubleFloatType(PTXType):
 #     return
 
   def store(self, addr, offset = 0, space='global'):
-    if isinstance(offset, (int, long)):
+    if isinstance(offset, (int, int)):
       self.code.add(ptx.st(space, regs.ptxAddress(addr, offset), self))
     else:
 

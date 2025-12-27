@@ -52,10 +52,10 @@ if __name__ == '__main__':
   prgm.add(code)
   prgm.print_code()
 
-  for i in xrange(0, 10000):
+  for i in range(0, 10000):
     proc.execute(prgm)
     #if i % 25 == 0:
-    #  print "sleep"
+    #  print ("sleep")
     #  time.sleep(1)
  
  

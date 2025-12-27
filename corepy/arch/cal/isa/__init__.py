@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -26,7 +27,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.          
 
-from cal_isa import *
+from .cal_isa import *
 
 
 # Nothing to see here, move along... ;)
@@ -54,7 +55,7 @@ def get_active_code():
   global __active_code
   return __active_code
 
-for l in locals().values():
+for l in list (locals().values()):
   if isinstance(l, type):
     if issubclass(l, Instruction) or issubclass(l, DispatchInstruction):
       l.active_code = property(__get_active_code) 

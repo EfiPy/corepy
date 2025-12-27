@@ -53,7 +53,7 @@ prgm.release_register(reg)
 prgm.add(code)
 
 # Start the synthesized SPU program
-id = proc.execute(prgm, async = True)
+id = proc.execute(prgm, _async = True)
 
 # Spin until the mailbox can be read
 while env.spu_exec.stat_out_mbox(id) == 0: pass
@@ -65,5 +65,5 @@ env.spu_exec.write_signal(id, 1, 0x1234)
 # Wait for the SPU program to complete
 proc.join(id)
 
-print "value 0x%X" % value
+print ("value 0x%X" % value)
 

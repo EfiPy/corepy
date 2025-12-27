@@ -57,7 +57,7 @@ code.add(subcode)
 prgm.add(code)
 prgm.print_code()
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 
 prgm = env.Program()
@@ -91,7 +91,7 @@ prgm.release_register(r_sub)
 prgm.add(code)
 prgm.print_code()
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 
 # Generate code to copy data from one array to another
@@ -144,11 +144,11 @@ params.p1 = b.buffer_info()[0]
 params.p2 = a.buffer_info()[0]
 params.p3 = 32
 
-print a
-print b
+print (a)
+print (b)
 
 proc.execute(prgm, params = params)
 
-print a
-print b
+print (a)
+print (b)
 

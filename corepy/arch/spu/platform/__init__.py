@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -35,18 +36,18 @@ platform_imports = [
 
 
 if conf.OS == 'linux':
-  platform_string = 'linux_spufs.spre_linux_spu'
+  platform_string = 'corepy.arch.spu.platform.linux_spufs.spre_linux_spu'
   #platform_string = 'linux.spre_linux_spu'
 #elif conf.OS == 'linux_spufs':
 #  platform_string = 'linux_spufs.spre_linux_spu'
 #elif conf.OS == 'linux_spe1':
 #  platform_string = 'linux_spe1.spre_linux_spu'
 else:
-  platform_string = 'spre_dummy_spu'
+  platform_string = 'corepy.arch.spu.platform.spre_dummy_spu'
 
 
 if conf.VERBOSE:
-  print '# Platform:', platform_string
+  print ('# Platform:', platform_string)
 
 platform_module = __import__(platform_string, globals(), locals(), platform_imports)
 

@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -81,14 +82,14 @@ def RunTest(test, *ops):
   except:
     info = sys.exc_info()
     file, line, func, text = traceback.extract_tb(info[2], 2)[1]
-    print test.func_name, 'failed at line %d [%s]: \n  %s' % (line, info[0], info[1])
+    print (test.func_name, 'failed at line %d [%s]: \n  %s' % (line, info[0], info[1]))
     traceback.print_tb(info[2])
     
   else:
     if len(ops) > 0:
-      print test.func_name, ops, 'passed'
+      print (test.func_name, ops, 'passed')
     else:
-      print test.func_name, 'passed'      
+      print (test.func_name, 'passed')
 
 
 def return_var(var):

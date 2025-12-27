@@ -44,11 +44,11 @@ params.p8 = 8
 params.p9 = 9
 params.p10 = 10
 
-print "Running sync\n"
+print ("Running sync\n")
 
 env.spu_exec.run_native_code("spu_native", params)
 
-print "\nRunning async\n"
+print ("\nRunning async\n")
 
 id = env.spu_exec.run_native_code_async("spu_native", params)
 env.spu_exec.join_native_code(id)

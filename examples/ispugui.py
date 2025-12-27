@@ -77,9 +77,9 @@ class EditorCtrl(stc.StyledTextCtrl):
       
       # Update exec_mark
       if self.exec_mark != None and self.exec_mark >= cl - 1:
-        for i in xrange(cl - 1, lc):
+        for i in range(cl - 1, lc):
           if (self.MarkerGet(i) & 2) != 0:
-            print "old exec_mark, new", self.exec_mark, i
+            print ("old exec_mark, new", self.exec_mark, i)
             self.SetExecMark(i)
             break
 
@@ -205,7 +205,7 @@ class EditorWindow(wx.Frame):
       self.Close()
     elif id == 0x02:
       # Clear breakpoints
-      for i in xrange(0, self.editCtrl.GetLineCount()):
+      for i in range(0, self.editCtrl.GetLineCount()):
         self.editCtrl.MarkerDelete(i, 0)
     return
         
@@ -308,7 +308,7 @@ class EditorWindow(wx.Frame):
     txt = self.editCtrl.GetText().split('\n')
     txtlen = len(txt)
 
-    for i in xrange(0, txtlen):
+    for i in range(0, txtlen):
       # For the stop case, want all instructions except the current one to be
       # STOP instructions.
       cmd = txt[i].strip()
@@ -339,7 +339,7 @@ class EditorWindow(wx.Frame):
           try:
             inst = eval('spu.%s' % strcmd)
           except:
-            print 'Error creating instruction: %s' % cmd
+            print ('Error creating instruction: %s' % cmd)
 
         code.add(inst)
 
@@ -749,7 +749,7 @@ class MemoryListCtrl(wx.ListCtrl, listmix.TextEditMixin):
     self.UpdateMaps()
 
     maps = self.maps
-    for i in xrange(1, self._map_len):
+    for i in range(1, self._map_len):
       if item < maps[i][0]:
         self._map_cache = i - 1
         return maps[i - 1]
@@ -884,14 +884,14 @@ class MemoryWindow(wx.Frame):
     try:
       addr = int(self.txtCmd.GetValue(), 16)
     except:
-      print "Malformed go-to address, ignoring"
+      print ("Malformed go-to address, ignoring")
       return
 
-    for i in xrange(1, len(self.listCtrl.maps)):
+    for i in range(1, len(self.listCtrl.maps)):
       if addr < self.listCtrl.maps[i][1]:
         map = self.listCtrl.maps[i - 1]
         if addr >= map[2]:
-          print "Invalid address, ignoring"
+          print ("Invalid address, ignoring")
         else:
           item = map[0] + ((addr - map[1]) / 16)
           self.listCtrl.UpdateMaps()
@@ -900,7 +900,7 @@ class MemoryWindow(wx.Frame):
 
     map = self.listCtrl.maps[-1]
     if addr >= map[2]:
-      print "Invalid address, ignoring"
+      print ("Invalid address, ignoring")
     else:
       item = map[0] + ((addr - map[1]) / 16)
       self.listCtrl.UpdateMaps()
@@ -963,7 +963,7 @@ class SPUApp(wx.App):
     env.spu_exec.run_stream(ctx, prgm.inst_addr(), code_len, code_lsa, code_lsa)
 
     self.localstore = extarray.extarray('I', 262144 / 4)
-    print "spuls %x" % (ctx.spuls), ctx.spuls, type(ctx.spuls)
+    print ("spuls %x" % (ctx.spuls), ctx.spuls, type(ctx.spuls))
     self.localstore.set_memory(ctx.spuls, 262144)
     return
 
@@ -983,7 +983,7 @@ class SPUApp(wx.App):
 
     # start is the inst number.. find the real number discounting labels
     offset = start
-    for i in xrange(0, start):
+    for i in range(0, start):
       if isinstance(code[i], spe.Label):
         offset -= 1
 
@@ -1000,7 +1000,7 @@ class SPUApp(wx.App):
       return 0
 
     off = 0
-    for i in xrange(0, len(code)):
+    for i in range(0, len(code)):
       inst = code[i]
       if not isinstance(inst, spe.Label):
         off += 1

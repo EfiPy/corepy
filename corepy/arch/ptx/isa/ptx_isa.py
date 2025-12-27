@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -41,7 +42,7 @@ from corepy.spre.spe import Instruction, DispatchInstruction, Register, Variable
 
 import corepy.arch.ptx.types.registers as regs
 import corepy.lib.extarray as extarray
-import ptx_insts
+from . import ptx_insts
 
 __doc__="""
 ISA for NVIDIA's PTX
@@ -385,7 +386,7 @@ class ptxOperand(object):
     if isinstance(value, Variable):
       value = value.reg
 
-    if isinstance(value, (int, long, float)):
+    if isinstance(value, (int, int, float)):
       self.is_immediate = True
     elif isinstance(value, regs.ptxVariable):
       self.is_variable = True
@@ -410,7 +411,7 @@ class ptxOperand(object):
       if isinstance(value, float):
         self.vtype = 'f'
         self.width = 64
-      elif isinstance(value, (int, long)):
+      elif isinstance(value, (int, int)):
         # by default integer literals are signed
         if value > 2**63-1:
           self.vtype = 'u'
@@ -1170,15 +1171,15 @@ if __name__ == '__main__':
 
   #x = add(r3, r2, r1, ignore_active = True)
   x = isa.add(r3, r2, r1)
-  print x.render()
+  print (x.render())
   y = isa.mov(r2, r1)
-  print y.render()
+  print (y.render())
   a = regs.ptxAddress(r4)
   z = isa.ld('param', r1, a)
-  print z.render()
+  print (z.render())
 
   f1 = regs.ptxVariable('reg', 'f32', 'f1')
   f2 = regs.ptxVariable('reg', 'f32', 'f2')
   f3 = regs.ptxVariable('reg', 'f32', 'f3')
   a = isa.add(f3, f2, f1)
-  print a.render()
+  print (a.render())

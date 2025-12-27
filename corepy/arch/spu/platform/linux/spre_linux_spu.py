@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -33,7 +34,7 @@ SPE for the Cell SPU
 import corepy.lib.extarray as extarray
 import corepy.lib.allocator as allocator
 import corepy.spre.spe as spe
-import spu_exec
+from . import spu_exec
 
 import corepy.arch.spu.isa as spu
 import corepy.arch.spu.lib.util as util
@@ -248,7 +249,7 @@ class InstructionStream(spe.InstructionStream):
 #      self._prologue.append(spu.shlqbyi(self.r_block_size, p4, 4)) 
 #      self._prologue.append(spu.shlqbyi(self.r_offset, p4, 8)) 
 #    else:
-#      print 'no raw data'
+#      print ('no raw data')
 #    return
 #
 #  def acquire_block_registers(self):
@@ -257,7 +258,7 @@ class InstructionStream(spe.InstructionStream):
 #    if self.r_offset is None:
 #      self.r_offset     = self.acquire_register()
 #
-#    # print 'offset/block_size', self.r_offset, self.r_block_size
+#    # print ('offset/block_size', self.r_offset, self.r_block_size)
 #    return
 #  
 #    
@@ -324,7 +325,7 @@ class Program(spe.Program):
 
   def create_register_files(self):
     #self._used_registers[SPURegister] = []
-    self._register_files[SPURegister] = [SPURegister(i) for i in xrange(2, 128)]
+    self._register_files[SPURegister] = [SPURegister(i) for i in range(2, 128)]
     self._reg_type['gp'] = SPURegister
     return
 
@@ -344,13 +345,13 @@ class Program(spe.Program):
       nop_pair = (spu.nop(self.r_zero, ignore_active = True),
                   spu.lnop(ignore_active = True))
       # issue mod / 2 nop/lnop pairs
-      for i in xrange(0, mod / 2):
+      for i in range(0, mod / 2):
         ret.extend(nop_pair)
     else:
       # issue an lnop, then (mod - 1) / 2 nop/lnop pairs
       nop_pair = (spu.lnop(ignore_active = True),
                   spu.nop(self.r_zero, ignore_active = True))
-      for i in xrange(0, mod / 2):
+      for i in range(0, mod / 2):
         ret.extend(nop_pair)
       ret.append(spu.lnop(ignore_active = True))
 
@@ -444,7 +445,7 @@ class ParallelProgram(Program):
       self._prologue.append(spu.shlqbyi(self.r_block_size, p4, 4)) 
       self._prologue.append(spu.shlqbyi(self.r_offset, p4, 8)) 
     #else:
-    #  print 'no raw data'
+    #  print ('no raw data')
     return
 
   def acquire_block_registers(self):
@@ -453,7 +454,7 @@ class ParallelProgram(Program):
     if self.r_offset is None:
       self.r_offset     = self.acquire_register()
 
-    # print 'offset/block_size', self.r_offset, self.r_block_size
+    # print ('offset/block_size', self.r_offset, self.r_block_size)
     return
   
     
@@ -471,7 +472,7 @@ class ParallelProgram(Program):
 class Processor(spe.Processor):
   exec_module = spu_exec
 
-  def _execute(self, addr, mode, async, params, stop):
+  def _execute(self, addr, mode, _async, params, stop):
     ti = spu_exec.alloc_context()
     #ti.params = params;
 
@@ -484,7 +485,7 @@ class Processor(spe.Processor):
     # Initialize the SPU regs
     spu_exec.put_spu_params(ti, params)
 
-    if async == False:
+    if _async == False:
       spu_exec.run_stream(ti, addr, size, lsa, lsa)
       
       # Get the return value
@@ -504,7 +505,7 @@ class Processor(spe.Processor):
         retval = (retval, spu_exec.get_result(ti))
 
       spu_exec.free_context(ti)
-    else: # async == True
+    else: # _async == True
       spu_exec.run_stream_async(ti, addr, size, lsa, lsa)
 
       if mode == 'void':
@@ -523,7 +524,7 @@ class Processor(spe.Processor):
     return retval
 
 
-  def execute(self, prgm, mode = 'int', async = False, params = None, debug = False, stop = False, n_spus = 1):
+  def execute(self, prgm, mode = 'int', _async = False, params = None, debug = False, stop = False, n_spus = 1):
     """
     Execute the instruction stream in the code object.
 
@@ -535,7 +536,7 @@ class Processor(spe.Processor):
                when execution is complete
       'void' - return None
 
-    If async is True, a thread id and mode tuple is returned immediately
+    If _async is True, a thread id and mode tuple is returned immediately
     and the code is executed asynchronously in its own thread.  The execution
     mode then controls what kind of value is returned from the join method.
 
@@ -584,8 +585,8 @@ class Processor(spe.Processor):
     params.size = bi[1] * prgm.render_code.itemsize
 
     if debug:
-      print 'prgm info:'
-      print ' body inst addr: 0x%x' % (prgm.inst_addr())
+      print ('prgm info:')
+      print (' body inst addr: 0x%x' % (prgm.inst_addr()))
       prgm.print_code(hex = True, pro = True, epi = True)
 
     retval = None
@@ -597,26 +598,26 @@ class Processor(spe.Processor):
         raise Exception("Too many SPUs requests (%d > %d)" % n_spus, N_SPUS)
 
       # Set up the parameters and execute each spu thread
-      for i in xrange(0, n_spus):
+      for i in range(0, n_spus):
         pi = _copy_params(params, i, n_spus)
 
         if hasattr(prgm, "raw_data_size") and prgm.raw_data_size is not None:
           pi.p4 = int(prgm.raw_data_size / n_spus)  # block_size
           pi.p5 = pi.p4 * i                         # offset
 
-        #print 'Executing: 0x%x %d %d %d %d' % (pi.addr, pi.p1, pi.p2, pi.p4, pi.p5)
-        #speids.append(spe.Processor.execute(self, prgm, async = True, debug = debug, params = pi, mode = mode))
+        #print ('Executing: 0x%x %d %d %d %d' % (pi.addr, pi.p1, pi.p2, pi.p4, pi.p5))
+        #speids.append(spe.Processor.execute(self, prgm, _async = True, debug = debug, params = pi, mode = mode))
         speids.append(self._execute(prgm.inst_addr(), mode, True, pi, mode))
 
       # Handle blocking execution modes
-      if async == False:
+      if _async == False:
         retval = [self.join(speid) for speid in speids]
       else:
         retval = speids
     else:
       pass
       # Single SPU execution
-      retval = self._execute(prgm.inst_addr(), mode, async, params, stop)
+      retval = self._execute(prgm.inst_addr(), mode, _async, params, stop)
 
     return retval
 
@@ -719,7 +720,7 @@ class DebugProcessor(spe.Processor):
     self.debug_lsa = (self.lsa + self.code.code_offset * 4 + self.debug_idx * 4) >> 2
     self.debug_target_lsa = (self.lsa + self.code.code_offset * 4 + self.debug_target_idx * 4) >> 2    
 
-    mode = 'async'
+    mode = '_async'
 
     # TODO: Factor replacing into one function in case the first one is a branch
     self.replace(self.last_stop[0], spu.bra(self.debug_lsa, ignore_active = True))
@@ -759,9 +760,9 @@ class DebugProcessor(spe.Processor):
   def wait_debug(self):
     r = spu_exec.wait_stop_event(self.spe_id)
     if r not in (DEBUG_STOP, DEBUG_STOP_TARGET):
-      print 'Warning: SPU stopped for unknown reason:', r
+      print ('Warning: SPU stopped for unknown reason:', r)
     else:
-      print 'Debug stop: 0x%X' % r
+      print ('Debug stop: 0x%X' % r)
     return r
 
 
@@ -787,7 +788,7 @@ class DebugProcessor(spe.Processor):
     # of all possible next instructions
     if isinstance(current_inst, (spu.br, spu.brsl)):
       next_stop = (self.last_stop[0] + current_inst.I16,)
-      print 'next br:', next_stop
+      print ('next br:', next_stop)
     elif isinstance(current_inst, (spu.bra, spu.brasl)):
       next_stop = (current_inst.I16 - (self.lsa >> 2),)
     elif isinstance(current_inst, (spu.brnz, spu.brz, spu.brhnz, spu.brhz)):
@@ -809,13 +810,13 @@ class DebugProcessor(spe.Processor):
     if not last_instruction:
       # Normal instructions and single target branches
       self.replace(next_stop[0],    spu.bra(self.debug_lsa, ignore_active = True))
-      print 'target (1):', -(self.debug_lsa - ((self.lsa >> 2) + next_stop[0])), self.debug_lsa, last_idx, self.lsa
+      print ('target (1):', -(self.debug_lsa - ((self.lsa >> 2) + next_stop[0])), self.debug_lsa, last_idx, self.lsa)
       self.replace(self.debug_branch, spu.br(-(self.debug_lsa - ((self.lsa >> 2) + next_stop[0])),
                                              ignore_active = True))
       # Branch target for test-based branch instructions
       if len(next_stop) == 2:
         self.replace(next_stop[1],    spu.bra(self.debug_target_lsa, ignore_active = True))
-        print 'target (2):', -(self.debug_target_lsa - ((self.lsa >> 2) + next_stop[1])), self.debug_target_lsa
+        print ('target (2):', -(self.debug_target_lsa - ((self.lsa >> 2) + next_stop[1])), self.debug_target_lsa)
         self.replace(self.debug_target_branch,
                      spu.br(-(self.debug_target_lsa - ((self.lsa >> 2) + next_stop[1])), ignore_active = True))
         
@@ -882,7 +883,7 @@ class DebugProcessor(spe.Processor):
       self.resume(self.spe_id)
 
     r = spu_exec.wait_stop_event(self.spe_id)
-    print 'next stop', r
+    print ('next stop', r)
     #  6) Restore code at original pc
     self.restore(self.debug_branch)
     self.get_instructions()
@@ -927,7 +928,7 @@ def TestInt():
   prgm += code
   r = proc.execute(prgm, stop = True) # , debug = True)
 
-  #print 'int result:', r
+  #print ('int result:', r)
   assert(r[0] == 0)
   assert(r[1] == 0x200D)
   return
@@ -979,7 +980,7 @@ def TestParams():
 
   assert(r[0] == 55)
   assert(r[1] == 0x200A)
-  # print 'int result:', r
+  # print ('int result:', r)
   return
 
 
@@ -997,7 +998,7 @@ def TestParallel():
   code.add(spu.stop(0x1FFF))
 
   prgm += code
-  r = proc.execute(prgm, async = True, mode='void', n_spus = 6)
+  r = proc.execute(prgm, _async = True, mode='void', n_spus = 6)
 
   for speid in r:
     proc.join(speid)
@@ -1047,10 +1048,10 @@ def TestDebug():
     r = proc.nexti()
     if r is not None:
       regs = proc.dump_regs()
-      print '******', regs[122:]
+      print ('******', regs[122:])
     
   assert(r == None)
-  print 'int result:', r
+  print ('int result:', r)
   # while True:
   #   pass
   return
@@ -1073,8 +1074,8 @@ def TestDebug():
 #    s = time.time()
 #    proc.execute(code)
 #    e = time.time()
-#    print "Total time: ", e - s
-#  print "(First time is withOUT optimization.)"
+#    print ("Total time: ", e - s)
+#  print ("(First time is withOUT optimization.)")
 
 def TestInt2(i0 = 0, i1 = 1):
   i2 = i0 + i1
@@ -1131,7 +1132,7 @@ def TestInt2(i0 = 0, i1 = 1):
 
   r = proc.execute(code)
   # assert(r == 12)
-  # print 'int result:', r
+  # print ('int result:', r)
 
   return
 

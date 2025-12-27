@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -130,7 +131,7 @@ class BitType(SPUType):
   register_type_id = 'gp'
   array_typecodes = ('c', 'b', 'B', 'h', 'H', 'i', 'I', 'f') # all valid typecodes
   array_typecode  = None # typecode for this class
-  literal_types = (int,long, list, tuple, _array_type, _extarray_type)
+  literal_types = (int,int, list, tuple, _array_type, _extarray_type)
 
   # Operators
   __or__ = operator(spu.or_, cast = _upcast)
@@ -150,7 +151,7 @@ class BitType(SPUType):
     if type(value) in (_array_type, _extarray_type):
 
       if self.array_typecode != value.typecode:
-        print "Warning: array typecode does not match variable type - I hope you know what you're doing!"
+        print ("Warning: array typecode does not match variable type - I hope you know what you're doing!")
         
       util.vector_from_array(self.code, self, value)
 
@@ -160,19 +161,19 @@ class BitType(SPUType):
       # elif type(self.value) is _numeric_type:
       #   raise Exception('Numeric types not yet supported')
 
-    elif type(value) in (int, long):
+    elif type(value) in (int, int):
 
       if self.array_typecode not in INT_ARRAY_TYPES:
-        print "Warning: int does not match variable type - I hope you know what you're doing!"
+        print ("Warning: int does not match variable type - I hope you know what you're doing!")
 
       util.load_word(self.code, self, value)
     else:
-      # print "Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value)))
+      # print ("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
       # self.typecode = 'I'
       raise Exception("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
     
     if self.array_typecode is not None and INT_ARRAY_SIZES[self.array_typecode] != 4:
-      print "Warning: Only 4-byte integers are supported for spu variables from arrays"
+      print ("Warning: Only 4-byte integers are supported for spu variables from arrays")
 
     self.code.prgm.add_storage(self.storage)
     return
@@ -195,7 +196,7 @@ class WordType(BitType):
 
   __lshift__ = operator(spu.shl, (
     (HalfwordType, spu.shl),
-    ((int, long),  spu.shli)
+    ((int, int),  spu.shli)
     ))
   lshift = staticmethod(__lshift__)
 
@@ -205,17 +206,17 @@ class WordType(BitType):
   rshift = staticmethod(__rshift__)
 
   __gt__ = operator(spu.cgt, (
-    ((int, long), spuex.cgt_immediate),
+    ((int, int), spuex.cgt_immediate),
     ))
   gt = staticmethod(__gt__)
 
   __lt__ = operator(spuex.lt, (
-    ((int, long), spuex.lti),
+    ((int, int), spuex.lti),
     ))
   lt = staticmethod(__lt__)
 
   __eq__ = operator(spu.ceq, (
-    ((int, long), spuex.ceq_immediate),
+    ((int, int), spuex.ceq_immediate),
     ))
   eq = staticmethod(__eq__)
 
@@ -224,23 +225,23 @@ class SignedWordType(WordType):
   array_typecode  = 'i'   
 
   __add__ = operator(spu.a, (
-    ((int, long), spuex.a_immediate),
+    ((int, int), spuex.a_immediate),
     ))
   add = staticmethod(__add__)
 
 
   __radd__ = operator(spu.a, (
-    ((int, long), spuex.a_immediate),
+    ((int, int), spuex.a_immediate),
     ), cast = _reversecast)
   radd = staticmethod(__radd__)
 
   __sub__ = operator(spuex.sub, (
-    ((int, long), spuex.subi),
+    ((int, int), spuex.subi),
     ))
   sub = staticmethod(__sub__)
 
   __rsub__ = operator(spu.sf, (
-    ((int, long), spu.sfi),
+    ((int, int), spu.sfi),
     ), cast = _reversecast)
   rsub = staticmethod(__rsub__)
 
@@ -248,7 +249,7 @@ class SignedWordType(WordType):
 # Extra Operators
 HalfwordType.__lshift__ = operator(spu.shlh, (
   (WordType,    spu.shlh),
-  ((int, long), spu.shlhi)
+  ((int, int), spu.shlhi)
   ))
 HalfwordType.lshift = staticmethod(HalfwordType.__lshift__)
 
@@ -268,7 +269,7 @@ class SingleFloatType(SPUType):
     if type(value) in (_array_type, _extarray_type):
 
       if self.array_typecode != value.typecode:
-        print "Warning: array typecode does not match variable type - I hope you know what you're doing!"
+        print ("Warning: array typecode does not match variable type - I hope you know what you're doing!")
 
       # Convert the float array to an integer array to prevent Python from
       # improperly casting floats to ints
@@ -287,7 +288,7 @@ class SingleFloatType(SPUType):
     elif type(value) in (float,):
 
       if self.array_typecode not in FLOAT_ARRAY_TYPES:
-        print "Warning: int does not match variable type - I hope you know what you're doing!"
+        print ("Warning: int does not match variable type - I hope you know what you're doing!")
 
       # Convert to bits
       af = array.array('f', (value,))
@@ -296,7 +297,7 @@ class SingleFloatType(SPUType):
       
       util.load_word(self.code, self, int_value[0])
     else:
-      # print "Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value)))
+      # print ("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
       # self.typecode = 'I'
       raise Exception("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
 
@@ -310,7 +311,7 @@ class DoubleFloatType(SPUType):
   literal_types = (float, list, tuple, array)
 
   def _set_literal_value(self, value):
-    print 'TODO: DoubleFloatType: set_literal_value'
+    print ('TODO: DoubleFloatType: set_literal_value')
 
 
 _user_types = ( # name, type class

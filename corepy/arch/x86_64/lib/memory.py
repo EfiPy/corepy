@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -97,7 +98,7 @@ class MemoryReference:
         raise Exception('Invalid scale value %s must be 1,2,4,8' % (str(scale)))
       self.scale = scale
 
-    elif isinstance(val, (int, long)):
+    elif isinstance(val, (int, int)):
       self.base = None
       self.addr = val
       self.disp = None
@@ -111,7 +112,7 @@ class MemoryReference:
         raise Exception('Address size must be either 32 or 64 bits')
     elif isinstance(val, spe.Label):
       self.label = val
-      print "MemRef points to a label"
+      print ("MemRef points to a label")
     else:
       raise Exception("Invalid memory value, must be an address or register")
     return

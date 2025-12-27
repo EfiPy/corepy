@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -34,7 +35,7 @@ import corepy.lib.extarray as extarray
 import corepy.spre.spe as spe
 import corepy.arch.cal.types.registers as reg
 import corepy.arch.cal.isa as isa
-import cal_exec
+from . import cal_exec
 
 # ------------------------------
 # Constants
@@ -182,7 +183,7 @@ class Program(spe.Program):
     #for (regname, (arr, kwargs)) in self._remote_bindings_data.items():
     #  print "synth prolog check binding", regname, kwargs
     #  # TODO - do this in set_bindings instead?
-    #  if kwargs.has_key('decl') and kwargs['decl'] == False:
+    #  if 'decl' in kwargs.keys () and kwargs['decl'] == False:
     #    continue;
 
     #  # Switch on the regname
@@ -408,7 +409,7 @@ class Processor(spe.Processor):
   # Kernel Execution
   # ------------------------------
 
-  def copy(self, dst, src, async = False):
+  def copy(self, dst, src, _async = False):
     """Copy memory from src to dst, using this GPU."""
 
     # Figure out what dst and src are and extract bindings
@@ -447,7 +448,7 @@ class Processor(spe.Processor):
     # Start the copy
     hdl = cal_exec.copy_async(self.ctx, dst_binding, src_binding)
 
-    if async:
+    if _async:
       return hdl
 
     # Not async, complete the copy here.
@@ -455,7 +456,7 @@ class Processor(spe.Processor):
     return
 
 
-  def execute(self, prgm, domain = None, async = False):
+  def execute(self, prgm, domain = None, _async = False):
     if not isinstance(prgm, Program):
       raise Exception("ERROR: Can only execute a Program, not %s" % type(prgm))
 
@@ -476,7 +477,7 @@ class Processor(spe.Processor):
       else:
         raise Exception("Invalid o0 binding!")
 
-    if async:
+    if _async:
       th = cal_exec.run_stream_async(prgm.render_code,
           self.ctx, domain, prgm._bindings)
       return (th, prgm)
@@ -579,7 +580,7 @@ def TestSimpleKernel():
   ext_input = proc.alloc_remote('f', 4, SIZE, SIZE)
   ext_output = proc.alloc_remote('f', 4, SIZE, SIZE)
 
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     ext_input[i] = float(i + 1)
     ext_output[i] = 0.0
 
@@ -605,7 +606,7 @@ def TestSimpleKernel():
   proc.execute(prgm, domain)
 
   # Check the output
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     if ext_output[i] != float(i + 1):
       print "ERROR index %d is %f, should be %f" % (i, ext_output[i], float(i + 1))
 
@@ -624,7 +625,7 @@ def TestSimpleKernelNPy():
   arr_input = proc.alloc_remote_npy('f', 4, SIZE, SIZE)
   arr_output = proc.alloc_remote_npy('f', 4, SIZE, SIZE)
 
-  #for i in xrange(0, SIZE * SIZE * 4):
+  #for i in range(0, SIZE * SIZE * 4):
   #  arr_input[i] = float(i + 1)
   #  arr_output[i] = 0.0
   #print arr_input.shape
@@ -632,9 +633,9 @@ def TestSimpleKernelNPy():
   #print type(arr_input.data)
 
   val = 0.0
-  for i in xrange(0, SIZE):
-    for j in xrange(0, SIZE):
-      for k in xrange(0, 4):
+  for i in range(0, SIZE):
+    for j in range(0, SIZE):
+      for k in range(0, 4):
         arr_input[i][j][k] = val
         arr_output[i][j][k] = 0.0
         val += 1.0
@@ -662,9 +663,9 @@ def TestSimpleKernelNPy():
 
   # Check the output
   val = 0.0
-  for i in xrange(0, SIZE):
-    for j in xrange(0, SIZE):
-      for k in xrange(0, 4):
+  for i in range(0, SIZE):
+    for j in range(0, SIZE):
+      for k in range(0, 4):
         if arr_output[i][j][k] != val:
           print "ERROR index %d is %f, should be %f" % (i, arr_output[i], val)
         val += 1.0
@@ -682,7 +683,7 @@ def TestCopy():
   local2 = proc.alloc_local('f', 4, SIZE, SIZE)
 
   arr_out.clear()
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     arr_inp[i] = float(i)
 
   bytes = 16 * SIZE * SIZE
@@ -692,7 +693,7 @@ def TestCopy():
   proc.copy(local2, local1)
   proc.copy(arr_out, local2)
 
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     if arr_out[i] != float(i):
       print "ERROR arr_out[%d] = %f" % (i, arr_out[i])
     assert(arr_out[i] == float(i))

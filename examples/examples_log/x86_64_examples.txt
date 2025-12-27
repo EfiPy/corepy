@@ -1,0 +1,200 @@
+ret 12
+
+
+	Label(PROLOGUE)
+0	push(rbp)
+0 4855
+1	mov(rbp, rsp)
+2 4889e5
+2	push(r15)
+5 4957
+3	push(r14)
+7 4956
+4	push(r13)
+9 4955
+5	push(r12)
+b 4954
+6	push(rbx)
+d 4853
+
+	Label(BODY)
+
+0	xor(rax, rax)
+f 4831c0
+1	cmp(rax, 1)
+12 4883f801
+2	jne(28)
+16 7504
+3	ud2()
+18 0f0b
+4	ud2()
+1a 0f0b
+5	cmp(rax, 1)
+1c 4883f801
+6	je(37)
+20 7403
+7	add(rax, 12)
+22 4883c00c
+
+
+	Label(EPILOGUE)
+0	pop(rbx)
+26 485b
+1	pop(r12)
+28 495c
+2	pop(r13)
+2a 495d
+3	pop(r14)
+2c 495e
+4	pop(r15)
+2e 495f
+5	leave()
+30 c9
+6	ret()
+31 c3
+ret 12
+
+0	xor(rax, rax)
+1	call(Label(call_fn))
+2	jmp(Label(EPILOGUE))
+3	mov(rax, 75)
+4	mov(rax, 42)
+
+	Label(call_fn)
+5	mov(rax, 15)
+6	ret()
+ret 15
+ret 0
+ret 20
+ret 135
+
+0	xor(rax, rax)
+0 4831c0
+1	xor(rcx, rcx)
+3 4831c9
+2	mov(r14, 1)
+6 49c7c601000000
+
+	Label(LOOP)
+3	inc(rax)
+d 48ffc0
+4	cmp(rax, 7)
+10 4883f807
+5	cmove(rcx, r14)
+14 490f44ce
+6	jrcxz(Label(LOOP))
+18 e3f3
+ret 7
+ret 7
+Return main thread: 1280
+Return thread 1: 1280
+Return thread 2: 1280
+
+0	fldpi()
+0 d9eb
+1	pxor(xmm0, xmm0)
+2 660fefc0
+2	fld1()
+6 d9e8
+3	fadd(st0, st0)
+8 d8c0
+4	fmulp()
+a dec9
+5	fsin()
+c d9fe
+6	fcos()
+e d9ff
+7	fld1()
+10 d9e8
+8	fyl2xp1()
+12 d9f9
+9	push(rax)
+14 4850
+10	fistp(MemRef(rsp, data_size = 64))
+16 48df3c24
+11	pop(rax)
+1a 4858
+Return main thread: 1
+
+0	emms()
+0 0f77
+1	movd(xmm0, edi)
+2 660f6ec7
+2	mov(ebx, edi)
+6 89fb
+3	cmp(ebx, 3)
+8 83fb03
+4	je(Label(OK))
+b 740b
+5	movd(eax, xmm0)
+d 660f7ec0
+6	cmp(eax, 3)
+11 83f803
+7	je(Label(OK))
+14 7402
+8	ud2()
+16 0f0b
+
+	Label(OK)
+9	xor(eax, eax)
+18 31c0
+10	movd(xmm1, ebx)
+1a 660f6ecb
+11	paddq(xmm0, xmm1)
+1e 660fd4c1
+12	pextrw(ecx, xmm0, 0)
+22 660fc5c800
+13	pxor(mm1, mm1)
+27 0fefc9
+14	pinsrw(mm1, ecx, 0)
+2a 0fc4c900
+15	movq2dq(xmm0, mm1)
+2e f30fd6c1
+16	movdq2q(mm2, xmm0)
+32 f20fd6d0
+17	movd(edx, mm2)
+36 0f7ed2
+18	movd(xmm5, edx)
+39 660f6eea
+19	movd(ecx, xmm5)
+3d 660f7ee9
+20	pxor(xmm6, xmm6)
+41 660feff6
+21	pinsrw(xmm6, ecx, 0)
+45 660fc4f100
+22	movd(eax, xmm6)
+4a 660f7ef0
+Return main thread: 6
+
+0	mov(edx, 4660)
+0 ba34120000
+1	mov(eax, 65535)
+5 b8ffff0000
+2	xchg(edx, eax)
+a 92
+ret: 4660
+
+0	mov(rax, rsp)
+0 4889e0
+1	pushfq()
+3 9c
+2	sub(rax, rsp)
+4 4829e0
+3	add(rsp, rax)
+7 4801c4
+ret: 8
+
+0	mov(r14, 65040384)
+1	movaps(xmm15, MemRef(r14, data_size = 128))
+2	pextrw(rax, xmm15, 0)
+3	pextrw(r15, xmm15, 1)
+4	pextrw(r13, xmm15, 2)
+5	pextrw(r12, xmm15, 3)
+6	shl(r15, 16)
+7	shl(r13, 32)
+8	shl(r12, 48)
+9	or_(rax, r15)
+10	or_(rax, r13)
+11	or_(rax, r12)
+ret 3000200010000
+ret 3.141590118408203

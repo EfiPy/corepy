@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -59,7 +60,7 @@ class BitType(VMXType):
   register_type_id = 'vector'
   array_typecodes = ('c', 'b', 'B', 'h', 'H', 'i', 'I', 'f') # all valid typecodes
   array_typecode  = None # typecode for this class
-  literal_types = (int,long, list, tuple, extarray)
+  literal_types = (int,int, list, tuple, extarray)
 
   def _upcast(self, other, inst):
     return inst.ex(self, other, type_cls = most_specific(self, other))
@@ -107,15 +108,15 @@ class BitType(VMXType):
         raise Exception("Array typecode '%s' is not supported" % (value.typecode,))
 
       if len(value) < INT_ARRAY_SIZES[self.array_typecode]:
-        print 'Warning: Variable array initializer has fewer elements than the corresponding vector: %d < %d' % (
-          len(value), INT_ARRAY_SIZES[self.array_typecode])
+        print ('Warning: Variable array initializer has fewer elements than the corresponding vector: %d < %d' % (
+          len(value), INT_ARRAY_SIZES[self.array_typecode]))
       util.load_vector(self.code, self.reg, value.buffer_info()[0])
       self.storage = value
 
     elif type(value) in (list, tuple):
       if len(value) < INT_ARRAY_SIZES[self.array_typecode]:
-        print 'Warning: Variable %s initializer has fewer elements than the corresponding vector: %d < %d' % (
-          type(value), len(value), INT_ARRAY_SIZES[self.array_typecode])
+        print ('Warning: Variable %s initializer has fewer elements than the corresponding vector: %d < %d' % (
+          type(value), len(value), INT_ARRAY_SIZES[self.array_typecode]))
       
       storage = extarray.extarray(self.array_typecode, value)
       util.load_vector(self.code, self.reg, storage.buffer_info()[0])
@@ -133,7 +134,7 @@ class BitType(VMXType):
         else:
           raise Exception('Unsupported typecode for vector literal splat: ' + str(type(self)))
       else:
-        splat = [self.value for i in xrange(INT_ARRAY_SIZES[self.array_typecode])]
+        splat = [self.value for i in range(INT_ARRAY_SIZES[self.array_typecode])]
         vsplat = extarray.extarray(self.array_typecode, splat)
 
         util.load_vector(self.code, self.reg, vsplat.buffer_info()[0])
@@ -327,11 +328,11 @@ def TestLiterals():
   ppc.set_active_code(None)
   vmx.set_active_code(None)
   r = proc.execute(prgm)
-  print result
+  print (result)
   for i in result:
     assert(i == 0)
-  # for i in result: print '%08X' % i,
-  # print
+  # for i in result: print ('%08X' % i, end = '')
+  # print ()
   
   return
 

@@ -81,6 +81,6 @@ for inst in insts:
 regs = cli.get_regs()
 
 for reg in (ione, fone, ia, ib, fa, fb, y0, y1, y2, t1, result):
-  print reg, '0x%08X 0x%08X 0x%08X 0x%08X' % regs[reg]
+  print (reg, '0x%08X 0x%08X 0x%08X 0x%08X' % regs[reg])
 
 cli.stop()

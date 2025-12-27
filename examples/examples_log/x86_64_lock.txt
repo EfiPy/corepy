@@ -1,0 +1,31 @@
+
+0	mov(rax, 1)
+0 48c7c001000000
+1	mov(rcx, 1000000)
+7 48c7c140420f00
+2	mov(rdi, 206663680)
+e 48c7c70070510c
+
+	Label(loop_0)
+3	add(MemRef(rdi, data_size = 64), rax)
+15 480107
+4	dec(rcx)
+18 48ffc9
+5	jnz(Label(loop_0))
+1b 75f8
+time 0.0029861927032470703
+val 1145659 4000000
+passed? False
+
+time 0.06787562370300293
+val 4000000 4000000
+passed? True
+
+time 0.2545332908630371
+val 4000000 4000000
+passed? True
+ret [1.0, 1.0, 1.0, 1.0]
+
+time 0.2079777717590332
+val 4000000.0 4000000
+passed? True

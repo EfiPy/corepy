@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -79,12 +80,12 @@ class SPU_Asm(object):
 
   def stream(self, fd, stream):
     if self.verbose:
-      print >>fd
-      print >>fd, "# InstructionStream %x\n" % id(stream)
+      print (file = fd)
+      print ("# InstructionStream %x\n" % id(stream), file = fd)
     return
 
   def label(self, fd, lbl):
-    print >>fd, "\n%s:" % lbl.name
+    print ("\n%s:" % lbl.name, file = fd)
     return
 
   def str_op(self, op):
@@ -101,7 +102,7 @@ class SPU_Asm(object):
     if isinstance(inst, (spu.stqd, spu.lqd)):
       ops = inst._supplied_operands
       name = inst.__class__.__name__
-      print >>fd, "\t%s %s, %s(%s)" % (name, self.str_op(ops[0]), self.str_op(ops[2]), self.str_op(ops[1]))
+      print ("\t%s %s, %s(%s)" % (name, self.str_op(ops[0]), self.str_op(ops[2]), self.str_op(ops[1])), file = fd)
       return
     elif self.comment_chan == True and isinstance(inst, (spu.rdch, spu.wrch)):
       # Comment rdch/wrch instructions, spu_timing doesn't like them
@@ -113,6 +114,6 @@ class SPU_Asm(object):
     #  op_str += ", %s = %s" % (str(k), str(v))
 
     name = inst.__class__.__name__.strip("_")
-    print >>fd, "\t%s%s %s" % (prefix, name, op_str)
+    print ("\t%s%s %s" % (prefix, name, op_str), file = fd)
     return
 

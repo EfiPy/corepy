@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -87,8 +88,8 @@ class SynDispatchInstruction(spe.DispatchInstruction):
       # zip through the operands and the signature
       match = True
       for op, sig_op in zip(operands, signature):
-        #print "op", op, sig_op
-        #print "check", sig_op.check(op)
+        #print ("op", op, sig_op)
+        #print ("check", sig_op.check(op))
         if not sig_op.check(op):
           match = False
           break
@@ -113,7 +114,7 @@ class SynDispatchInstruction(spe.DispatchInstruction):
 
     # Allow the user to create an instruction without adding it to active code.
     ignore_active = False
-    if koperands.has_key('ignore_active'):
+    if 'ignore_active' in koperands.keys ():
       ignore_active = koperands['ignore_active']
       del koperands['ignore_active']
 
@@ -170,10 +171,10 @@ class Program(env.Program):
           for op in obj.syn_operands:
             if isinstance(op, SynRegister):
               # Need to replace the synregs with real regs.
-              if not regs.has_key(op):
+              if op not in regs.keys ():
                 # Need a new physical register
                 regs[op] = env.Program.acquire_register(self, reg_type = op.reg_type)
-                print "assigned reg", op, regs[op]
+                print ("assigned reg", op, regs[op])
               operands.append(regs[op])
             else:
               operands.append(op)
@@ -181,7 +182,7 @@ class Program(env.Program):
           #spe.DispatchInstruction.__init__(obj, operands)
           obj.inst.__init__(obj, *operands)
 
-    print "CALLING SPE CACHE CODE"
+    print ("CALLING SPE CACHE CODE")
     return env.Program.cache_code(self)
 
 

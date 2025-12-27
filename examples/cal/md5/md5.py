@@ -180,7 +180,7 @@ def MD5Transform(state, block, blocki):
   for i in range(4):
     input_state[i] = state[i]
   Decode(input_block, block, blocki, 64)
-  #print map(hex, input_block)
+  #print (map(hex, input_block))
 
   global xcode
   if xcode == None:
@@ -316,7 +316,7 @@ def MD5Transform(state, block, blocki):
       xcode.release_register(xi)
 
     #for i, inst in enumerate(xcode._instructions):
-    #  print inst.render()
+    #  print (inst.render())
 
   xcode.set_remote_binding('cb0', input_state)
   xcode.set_remote_binding('cb1', input_block)
@@ -330,8 +330,8 @@ def MD5Transform(state, block, blocki):
   state[2] += output[2]
   state[3] += output[3]
 
-  print 'input  = ', map(hex, input_state)
-  print 'output = ', map(hex, output)
+  print ('input  = ', map(hex, input_state))
+  print ('output = ', map(hex, output))
 
   proc.free_remote(input_state)
   proc.free_remote(input_block)
@@ -357,13 +357,13 @@ def MD5Update(context, input, inputLen):
   if inputLen >= partLen:
     for i in range(partLen):
       context.buffer[index + i] = input[i]
-    print map(hex, context.state)
+    print (map(hex, context.state))
     MD5Transform (context.state, context.buffer, 0)
-    print map(hex, context.state)
+    print (map(hex, context.state))
     i = partLen
     while i + 63 < inputLen:
       MD5Transform (context.state, input, i);
-      print map(hex, context.state)
+      print (map(hex, context.state))
       i += 64
     index = 0
     _i = i
@@ -391,7 +391,7 @@ def MD5Final(digest, context):
     padLen = 120 - index
   MD5Update(context, PADDING, padLen)
   MD5Update(context, bits, 8)
-  print map(hex, context.state)
+  print (map(hex, context.state))
   Encode(digest, context.state, 16)
 
 def MD5(s):
@@ -403,15 +403,15 @@ def MD5(s):
   MD5Update(context, s, length)
   MD5Final(digest, context)
 
-  print map(hex, map(int, digest))
+  print (map(hex, map(int, digest)))
 
 MD5('')
-print '========'
+print ('========')
 #for i in range(100):
 MD5('a')
-print '========'
+print ('========')
 MD5('abc')
-print '========'
+print ('========')
 MD5("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
-print '========'
+print ('========')
 

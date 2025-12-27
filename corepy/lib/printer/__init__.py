@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -29,13 +30,13 @@
 import sys
 import corepy.spre.spe as spe
 
-from default import Default
-from spu_asm import SPU_Asm
-from spu_debugger import SPU_Debugger
-#from x86_64_asm import x86_64_Asm
-from x86_64_nasm import x86_64_Nasm
-#from x86_nasm import x86_Nasm
-from cal_asm import CAL_Asm
+from .default import Default
+from .spu_asm import SPU_Asm
+from .spu_debugger import SPU_Debugger
+#from .x86_64_asm import x86_64_Asm
+from .x86_64_nasm import x86_64_Nasm
+from .x86_nasm import x86_Nasm
+from .cal_asm import CAL_Asm
 
 
 def PrintProgram(prgm, module, fd = sys.stdout):
@@ -103,7 +104,7 @@ def PrintInstructionStream(code, module, fd = sys.stdout):
     elif isinstance(obj, spe.Label):
       module.label(fd, obj)
     elif isinstance(obj, spe.AlignStream):
-      print " # ALIGN STREAM"
+      print (" # ALIGN STREAM")
     else:
       raise TypeError("Unknown object in instruction stream: %s" % str(obj))
 

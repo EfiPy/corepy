@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -42,7 +43,7 @@ ext_modules = [Extension('corepy.lib.extarray.extarray',
 
 
 py_platform = get_platform()
-print "Python platform:", py_platform
+print ("Python platform:", py_platform)
 
 if py_platform == "linux-ppc64":
   OS = 'linux'
@@ -50,11 +51,11 @@ if py_platform == "linux-ppc64":
 
   # Enable more stuff if libspe2 is available
   if path.exists("/usr/lib/libspe2.so"):
-    print "LibSPE2 is available; enabling native SPU code execution support"
+    print ("LibSPE2 is available; enabling native SPU code execution support")
     libraries = ['spe2']
     define_macros = [('HAS_LIBSPE2', '1')]
   else:
-    print "LibSPE2 NOT available; disabling native SPU code execution support"
+    print ("LibSPE2 NOT available; disabling native SPU code execution support")
     libraries = []
     define_macros = []
 
@@ -78,7 +79,7 @@ elif py_platform == "linux-x86_64":
   ARCH = 'x86_64'
 
   if path.exists("/usr/lib/libaticalrt.so"):
-    print "CAL is available; enabling CAL GPU support"
+    print ("CAL is available; enabling CAL GPU support")
     define_macros = []
     include_dirs=['/usr/local/atical/include']
 
@@ -89,10 +90,10 @@ elif py_platform == "linux-x86_64":
       define_macros = [('HAS_NUMPY', 1)]
       include_dirs.append(numpy.get_include())
 
-      print "NumPy is available; enabling CAL NumPy Array support"
+      print ("NumPy is available; enabling CAL NumPy Array support")
       
     except ImportError:
-      print "NumPy NOT available; disabling CAL NumPy Array support"
+      print ("NumPy NOT available; disabling CAL NumPy Array support")
 
     ext_modules.append(
         Extension('corepy.arch.cal.platform.linux2.cal_exec',
@@ -103,7 +104,7 @@ elif py_platform == "linux-x86_64":
                   define_macros = define_macros))
 
   if path.exists("/usr/lib64/libcuda.so"):
-    print "PTX is available; enabling PTX GPU support"
+    print ("PTX is available; enabling PTX GPU support")
     define_macros = []
     include_dirs=['/usr/local/cuda/include/']
 
@@ -114,10 +115,10 @@ elif py_platform == "linux-x86_64":
       define_macros = [('HAS_NUMPY', 1)]
       include_dirs.append(numpy.get_include())
 
-      print "NumPy is available; enabling PTX NumPy Array support"
+      print ("NumPy is available; enabling PTX NumPy Array support")
       
     except ImportError:
-      print "NumPy NOT available; disabling PTX NumPy Array support"
+      print ("NumPy NOT available; disabling PTX NumPy Array support")
 
     ext_modules.append(
         Extension('corepy.arch.ptx.platform.linux.ptx_exec',
@@ -151,7 +152,7 @@ elif py_platform[0:6] == 'macosx' or py_platform[0:6] == 'darwin':
     else:
         ARCH = 'ppc'
 else:
-  print "Unsupported Python platform!  Aborting."
+  print ("Unsupported Python platform!  Aborting.")
   exit(-1)
 
 # TODO - maybe rename the _exec files to not have the arch in them?
@@ -161,8 +162,8 @@ ext_modules.append(
         sources=['%s%s' % (template, 'i')],
         depends=['%s%s' % (template, 'h')]))
 
-print "CorePy platform:", ARCH, OS
-print
+print ("CorePy platform:", ARCH, OS)
+print ()
 
 # New enough python to support swig_opts?
 options={}

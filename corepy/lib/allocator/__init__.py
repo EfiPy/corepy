@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -231,7 +232,7 @@ class Allocator(object):
         
         block = self.firstBlock.next # we know the sentinal can be skipped
         
-        while block <> None:
+        while block is not None:
             if block.isFree:
                 if requestSize == block.size:
                     # perfect fit
@@ -258,7 +259,7 @@ class Allocator(object):
                 
             block = block.next
        
-        raise Exception, "Allocate Failed - pool is all in use"
+        raise Exception ("Allocate Failed - pool is all in use")
 
     def alloc(self, size):
         
@@ -279,7 +280,7 @@ class Allocator(object):
         # block that has enough space to meet the (expanded) request
         block = self.firstBlock.next # we know the first entry can be skipped
         
-        while block <> None:
+        while block is not None:
             if block.isShared:
                 if block.size >= requestSize:
                     break
@@ -309,13 +310,13 @@ class Allocator(object):
     
         block = self.firstBlock
         
-        print "MemPool:"
-        while block <> None:
-            print "addr: ", hex(block.addr), "  size: ", \
+        print ("MemPool:")
+        while block is not None:
+            print ("addr: ", hex(block.addr), "  size: ", \
                   hex(block.size), "  free: ", block.isFree, \
-                  "  shared: ", block.isShared
+                  "  shared: ", block.isShared)
             block = block.next
-        print
+        print ()
 
 
 
@@ -347,19 +348,19 @@ if __name__=='__main__':
     spuMem._printMemList()
     
     d = spuMem.alloc(60)
-    print "d.addr = ", d.addr
+    print ("d.addr = ", d.addr)
     
     spuMem._printMemList()
 
     e = spuMem.alloc(30)
-    print "e.addr = ",e.addr
+    print ("e.addr = ",e.addr)
     spuMem._printMemList()
 
     d.free()
     spuMem._printMemList()
     
     f = spuMem.alloc(60)
-    print "f.addr = ",f.addr
+    print ("f.addr = ",f.addr)
     spuMem._printMemList()
 
     e.free()

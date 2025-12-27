@@ -31,6 +31,9 @@
 #ifndef ALLOC_H
 #define ALLOC_H
 
+#ifdef _XOPEN_SOURCE
+#undef _XOPEN_SOURCE
+#endif // _XOPEN_SOURCE
 #define _XOPEN_SOURCE 600
 //#define _DEBUG
 

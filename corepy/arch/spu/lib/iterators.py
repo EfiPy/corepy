@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -107,7 +108,7 @@ class memory_desc(object):
     l = repr(b).split(' ')
     self.size = int(l[l.index('size') + 1])
     self.addr = int(l[l.index('ptr') + 1][:-1], 0)
-    # print l, self.size, self.addr
+    # print (l, self.size, self.addr)
     return
 
   def from_ibuffer(self, m):
@@ -173,7 +174,7 @@ class memory_desc(object):
     # Load the effective address
     if self.r_addr is None:
       if self.addr % 16 != 0:
-        print '[get_memory] Misaligned data'
+        print ('[get_memory] Misaligned data')
 
       util.load_word(code, ea_addr, self.addr)
 
@@ -444,7 +445,7 @@ class syn_iter(object):
     #  raise Exception('Continue point not set.  Has the loop been synthesized yet?')
 
     #next = (self.continue_label - idx)
-    # print 'Continue:', next, idx, self.continue_label
+    # print ('Continue:', next, idx, self.continue_label)
     #code[idx] = branch_inst(next)
     #code[idx] = branch_inst(self.continue_label)
     code.add(branch_inst(self.continue_label))
@@ -576,7 +577,7 @@ class spu_vec_iter(syn_iter):
     self.current_var = self.make_current()
     self.init_address()
 
-    # print self.r_count, self.r_stop, self.r_current, self.r_addr, self.data.buffer_info()[0]
+    # print (self.r_count, self.r_stop, self.r_current, self.r_addr, self.data.buffer_info()[0])
 
     return
 
@@ -848,7 +849,7 @@ class parallel(object):
       raise Exception("ParallelProgram required")
 
     if obj.code.prgm.raw_data_size is not None:
-      print 'Warning (parallel): raw_data_size is already set'
+      print ('Warning (parallel): raw_data_size is already set')
   
     if type(self.obj) is zip_iter:
       self.obj.iters = [parallel(i) for i in self.obj.iters]
@@ -986,9 +987,9 @@ def TestSPUIter():
   r_size    = prgm.acquire_register()
   r_tag     = prgm.acquire_register()  
 
-  #print 'array ea: %X' % (data.buffer_info()[0])
-  #print 'r_zero = %s, ea_data = %s, ls_data = %s, r_size = %s, r_tag = %s' % (
-  #  str(code.r_zero), str(r_ea_data), str(r_ls_data), str(r_size), str(r_tag))
+  #print ('array ea: %X' % (data.buffer_info()[0]))
+  #print ('r_zero = %s, ea_data = %s, ls_data = %s, r_size = %s, r_tag = %s' % (
+  #  str(code.r_zero), str(r_ea_data), str(r_ls_data), str(r_size), str(r_tag)))
   
   # Load the effective address
   util.load_word(code, r_ea_data, data.buffer_info()[0])
@@ -1073,7 +1074,7 @@ def TestSPUParallelIter(data, size, n_spus = 6, buffer_size = 16, run_code = Tru
   #data.copy_to(data_array.buffer_info()[0], len(data_array))
 
 
-  # print 'Data align: 0x%X, %d' % (data.buffer_info()[0], data.buffer_info()[0] % 16)
+  # print ('Data align: 0x%X, %d' % (data.buffer_info()[0], data.buffer_info()[0] % 16))
 
   code = env.ParallelInstructionStream()
   # code = env.InstructionStream()
@@ -1087,9 +1088,9 @@ def TestSPUParallelIter(data, size, n_spus = 6, buffer_size = 16, run_code = Tru
   # Load zero
   util.load_word(code, r_zero, 0)
 
-  # print 'array ea: 0x%X 0x%X' % (data.buffer_info()[0], long(data.buffer_info()[0]))
-  # print 'r_zero = %d, ea_data = %d, ls_data = %d, r_size = %d, r_tag = %d' % (
-  #   r_zero, r_ea_data, r_ls_data, r_size, r_tag)
+  # print ('array ea: 0x%X 0x%X' % (data.buffer_info()[0], int(data.buffer_info()[0])))
+  # print ('r_zero = %d, ea_data = %d, ls_data = %d, r_size = %d, r_tag = %d' % (
+  #   r_zero, r_ea_data, r_ls_data, r_size, r_tag))
 
   # Load the effective address
   if data.buffer_info()[0] % 16 == 0:
@@ -1102,7 +1103,7 @@ def TestSPUParallelIter(data, size, n_spus = 6, buffer_size = 16, run_code = Tru
   for ea in parallel(syn_range(code, ea_start, ea_start + size * 4 , buffer_size * 4)):
     # ea = var.SignedWord(code = code, reg = r_ea_data)
   
-    # print 'n_iters:', size / buffer_size
+    # print ('n_iters:', size / buffer_size)
     # for i in syn_range(code, size / buffer_size):
 
     # code.add(spu.stop(0xB))
@@ -1183,9 +1184,9 @@ def TestSPUParallelIter(data, size, n_spus = 6, buffer_size = 16, run_code = Tru
   #data.copy_from(data_array.buffer_info()[0], len(data_array))  
   def print_blocks():
     for i in range(0, size, buffer_size):
-      # print data[i:(i + buffer_size)]
-      print data[i + buffer_size],
-    print '' 
+      # print (data[i:(i + buffer_size)])
+      print (data[i + buffer_size], end = '')
+    print () 
   
   # print_blocks()
   s = time.time()
@@ -1201,10 +1202,10 @@ def TestSPUParallelIter(data, size, n_spus = 6, buffer_size = 16, run_code = Tru
 def ParallelTests():
   max_exp = 16
   max_size = pow(2, max_exp)
-  print 'Creating data...'
+  print ('Creating data...')
   data = extarray.extarray('I', range(max_size))
   
-  print 'Executing Tests...'
+  print ('Executing Tests...')
   # t = TestSPUParallelIter(data, 8192, n_spus = 1, buffer_size = 128)
   # return 
 
@@ -1219,12 +1220,12 @@ def ParallelTests():
         buffer_size = pow(2, buffer_exp)
         # for buffer_size in [4]:
         t = 0.0
-        print 'try\t%d\t%d\t%d\t-.-' % (size, n_spus, buffer_size)
+        print ('try\t%d\t%d\t%d\t-.-' % (size, n_spus, buffer_size))
         # for i in range(10):
         t += TestSPUParallelIter(data, size, n_spus = n_spus, buffer_size = buffer_size)
         
-        print 'test\t%d\t%d\t%d\t%.8f' % (size, n_spus, buffer_size, t / 10.0)
-        # print 'count:', i
+        print ('test\t%d\t%d\t%d\t%.8f' % (size, n_spus, buffer_size, t / 10.0))
+        # print ('count:', i)
         i += 1
   return
 
@@ -1351,7 +1352,7 @@ def TestContinueLabel(n_spus = 1):
     if i >= 4:
       assert(a[i] == i + i)
     else:
-      #print a[i]
+      #print (a[i])
       assert(a[i] == i * 4)
   return
 
@@ -1370,7 +1371,7 @@ def TestStreamBufferDouble(n_spus = 1):
 
   addr = a.buffer_info()[0]
   n_bytes = n * 4
-  #print 'addr 0x%(addr)x %(addr)d' % {'addr':a.buffer_info()[0]}, n_bytes, buffer_size
+  #print ('addr 0x%(addr)x %(addr)d' % {'addr':a.buffer_info()[0]}, n_bytes, buffer_size)
 
   stream = stream_buffer(code, addr, n_bytes, buffer_size, 0, buffer_mode='double', save = True)
   if n_spus > 1:  stream = parallel(stream)
@@ -1396,7 +1397,7 @@ def TestStreamBufferDouble(n_spus = 1):
 #   import os
 #   filename = 'spuiter.TestMemoryMap.dat'
 #   n = 8192
-#   print 'hello'
+#   print ('hello')
 #   # Create a file
 #   fw = open(filename, 'w')
 #   fw.write('-' * (8192 + 32))
@@ -1406,7 +1407,7 @@ def TestStreamBufferDouble(n_spus = 1):
 #   f = open(filename, 'r+')
 #   size = os.path.getsize(filename)
 #   m = mmap.mmap(f.fileno(), n)
-#   print 'size:', size, n
+#   print ('size:', size, n)
 #   # Create a memory descriptor
 #   md = memory_desc('I', size = size)
 #   md.from_ibuffer(m)
@@ -1432,7 +1433,7 @@ def TestStreamBufferDouble(n_spus = 1):
 #   r = proc.execute(code, n_spus = n_spus)
 
 #   for i in range(0, n): # , buffer_size / 4):
-#     # print a[i:(i+buffer_size/4)]
+#     # print (a[i:(i+buffer_size/4)])
 #     # assert(a[i] == i + i)
 #     pass
 #   return
@@ -1446,12 +1447,12 @@ def TestStreamBufferDouble(n_spus = 1):
 #   for i in syn_iter(code, pow(2, 16), hint=False):
 #     a.v = a + a
 #   e = time.time() - s
-#   print "Without hint: ", e
+#   print ("Without hint: ", e)
 #   s = time.time()
 #   for i in syn_iter(code, pow(2, 16), hint=True):
 #     a.v = a + a
 #   e = time.time() - s
-#   print "With hint: ", e
+#   print ("With hint: ", e)
 #   return
 
 if __name__=='__main__':

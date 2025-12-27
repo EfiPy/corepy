@@ -27,7 +27,7 @@ prgm.add(code)
 prgm.print_code() # TODO  - support print prgm instead?
 
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 prgm = env.Program()
 code = prgm.get_stream()
@@ -55,5 +55,5 @@ prgm.add(code)
 prgm.print_code()
 
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 

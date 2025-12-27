@@ -1,0 +1,835 @@
+xor ebx, eax
+31
+C3
+
+add ebx, ebx
+01
+DB
+
+add ebx, r13d
+44
+01
+EB
+
+add r13d, ebx
+41
+01
+DD
+
+xor rax, r15
+4C
+31
+F8
+
+xor r15, rax
+49
+31
+C7
+
+xor r13, r13
+4D
+31
+ED
+
+mov rax, 244838346637039
+48
+B8
+EF
+BE
+AD
+DE
+AD
+DE
+00
+00
+
+mov r11, 244838346637039
+49
+BB
+EF
+BE
+AD
+DE
+AD
+DE
+00
+00
+
+mov r12, 244838346637039
+49
+BC
+EF
+BE
+AD
+DE
+AD
+DE
+00
+00
+
+mov r13, 244838346637039
+49
+BD
+EF
+BE
+AD
+DE
+AD
+DE
+00
+00
+
+mov r14, 244838346637039
+49
+BE
+EF
+BE
+AD
+DE
+AD
+DE
+00
+00
+
+mov r15, 244838346637039
+49
+BF
+EF
+BE
+AD
+DE
+AD
+DE
+00
+00
+
+add r15, 48879
+49
+81
+C7
+EF
+BE
+00
+00
+
+add r8, 10
+49
+83
+C0
+0A
+
+mov r8, MemRef(rbx, 3, data_size = 64)
+4C
+8B
+43
+03
+
+mov rax, MemRef(r9, 3, data_size = 64)
+49
+8B
+41
+03
+
+mov rcx, MemRef(rsp, data_size = 64)
+48
+8B
+0C
+24
+
+mov rbx, MemRef(rsp, data_size = 64)
+48
+8B
+1C
+24
+
+mov rdx, MemRef(rbp, 64, data_size = 64)
+48
+8B
+55
+40
+
+mov rdi, MemRef(rbp, data_size = 64)
+48
+8B
+7D
+00
+
+mov rdx, MemRef(rax, 64, r10, 4, data_size = 64)
+4A
+8B
+54
+90
+40
+
+mov rdx, MemRef(r14, 24, rbx, 2, data_size = 64)
+49
+8B
+54
+5E
+18
+
+add MemRef(rsp, data_size = 64), 16
+48
+83
+04
+24
+10
+
+add MemRef(rsp, data_size = 64), r15
+4C
+01
+3C
+24
+
+call MemRef(r12, data_size = 64)
+41
+FF
+14
+24
+
+cmpxchg8b MemRef(rax, data_size = 64)
+0F
+C7
+08
+
+cmpxchg8b MemRef(r8, data_size = 64)
+41
+0F
+C7
+08
+
+cmpxchg16b MemRef(rax, data_size = 128)
+48
+0F
+C7
+08
+
+cmpxchg16b MemRef(r8, data_size = 128)
+49
+0F
+C7
+08
+
+add MemRef(rbp, data_size = 64), 5
+48
+83
+45
+00
+05
+
+add MemRef(rbp, data_size = 64), 514703087
+48
+81
+45
+00
+EF
+BE
+AD
+1E
+
+call MemRef(rdx, data_size = 64)
+FF
+12
+
+dec rax
+48
+FF
+C8
+
+dec MemRef(rax, data_size = 64)
+48
+FF
+08
+
+dec MemRef(r15, data_size = 64)
+49
+FF
+0F
+
+div rax
+48
+F7
+F0
+
+div r13
+49
+F7
+F5
+
+div MemRef(rax, data_size = 64)
+48
+F7
+30
+
+div MemRef(r13, data_size = 64)
+49
+F7
+75
+00
+
+jmp rax
+48
+FF
+E0
+
+jmp MemRef(r13, data_size = 64)
+41
+FF
+65
+00
+
+jmp MemRef(rax, data_size = 64)
+FF
+20
+
+lea rdx, MemRef(r14, 24, rbx, 2, data_size = None)
+49
+8D
+54
+5E
+18
+
+mov r13, -2210632929551171311
+49
+BD
+11
+41
+52
+21
+10
+41
+52
+E1
+
+shld rax, r15, cl
+4C
+0F
+A5
+F8
+
+movd xmm8, r15
+66
+4D
+0F
+6E
+C7
+
+addpd xmm11, xmm10
+66
+45
+0F
+58
+DA
+
+addpd xmm11, MemRef(rdx, data_size = 128)
+66
+44
+0F
+58
+1A
+
+cmpxchg8b MemRef(eax, data_size = 64)
+67
+0F
+C7
+08
+
+mov r8, MemRef(ebx, 3, data_size = 64)
+67
+4C
+8B
+43
+03
+
+mov rax, MemRef(r9d, 3, data_size = 64)
+67
+49
+8B
+41
+03
+
+mov rdx, MemRef(ebp, 64, data_size = 64)
+67
+48
+8B
+55
+40
+
+mov rdx, MemRef(eax, 64, r10d, 4, data_size = 64)
+67
+4A
+8B
+54
+90
+40
+
+mov rdx, MemRef(r14d, 24, ebx, 2, data_size = 64)
+67
+49
+8B
+54
+5E
+18
+
+add MemRef(rbp, data_size = 32), 5
+83
+45
+00
+05
+
+add MemRef(rbp, data_size = 32), 514703087
+81
+45
+00
+EF
+BE
+AD
+1E
+
+add ebp, 8
+83
+C5
+08
+
+add r15d, 8
+41
+83
+C7
+08
+
+add r15d, 514703087
+41
+81
+C7
+EF
+BE
+AD
+1E
+
+mov r8d, 514703087
+41
+B8
+EF
+BE
+AD
+1E
+
+add ax, r9w
+66
+44
+01
+C8
+
+add eax, r9d
+44
+01
+C8
+
+add rax, MemRef(rbp, -8, data_size = 64)
+48
+03
+45
+F8
+
+cmplepd xmm11, xmm10
+66
+45
+0F
+C2
+DA
+02
+
+pextrw eax, xmm7, 2
+66
+0F
+C5
+C7
+02
+
+mov rax, MemRef(rip, 128, data_size = 64)
+48
+8B
+05
+80
+00
+00
+00
+
+mov MemRef(rip, 128, data_size = 64), rax
+48
+89
+05
+80
+00
+00
+00
+
+mov eax, MemRef(rip, 128, data_size = 32)
+8B
+05
+80
+00
+00
+00
+
+mov rax, MemRef(0x80, data_size = 64)
+48
+8B
+04
+25
+80
+00
+00
+00
+
+mov rax, MemRef(rbp, data_size = 64)
+48
+8B
+45
+00
+
+mov rbx, MemRef(rbp, index = rdx, scale = 2, data_size = 64)
+48
+8B
+5C
+55
+00
+
+mov rbx, MemRef(rdi, index = rdx, scale = 2, data_size = 64)
+48
+8B
+1C
+57
+
+mov rbx, MemRef(rsp, index = rdx, scale = 2, data_size = 64)
+48
+8B
+1C
+54
+
+mov rax, MemRef(rbp, 0, rdx, 2, data_size = 64)
+48
+8B
+44
+55
+00
+
+mov eax, MemRef(ebp, data_size = 32)
+67
+8B
+45
+00
+
+and_ al, bl
+20
+D8
+
+and_ al, ch
+20
+E8
+
+and_ al, sil
+40
+20
+F0
+
+and_ al, spl
+40
+20
+E0
+
+and_ bpl, MemRef(rax, data_size = 8)
+40
+22
+28
+
+invlpg MemRef(rax, data_size = 8)
+0F
+01
+38
+
+rdtscp 
+0F
+01
+F9
+
+cmove rcx, rdx
+48
+0F
+44
+CA
+
+cmove ecx, edx
+0F
+44
+CA
+
+cmove cx, dx
+66
+0F
+44
+CA
+
+shld rax, rbx, cl
+48
+0F
+A5
+D8
+
+shld eax, ebx, cl
+0F
+A5
+D8
+
+shld ax, bx, cl
+66
+0F
+A5
+D8
+
+shld rax, rbx, 4
+48
+0F
+A4
+D8
+04
+
+shld eax, ebx, 4
+0F
+A4
+D8
+04
+
+shld ax, bx, 4
+66
+0F
+A4
+D8
+04
+
+imul rax, rdx, 1048576
+48
+69
+C2
+00
+00
+10
+00
+
+imul rax, rdx, 16
+48
+6B
+C2
+10
+
+imul eax, edx, 1048576
+69
+C2
+00
+00
+10
+00
+
+imul ax, dx, 4096
+66
+69
+C2
+00
+10
+
+shl rax, 1
+48
+D1
+E0
+
+add eax, 1
+83
+C0
+01
+
+mov r15, 4
+49
+C7
+C7
+04
+00
+00
+00
+
+
+cvtss2si r9d, xmm0
+F3
+44
+0F
+2D
+C8
+
+cvttsd2si r9d, xmm0
+F2
+44
+0F
+2C
+C8
+
+cvttss2si r9d, xmm0
+F3
+44
+0F
+2C
+C8
+
+movmskpd eax, xmm9
+66
+41
+0F
+50
+C1
+
+pmovmskb eax, xmm9
+66
+41
+0F
+D7
+C1
+
+pextrw ebx, xmm12, 4
+66
+41
+0F
+C5
+DC
+04
+
+pinsrw xmm12, ebx, 4
+66
+44
+0F
+C4
+E3
+04
+
+movd ecx, xmm5
+66
+0F
+7E
+E9
+
+movd xmm5, edx
+66
+0F
+6E
+EA
+
+movd xmm5, rdx
+66
+48
+0F
+6E
+EA
+
+
+cvtsi2sd xmm0, r9
+F2
+49
+0F
+2A
+C1
+
+cvtss2si r9, xmm0
+F3
+4C
+0F
+2D
+C8
+
+cvttsd2si r9, xmm0
+F2
+4C
+0F
+2C
+C8
+
+cvttss2si r9, xmm0
+F3
+4C
+0F
+2C
+C8
+
+movd rcx, xmm5
+66
+48
+0F
+7E
+E9
+
+movd xmm5, rdx
+66
+48
+0F
+6E
+EA
+
+
+pmovmskb eax, mm1
+0F
+D7
+C1
+
+pmovmskb rax, mm1
+48
+0F
+D7
+C1
+
+movd rcx, mm5
+48
+0F
+7E
+E9
+
+movd mm5, rdx
+48
+0F
+6E
+EA
+
+
+rdmsr 
+0F
+32
+
+wrmsr 
+0F
+30
+
+cpuid 
+0F
+A2
+
+out 96, eax
+E7
+60
+
+out 96, ax
+66
+E7
+60
+
+out 96, al
+E6
+60
+
+in_ eax, 96
+E5
+60
+
+in_ ax, 96
+66
+E5
+60
+
+in_ al, 96
+E4
+60
+

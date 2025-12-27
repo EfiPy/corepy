@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -69,13 +70,13 @@ class ptxVariable(spe.Register):
     return
 
 #   def __add__(self, other):
-#     if type(other) == int or type(other) == long or type(other) == float:
+#     if type(other) == int or type(other) == int or type(other) == float:
 #       return Address(self, other)
 #     else:
 #       raise "Can't do that with a CALRegister."
 
 #   def __radd__(self, other):
-#     if type(other) == int or type(other) == long or type(other) == float:
+#     if type(other) == int or type(other) == int or type(other) == float:
 #       return Address(self, other)
 #     else:
 #       raise "Can't do that with a CALRegister."
@@ -178,12 +179,12 @@ class ptxRegister_pred(ptxRegister):
 class ptxAddress(ptxVariable):
   def __init__(self, base, offset = 0, name = ''):
     self.name = name
-    if isinstance(base, (spe.Variable, ptxVariable, int, long)):
+    if isinstance(base, (spe.Variable, ptxVariable, int, int)):
       self.base = base
-      if isinstance(offset, (int, long)):
+      if isinstance(offset, (int, int)):
         self.offset = offset
       else:
-        print type(offset)
+        print (type(offset))
         raise Exception("Invalid offset for address - must be an integer/long.")
     else:
       raise Exception("Invalid base for address - must be a synthetic variable, ptxVariable, or an integer/long.")
@@ -213,9 +214,9 @@ _rclasses = (ptxRegister_b8, ptxRegister_b16, ptxRegister_b32, ptxRegister_b64,
              ptxRegister_s8, ptxRegister_s16, ptxRegister_s32, ptxRegister_s64, 
              ptxRegister_f16, ptxRegister_f32, ptxRegister_f64, ptxRegister_pred)
 
-_reg_names = [['r' + str(i) + '_' + rtype for rtype in _rtypes] for i in xrange(num_regs)]
+_reg_names = [['r' + str(i) + '_' + rtype for rtype in _rtypes] for i in range(num_regs)]
 
-for _i in xrange(num_regs):
+for _i in range(num_regs):
   for _rtype, _rclass  in zip(_rtypes, _rclasses):
     _reg_name = 'r' + str(_i) + '_' + _rtype
     globals()[_reg_name] = _rclass(rtype = _rtype, name = _reg_name)

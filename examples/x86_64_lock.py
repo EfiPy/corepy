@@ -36,13 +36,13 @@ prgm.print_code(hex = True)
 
 proc = env.Processor()
 t1 = time.time()
-ids = [proc.execute(prgm, async = True) for i in xrange(0, THREADS)]
+ids = [proc.execute(prgm, _async = True) for i in range(0, THREADS)]
 [proc.join(i) for i in ids]
 t2 = time.time()
 
-print "time", t2 - t1
-print "val", data[0], ITERS * THREADS
-print "passed?", data[0] == ITERS * THREADS
+print ("time", t2 - t1)
+print ("val", data[0], ITERS * THREADS)
+print ("passed?", data[0] == ITERS * THREADS)
 
 
 # This case locks like it should, so should be correct.
@@ -67,14 +67,14 @@ prgm += code
 
 proc = env.Processor()
 t1 = time.time()
-ids = [proc.execute(prgm, async = True) for i in xrange(0, THREADS)]
+ids = [proc.execute(prgm, _async = True) for i in range(0, THREADS)]
 [proc.join(i) for i in ids]
 t2 = time.time()
 
-print
-print "time", t2 - t1
-print "val", data[0], ITERS * THREADS
-print "passed?", data[0] == ITERS * THREADS
+print ()
+print ("time", t2 - t1)
+print ("val", data[0], ITERS * THREADS)
+print ("passed?", data[0] == ITERS * THREADS)
 
 
 # Same thing again, just using cmpxchg to do the work.
@@ -113,14 +113,14 @@ prgm += code
 
 proc = env.Processor()
 t1 = time.time()
-ids = [proc.execute(prgm, async = True) for i in xrange(0, THREADS)]
+ids = [proc.execute(prgm, _async = True) for i in range(0, THREADS)]
 [proc.join(i) for i in ids]
 t2 = time.time()
 
-print
-print "time", t2 - t1
-print "val", data[0], ITERS * THREADS
-print "passed?", data[0] == ITERS * THREADS
+print ()
+print ("time", t2 - t1)
+print ("val", data[0], ITERS * THREADS)
+print ("passed?", data[0] == ITERS * THREADS)
 
 
 # Use a float value in an SSE register.
@@ -165,14 +165,14 @@ prgm += code
 
 proc = env.Processor()
 t1 = time.time()
-ids = [proc.execute(prgm, mode = 'fp', async = True) for i in xrange(0, THREADS)]
+ids = [proc.execute(prgm, mode = 'fp', _async = True) for i in range(0, THREADS)]
 ret = [proc.join(i) for i in ids]
 t2 = time.time()
 
-print "ret", ret
+print ("ret", ret)
 
-print
-print "time", t2 - t1
-print "val", data[0], ITERS * THREADS
-print "passed?", data[0] == ITERS * THREADS
+print ()
+print ("time", t2 - t1)
+print ("val", data[0], ITERS * THREADS)
+print ("passed?", data[0] == ITERS * THREADS)
 

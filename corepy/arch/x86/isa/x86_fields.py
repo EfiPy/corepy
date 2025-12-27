@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -92,7 +93,7 @@ class x86ImmediateOperand(x86InstructionOperand):
     return self.fits(value)
 
   def fits(self, value):
-    return isinstance(value, (int, long)) and (self.range[0] <= value and value < self.range[1])
+    return isinstance(value, (int, int)) and (self.range[0] <= value and value < self.range[1])
 
   def __eq__(self, other):
     # Carefully written so that an immediate with larger range is equal

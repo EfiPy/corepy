@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -58,7 +59,7 @@ elif sys_info[0] == 'Linux':
   #  ARCH = 'cell'
   #  OS = 'linux'
 else:
-  print "Unsupported architecture: Using 'dummy' settings"
+  print ("Unsupported architecture: Using 'dummy' settings")
   OS = 'dummy'
   ARCH = 'dummy'
 

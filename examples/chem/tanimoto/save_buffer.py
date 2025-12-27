@@ -223,23 +223,23 @@ def TestSaveBuffer1():
     save_buffer.save_register(value)
 
   code.print_code()
-  spe_id = proc.execute(code, mode='async')
+  spe_id = proc.execute(code, mode='_async')
 
   for i in range(n/4):
     while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-    print 'size: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+    print ('size: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
     while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-    print 'offset: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+    print ('offset: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
     while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-    print 'test: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+    print ('test: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
   proc.join(spe_id)
 
   #data.copy_from(data_array.buffer_info()[0], len(data_array))  
 
-  print data[:10]
+  print (data[:10])
   return
 
 

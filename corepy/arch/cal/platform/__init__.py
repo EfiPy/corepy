@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -37,7 +38,7 @@ platform_string = 'linux2.spre_linux_cal'
 
 
 if conf.VERBOSE:
-  print '# Platform:', platform_string
+  print ('# Platform:', platform_string)
 
 platform_module = __import__(platform_string, globals(), locals(), platform_imports)
 

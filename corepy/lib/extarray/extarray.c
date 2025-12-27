@@ -18,11 +18,13 @@ typedef int Py_ssize_t;
 
 //Make sure Py_ssize_t is defined
 
+#define USE_extbuffer      0
+
 typedef struct ExtArray {
   PyObject_HEAD
 
   PyObject* attr_dict;
-  char typecode;          //Type of array elements
+  int typecode;           //Type of array elements
   unsigned char huge;     //Boolean, 1 if huge pages are used, 0 otherwise
   char lock;              //Boolean, 1 if memory is 'locked' eg no realloc
 
@@ -57,7 +59,7 @@ ExtArray_new(PyTypeObject* type, PyObject* args, PyObject* kwds)
 
   self = (ExtArray*)type->tp_alloc(type, 0);
   if(self != NULL) {
-    self->typecode = '\0';
+    self->typecode = L'\0';
     self->huge = 0;
     self->lock = 0;
 
@@ -79,33 +81,33 @@ ExtArray_new(PyTypeObject* type, PyObject* args, PyObject* kwds)
 
 
 //Set the type and item size
-static int set_type(ExtArray* self, char typecode)
+static int set_type(ExtArray* self, int typecode)
 {
   switch(typecode) {
-  case 'c':
-  case 'b':
-  case 'B':
+  case L'c':
+  case L'b':
+  case L'B':
     self->itemsize = sizeof(char);
     break;
-  case 'h':
-  case 'H':
+  case L'h':
+  case L'H':
     self->itemsize = sizeof(short);
     break;
-  case 'i':
-  case 'I':
+  case L'i':
+  case L'I':
     self->itemsize = sizeof(int);
     break;
-  case 'l':
-  case 'L':
+  case L'l':
+  case L'L':
     self->itemsize = sizeof(long);
     break;
-  case 'f':
+  case L'f':
     self->itemsize = sizeof(float);
     break;
-  case 'd':
+  case L'd':
     self->itemsize = sizeof(double);
     break;
-  case 'u':
+  case L'u':
     PyErr_SetString(PyExc_NotImplementedError,
         "Unicode not supported by extarray");
     return -1;
@@ -122,7 +124,7 @@ static int set_type(ExtArray* self, char typecode)
 
 //Allocate memory for length elements, rounding the allocation up to a
 // multiple of a page.
-static int alloc(ExtArray* self, Py_ssize_t length)
+static int _pAlloc(ExtArray* self, Py_ssize_t length)
 {
   Py_ssize_t size;
   Py_ssize_t m;
@@ -164,11 +166,11 @@ ExtArray_init(ExtArray* self, PyObject* args, PyObject* kwds)
   //Python-level extarray constructor:
   //def __init__(self, typecode, init = None, huge = False):
   static char* kwlist[] = {"typecode", "init", "huge", NULL};
-  char typecode;
+  int typecode;
   unsigned char huge = 0;
   PyObject* init = Py_None;
 
-  if(!PyArg_ParseTupleAndKeywords(args, kwds, "c|Ob",
+  if(!PyArg_ParseTupleAndKeywords(args, kwds, "C|Ob",
       kwlist, &typecode, &init, &huge)) {
     return -1;
   }
@@ -208,18 +210,15 @@ ExtArray_init(ExtArray* self, PyObject* args, PyObject* kwds)
   // sequence means copy the sequence elements into the array
   if(init == Py_None) {
     self->data_len = 0;
-  } else if(PyInt_Check(init)) {
-    self->data_len = PyInt_AsLong(init);
-    alloc(self, self->data_len);
   } else if(PyLong_Check(init)) {
     self->data_len = PyLong_AsLong(init);
-    alloc(self, self->data_len);
+    _pAlloc(self, self->data_len);
   } else if(PySequence_Check(init)) {
     PyObject* item;
     int i;
 
     self->data_len = PySequence_Size(init);
-    alloc(self, self->data_len);
+    _pAlloc(self, self->data_len);
 
     for(i = 0; i < self->data_len; i++) {
       item = PySequence_ITEM(init, i);
@@ -251,7 +250,7 @@ ExtArray_dealloc(ExtArray* self)
     Py_DECREF(self->arr_ref);
   }
 
-  self->ob_type->tp_free((PyObject*)self);
+  Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 
@@ -264,7 +263,7 @@ static PyObject* ExtArray_alloc(ExtArray* self, PyObject* arg)
     return NULL;
   }
 
-  if(alloc(self, length) == -1) {
+  if(_pAlloc(self, length) == -1) {
     return NULL;
   }
 
@@ -277,7 +276,7 @@ static PyObject* ExtArray_alloc(ExtArray* self, PyObject* arg)
 static PyObject* ExtArray_append(ExtArray* self, PyObject* val)
 {
   self->data_len++;
-  if(alloc(self, self->data_len) == -1) {
+  if(_pAlloc(self, self->data_len) == -1) {
     return NULL;
   }
 
@@ -298,7 +297,7 @@ static PyObject* ExtArray_buffer_info(ExtArray* self, PyObject* val)
   PyTuple_SET_ITEM(tuple, 0,
       PyLong_FromUnsignedLong((unsigned long)self->memory));
   PyTuple_SET_ITEM(tuple, 1,
-      PyInt_FromLong(self->data_len));
+      PyLong_FromLong(self->data_len));
 
   return tuple;
 }
@@ -356,12 +355,12 @@ static PyObject* ExtArray_byteswap(ExtArray* self, PyObject* args)
 //must be a multiple of the size of the new type
 static PyObject* ExtArray_change_type(ExtArray* self, PyObject* arg)
 {
-  char typecode;
+  int typecode;
   char itemsize = self->itemsize;
-  char oldcode = self->typecode;
+  int oldcode = self->typecode;
 
   //TODO - what about when changing from int to short?  should data_len change?
-  if(!PyArg_ParseTuple(arg, "c", &typecode)) {
+  if(!PyArg_ParseTuple(arg, "C", &typecode)) {
     return NULL;
   }
 
@@ -394,13 +393,14 @@ static PyObject* ExtArray_copy_direct(ExtArray* self, PyObject* arg)
   char* buf;
   Py_ssize_t len;
 
-  if(PyString_AsStringAndSize(arg, &buf, &len) == -1) {
+  // if(PyString_AsStringAndSize(arg, &buf, &len) == -1) {
+  if(PyBytes_AsStringAndSize(arg, &buf, &len) == -1) {
     return NULL;
   }
 
   //TODO - what if this doesn't divide evenly?
   self->data_len = len / self->itemsize;
-  alloc(self, self->data_len);
+  _pAlloc(self, self->data_len);
 
   memcpy(self->memory, buf, len);
   Py_INCREF(Py_None);
@@ -421,7 +421,7 @@ static PyObject* ExtArray_extend(ExtArray* self, PyObject* arg)
   }
 
   while((item = PyIter_Next(iter)) != NULL) {
-    alloc(self, self->data_len + 1);
+    _pAlloc(self, self->data_len + 1);
 
     if(ExtArray_setitem((PyObject*)self, self->data_len, item) == -1) {
       if(alloc_len < self->alloc_len) {
@@ -453,7 +453,7 @@ static PyObject* ExtArray_fromlist(ExtArray* self, PyObject* list)
   Py_ssize_t len = PyList_Size(list);
   Py_ssize_t i;
 
-  alloc(self, self->data_len + len);
+  _pAlloc(self, self->data_len + len);
 
   for(i = 0; i < len; i++) {
     if(ExtArray_setitem((PyObject*)self,
@@ -526,7 +526,7 @@ static PyObject* ExtArray_set_length(ExtArray* self, PyObject* arg)
   length = PyLong_AsLong(arg);
 
   //Allocate more memory for the length, if needed.
-  alloc(self, length);
+  _pAlloc(self, length);
 
   self->data_len = length;
   Py_RETURN_NONE;
@@ -588,22 +588,29 @@ static PyObject* ExtArray_synchronize(ExtArray* self, PyObject* arg)
 static PyObject* ExtArray_tofile(ExtArray* self, PyObject* arg)
 {
   PyObject* fobj;
+  char* filename;
   FILE* fd;
   size_t len;
 
-  if(!PyArg_ParseTuple(arg, "O!", &PyFile_Type, &fobj)) {
+  // Use O& with PyUnicode_FSConverter to get a bytes object
+  if (!PyArg_ParseTuple(arg, "O&", PyUnicode_FSConverter, &fobj)) {
     return NULL;
   }
 
-  fd = PyFile_AsFile(fobj);
+  // Get the C string pointer and length from the bytes object
+  PyBytes_AsStringAndSize(fobj, &filename, (Py_ssize_t *)&len);
+
+  fd = fopen (filename, "wb"); // open for writing
 
   len = self->data_len * self->itemsize;
   if(fwrite(self->memory, len, 1, fd) != 1) {
     PyErr_SetString(PyExc_OSError,
         "Fewer bytes written than expected");
+    fclose (fd);
     return NULL;
   }
 
+  fclose (fd);
   Py_RETURN_NONE;
 }
 
@@ -635,28 +642,33 @@ static PyObject* ExtArray_str(PyObject* self)
 {
   ExtArray* na = (ExtArray*)self;
   PyObject* str;
+  PyObject* str1;
 
   if(na->data_len == 0) {
-    str = PyString_FromFormat("extarray('%c', [])", na->typecode);
+    str = PyUnicode_FromFormat("extarray('%c', [])", na->typecode);
   } else {
-    PyObject* sep = PyString_FromString(", ");
+    PyObject* sep = PyUnicode_FromString(", ");
     PyObject* tmp = ExtArray_getitem(self, 0);
     Py_ssize_t i;
 
-    str = PyString_FromFormat("extarray('%c', [", na->typecode);
-    PyString_ConcatAndDel(&str, PyObject_Str(tmp));
+    str = PyUnicode_FromFormat("extarray('%c', [", na->typecode);
+    str1 = PyUnicode_Concat(str, Py_TYPE(tmp)->tp_str(tmp));
     Py_XDECREF(tmp);
+    Py_XDECREF(str);
 
     for(i = 1; i < na->data_len; i++) {
-      PyString_Concat(&str, sep);
+      str = PyUnicode_Concat(str1, sep);
+      Py_XDECREF(str1);
 
       tmp = ExtArray_getitem(self, i);
-      PyString_ConcatAndDel(&str, tmp->ob_type->tp_str(tmp));
+      str1 = PyUnicode_Concat(str, Py_TYPE(tmp)->tp_str(tmp));
+      Py_XDECREF(str);
       Py_XDECREF(tmp);
     }
 
     Py_XDECREF(sep);
-    PyString_ConcatAndDel(&str, PyString_FromString("])"));
+    str = PyUnicode_Concat(str1, PyUnicode_FromString("])"));
+    Py_XDECREF(str1);
   }
 
   return str;
@@ -892,15 +904,14 @@ static PySequenceMethods ExtArray_seqmethods = {
 
 static PyTypeObject ExtArrayType = {
   PyObject_HEAD_INIT(NULL)
-  0,                              /*ob_size*/
   "extarray.extarray",            /*tp_name*/
   sizeof(ExtArray),               /*tp_basicsize*/
   0,                              /*tp_itemsize*/
   (destructor)ExtArray_dealloc,   /*tp_dealloc*/
-  0,                              /*tp_print*/
+  0,                              /*tp_vectorcall_offset*/
   0,                              /*tp_getattr*/
   0,                              /*tp_setattr*/
-  0,                              /*tp_compare*/
+  0,                              /*tp_as_async*/
   0,                              /*tp_repr*/
   0,                              /*tp_as_number*/
   &ExtArray_seqmethods,           /*tp_as_sequence*/
@@ -931,14 +942,35 @@ static PyTypeObject ExtArrayType = {
   (initproc)ExtArray_init,        /* tp_init */
   0,                              /* tp_alloc */
   0, /*(ExtArray_new,*/           /* tp_new */
+  0,                              /* tp_free */
+  0,                              /* tp_is_gc */
+  0,                              /* tp_bases */
+  0,                              /* tp_mro */
+  0,                              /* tp_cache */
+  0,                              /* tp_subclasses */
+  0,                              /* tp_weaklist */
+  0,                              /* tp_del */
+  0,                              /* tp_version_tag */
+  0,                              /* tp_finalize */
+  0,                              /* tp_vectorcall */
+  0,                              /* tp_watched */
 };
 
 static PyMethodDef module_methods[] = {
     {NULL}  /* Sentinel */
 };
 
+/* Module definition structure */
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "extarray",                 /* m_name */
+    "ExtArray",                 /* m_doc */
+    -1,                         /* m_size: size of per-interpreter state, or -1 for global state */
+    module_methods,             /* m_methods */
+    NULL, NULL, NULL, NULL
+};
 
-
+#if (USE_extbuffer)
 typedef struct ExtBuffer {
   PyObject_HEAD;
 
@@ -949,8 +981,9 @@ typedef struct ExtBuffer {
   unsigned char huge;
   unsigned char do_free;
 } ExtBuffer;
+#endif // USE_extbuffer
 
-
+#if (USE_extbuffer)
 static int
 ExtBuffer_init(ExtBuffer* self, PyObject* args, PyObject* kwds)
 {
@@ -1014,8 +1047,9 @@ ExtBuffer_init(ExtBuffer* self, PyObject* args, PyObject* kwds)
 
   return 0; 
 }
+#endif // USE_extbuffer
 
-
+#if (USE_extbuffer)
 static void
 ExtBuffer_dealloc(ExtBuffer* self)
 {
@@ -1028,10 +1062,11 @@ ExtBuffer_dealloc(ExtBuffer* self)
     }
   }
 
-  self->ob_type->tp_free((PyObject*)self);
+  Py_TYPE(self)->tp_free((PyObject*)self);
 }
+#endif // USE_extbuffer
 
-
+#if (USE_extbuffer)
 //Return a read-only pointer to the memory buffer
 Py_ssize_t ExtBuffer_readbuffer(PyObject* self, Py_ssize_t seg, void** ptr)
 {
@@ -1067,8 +1102,9 @@ static PyBufferProcs ExtBuffer_bufferprocs = {
   ExtBuffer_segcount,
   NULL
 };
+#endif // USE_extbuffer
 
-
+#if (USE_extbuffer)
 static PyMemberDef ExtBuffer_members[] = {
   {"huge", T_UBYTE, offsetof(ExtBuffer, huge), 0, "Huge pages used?"},
   {"data_len", T_INT, offsetof(ExtBuffer, data_len), 0, "Data length"},
@@ -1076,20 +1112,21 @@ static PyMemberDef ExtBuffer_members[] = {
   {"memory", T_LONG, offsetof(ExtBuffer, memory), 0, "memory"},
   {NULL}
 };
+#endif // USE_extbuffer
 
-
+#if (USE_extbuffer)
 
 static PyTypeObject ExtBufferType = {
   PyObject_HEAD_INIT(NULL)
-  0,                              /*ob_size*/
+  // 0,                              /*ob_size*/
   "extarray.extbuffer",           /*tp_name*/
   sizeof(ExtBuffer),              /*tp_basicsize*/
   0,                              /*tp_itemsize*/
   (destructor)ExtBuffer_dealloc,  /*tp_dealloc*/
-  0,                              /*tp_print*/
+  0,                              /*tp_vectorcall_offset*/
   0,                              /*tp_getattr*/
   0,                              /*tp_setattr*/
-  0,                              /*tp_compare*/
+  0,                              /*tp_as_async*/
   0,                              /*tp_repr*/
   0,                              /*tp_as_number*/
   0,                              /*tp_as_sequence*/
@@ -1119,28 +1156,47 @@ static PyTypeObject ExtBufferType = {
   (initproc)ExtBuffer_init,       /* tp_init */
   0,                              /* tp_alloc */
   0,                              /* tp_new */
+  0,                              /* tp_free */
+  0,                              /* tp_is_gc */
+  0,                              /* tp_bases */
+  0,                              /* tp_mro */
+  0,                              /* tp_cache */
+  0,                              /* tp_subclasses */
+  0,                              /* tp_weaklist */
+  0,                              /* tp_del */
+  0,                              /* tp_version_tag */
+  0,                              /* tp_finalize */
+  0,                              /* tp_vectorcall */
+  0,                              /* tp_watched */
 };
+#endif // USE_extbuffer
 
-
-PyMODINIT_FUNC initextarray(void)
+PyMODINIT_FUNC PyInit_extarray(void)
 {
   PyObject* m;
 
   ExtArrayType.tp_new = PyType_GenericNew;
   if(PyType_Ready(&ExtArrayType) < 0) {
-    return;
+    return NULL;
   }
 
+#if (USE_extbuffer)
   ExtBufferType.tp_new = PyType_GenericNew;
   if(PyType_Ready(&ExtBufferType) < 0) {
-    return;
+    return NULL;
   }
+#endif // USE_extbuffer
 
-  m = Py_InitModule3("extarray", module_methods, "ExtArray");
+  m = PyModule_Create (&moduledef);
 
   Py_INCREF(&ExtArrayType);
   PyModule_AddObject(m, "extarray", (PyObject*)&ExtArrayType);
+
+#if (USE_extbuffer)
   Py_INCREF(&ExtBufferType);
   PyModule_AddObject(m, "extbuffer", (PyObject*)&ExtBufferType);
+#endif // USE_extbuffer
+
+  return m;
 }
 

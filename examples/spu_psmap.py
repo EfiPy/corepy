@@ -94,16 +94,16 @@ if __name__ == '__main__':
   prgm += code
 
   t3 = time.time()
-  id = proc.execute(prgm, async = True, mode = 'int')
+  id = proc.execute(prgm, _async = True, mode = 'int')
 
 
   t1 = time.time()
-  for i in xrange(0, ITERS):
+  for i in range(0, ITERS):
     #env.spu_exec.write_in_mbox(id, 1)
     #env.spu_exec.write_in_mbox(id, 1)
     env.spu_exec.write_in_mbox(id, i)
     #cnt = env.spu_exec.stat_in_mbox(id)
-    #print "cnt %x" % cnt
+    #print ("cnt %x" % cnt)
 
     #cnt = env.spu_exec.stat_out_mbox(id)
     #while cnt == 0:
@@ -132,8 +132,8 @@ if __name__ == '__main__':
   ret = proc.join(id)
   t4 = time.time()
 
-  print "data", data
-  print "inner time %0.5f" % (t2 - t1)
-  print "outer time %0.5f" % (t4 - t3)
-  print "ret %x" % ret
+  print ("data", data)
+  print ("inner time %0.5f" % (t2 - t1))
+  print ("outer time %0.5f" % (t4 - t3))
+  print ("ret %x" % ret)
  

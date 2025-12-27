@@ -55,7 +55,7 @@ interpreter. The following is a a simple SPU session:
 >>> cli.execute(spu.a(125, 126, 127))
 
 >>> regs = cli.get_regs()
->>> print '%X' % regs[125][0]
+>>> print ('%X' % regs[125][0])
 
 >>> cli.stop()
 
@@ -148,7 +148,7 @@ class ISPU:
 
     code_size = len(code._prologue._code) * 4
     self.xfer_size = code_size  + (16 - (code_size) % 16);
-    print 'xfer_size:', self.xfer_size
+    print ('xfer_size:', self.xfer_size)
 
     self.code_lsa = (0x3FFFF - code_size) & 0xFFF80;
     self.lbl_op = lbl_op
@@ -177,18 +177,18 @@ class ISPU:
     self.load_regs()
     for i in range(64):
       reg = i
-      print 'r%03d: 0x%08X 0x%08X 0x%08X 0x%08X' % (
+      print ('r%03d: 0x%08X 0x%08X 0x%08X 0x%08X' % (
         reg, self.regs[reg * 4],
         self.regs[reg * 4 + 1],
         self.regs[reg * 4 + 2],
-        self.regs[reg * 4 + 3]),
+        self.regs[reg * 4 + 3]), end = '')
 
       reg = i + 64
-      print 'r%03d: 0x%08X 0x%08X 0x%08X 0x%08X' % (
+      print ('r%03d: 0x%08X 0x%08X 0x%08X 0x%08X' % (
         reg, self.regs[reg * 4],
         self.regs[reg * 4 + 1],
         self.regs[reg * 4 + 2],
-        self.regs[reg * 4 + 3])
+        self.regs[reg * 4 + 3]))
       
     return
 
@@ -197,7 +197,7 @@ class ISPU:
     self.started = True
     #self.proc = env.Processor()
 
-    #self.speid = self.proc.execute(self.code, async = True, debug = False)
+    #self.speid = self.proc.execute(self.code, _async = True, debug = False)
     #env.spu_exec.wait(self.speid)
 
     self.code_len = len(self.code._code_array) * self.code._code_array.itemsize
@@ -218,7 +218,7 @@ class ISPU:
 
   def execute(self, cmd):
     if self.started != True:
-      print "ERROR ISPU not started; do ISPU.start() first"
+      print ("ERROR ISPU not started; do ISPU.start() first")
       return
 
     self.code[self.lbl_op] = cmd
@@ -232,7 +232,7 @@ class ISPU:
 try:
   import wx
 except:
-  print 'Warning: wx not found.  GUI is not available'
+  print ('Warning: wx not found.  GUI is not available')
   wx = None
 
 class RegisterWindow(wx.Panel):
@@ -286,7 +286,7 @@ class RegisterWindow(wx.Panel):
 class SPUApp(wx.App):
 
   def OnInit(self):
-    print """
+    print ("""
     *** Thank you for using the wxPython Interactive SPU *** 
 
     To use, simply type any SPU ISA command into the command box using 
@@ -306,7 +306,7 @@ class SPUApp(wx.App):
     Type 'quit' or close the window to exit.
     
     *** Email chemuell@cs.indiana.edu with any questions/comments ***  
-    """
+    """)
 
     self.lastDiffs = []
     self.regDiffs = []
@@ -408,7 +408,7 @@ class SPUApp(wx.App):
     try:
       inst = eval('spu.%s' % cmd)
     except:
-      print 'Error creating command: %s' % cmd
+      print ('Error creating command: %s' % cmd)
     else:
       self.cli.execute(inst)
       self._updateRegs()
@@ -439,7 +439,7 @@ class SPUApp(wx.App):
     if len(self.history) == 0:
       pass
     elif key == wx.WXK_UP:
-      # print 'up'
+      # print ('up')
       
       idx = self.currentCmd
       if idx == -1: idx = len(self.history) - 1
@@ -449,7 +449,7 @@ class SPUApp(wx.App):
       self.txtCmd.SetValue(self.history[self.currentCmd])
       
     elif key == wx.WXK_DOWN and (self.currentCmd + 1) < len(self.history):
-      # print 'down'
+      # print ('down')
       idx = self.currentCmd
       if idx == -1: idx = len(self.history) - 1
       else:         idx += 1

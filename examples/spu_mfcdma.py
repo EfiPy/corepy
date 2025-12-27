@@ -93,7 +93,7 @@ if __name__ == '__main__':
   # Check the results 
   for i in range(0, 32):
     if b[i] != i:
-      print "ERROR %d %d %d" % (i, b[i], a[i])
+      print ("ERROR %d %d %d" % (i, b[i], a[i]))
 
  
 

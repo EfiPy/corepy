@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -132,7 +133,7 @@ class BitType(CALType):
   register_type_id = 'r'
   array_typecodes = ('c', 'b', 'B', 'h', 'H', 'i', 'I', 'f') # all valid typecodes
   array_typecode  = None # typecode for this class
-  literal_types = (int, long, list, tuple, _array_type, _extarray_type)
+  literal_types = (int, list, tuple, _array_type, _extarray_type)
 
   # Operators
   __or__ = operator(cal.ior, cast = _upcast)
@@ -151,7 +152,7 @@ class BitType(CALType):
     if type(value) in (_array_type, _extarray_type):
 
       if self.array_typecode != value.typecode:
-        print "Warning: array typecode does not match variable type - I hope you know what you're doing!"
+        print ("Warning: array typecode does not match variable type - I hope you know what you're doing!")
         
       util.vector_from_array(self.code, self, value)
 
@@ -161,19 +162,19 @@ class BitType(CALType):
       # elif type(self.value) is _numeric_type:
       #   raise Exception('Numeric types not yet supported')
 
-    elif type(value) in (int, long):
+    elif type(value) in (int, ):
 
       if self.array_typecode not in INT_ARRAY_TYPES:
-        print "Warning: int does not match variable type - I hope you know what you're doing!"
+        print ("Warning: int does not match variable type - I hope you know what you're doing!")
 
       util.load_word(self.code, self, value)
     else:
-      # print "Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value)))
+      # print ("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value)))
       # self.typecode = 'I'
       raise Exception("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
     
     if self.array_typecode is not None and INT_ARRAY_SIZES[self.array_typecode] != 4:
-      print "Warning: Only 4-byte integers are supported for spu variables from arrays"
+      print ("Warning: Only 4-byte integers are supported for spu variables from arrays")
 
     self.code.add_storage(self.storage)
     return
@@ -182,27 +183,27 @@ class WordType(BitType):
   array_typecode  = 'I' 
 
   __add__ = operator(cal.iadd, (
-    ((int,long), calex.iaddi),
+    ((int,int), calex.iaddi),
     ))
   add = staticmethod(__add__)
 
   __mod__ = operator(cal.umod, (
-    ((int,long), calex.umodi),
+    ((int,int), calex.umodi),
     ))
   mod = staticmethod(__mod__)
   
   __mul__ = operator(cal.umul, (
-    ((int,long), calex.umuli),
+    ((int,int), calex.umuli),
     ))
   mul = staticmethod(__mul__)
   
   __lshift__ = operator(cal.ishl, (
-    ((int, long),  calex.ishli)
+    ((int, int),  calex.ishli)
     ))
   lshift = staticmethod(__lshift__)
 
   __rshift__ = operator(cal.ushr, (
-    ((int, long), calex.ushri),
+    ((int, int), calex.ushri),
     ))
   rshift = staticmethod(__rshift__)
 
@@ -210,17 +211,17 @@ class SignedWordType(WordType):
   array_typecode  = 'i'   
 
   __add__ = operator(cal.iadd, (
-    ((int, long), calex.iaddi),
+    ((int, int), calex.iaddi),
     ))
   add = staticmethod(__add__)
 
   __radd__ = operator(cal.iadd, (
-    ((int, long), calex.iaddi),
+    ((int, int), calex.iaddi),
     ), cast = _reversecast)
   radd = staticmethod(__radd__)
 
   __mul__ = operator(cal.imul, (
-    ((int,long), calex.imuli),
+    ((int,int), calex.imuli),
     ))
   mul = staticmethod(__mul__)
 
@@ -228,17 +229,17 @@ class SignedWordType(WordType):
   neg = staticmethod(__neg__)
 
   __rshift__ = operator(cal.ishr, (
-    ((int, long), calex.ishri),
+    ((int, int), calex.ishri),
     ))
   rshift = staticmethod(__rshift__)
 
   __sub__ = operator(calex.isub, (
-    ((int, long), calex.isubi),
+    ((int, int), calex.isubi),
     ))
   sub = staticmethod(__sub__)
 
   __rsub__ = operator(calex.isubf, (
-    ((int, long), calex.isubfi),
+    ((int, int), calex.isubfi),
     ), cast = _reversecast)
   rsub = staticmethod(__rsub__)
 
@@ -258,7 +259,7 @@ class SingleFloatType(CALType):
     if type(value) in (_array_type, _extarray_type):
 
       if self.array_typecode != value.typecode:
-        print "Warning: array typecode does not match variable type - I hope you know what you're doing!"
+        print ("Warning: array typecode does not match variable type - I hope you know what you're doing!")
 
       # Convert the float array to an integer array to prevent Python from
       # improperly casting floats to ints
@@ -278,7 +279,7 @@ class SingleFloatType(CALType):
     elif type(value) in (float,):
 
       if self.array_typecode not in FLOAT_ARRAY_TYPES:
-        print "Warning: int does not match variable type - I hope you know what you're doing!"
+        print ("Warning: int does not match variable type - I hope you know what you're doing!")
 
       ## Convert to bits
       #af = array.array('f', (value,))
@@ -288,44 +289,44 @@ class SingleFloatType(CALType):
       #util.load_word(self.code, self, int_value[0])
       util.load_word(self.code, self, value)
     else:
-      # print "Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value)))
+      # print ("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
       # self.typecode = 'I'
       raise Exception("Warning: unknown type for %s -> %s, defaulting to 'I'" % (str(self.value), str(type(self.value))))
 
     return
 
   __add__ = operator(cal.add, (
-      ((float, int, long), calex.addi),
+      ((float, int, int), calex.addi),
       ))
   add = staticmethod(__add__)
 
   __radd__ = operator(calex.radd, (
-      ((float, int, long), calex.raddi),
+      ((float, int, int), calex.raddi),
       ))
   radd = staticmethod(__radd__)
 
   __sub__ = operator(cal.sub, (
-      ((float, int, long), calex.subi),
+      ((float, int, int), calex.subi),
       ))
   sub = staticmethod(__sub__)
 
   __rsub__ = operator(calex.subf, (
-      ((float, int, long), calex.subfi),
+      ((float, int, int), calex.subfi),
       ))
   sub = staticmethod(__sub__)
 
   __mul__ = operator(cal.mul, (
-      ((float, int, long), calex.muli),
+      ((float, int, int), calex.muli),
       ))
   mul = staticmethod(__mul__)
 
   __div__ = operator(cal.div, (
-      ((float, int, long), calex.divi),
+      ((float, int, int), calex.divi),
       ))
   div = staticmethod(__div__)
 
   __rdiv__ = operator(calex.rdiv, (
-      ((float, int, long), calex.rdivi),
+      ((float, int, int), calex.rdivi),
       ))
   div = staticmethod(__div__)
   
@@ -337,30 +338,30 @@ class DoubleFloatType(CALType):
   literal_types = (float, list, tuple, array)
 
   def _set_literal_value(self, value):
-    print 'TODO: DoubleFloatType: set_literal_value'
+    print ('TODO: DoubleFloatType: set_literal_value')
 
   __add__ = operator(cal.dadd, (
-      ((float,int,long), calex.daddi),
+      ((float,int,int), calex.daddi),
       ))
   add = staticmethod(__add__)
 
   __sub__ = operator(calex.dsub, (
-      ((float,int,long), calex.dsubi),
+      ((float,int,int), calex.dsubi),
       ))
   sub = staticmethod(__sub__)
 
   __mul__ = operator(cal.dmul, (
-      ((float,int,long), calex.dmuli),
+      ((float,int,int), calex.dmuli),
       ))
   mul = staticmethod(__mul__)
 
   __div__ = operator(cal.ddiv, (
-      ((float,int,long), calex.ddivi),
+      ((float,int,int), calex.ddivi),
       ))
   mul = staticmethod(__mul__)
 
   __rdiv__ = operator(calex.drdiv, (
-      ((float,int,long), calex.drdivi),
+      ((float,int,int), calex.drdivi),
       ))
   mul = staticmethod(__mul__)
 

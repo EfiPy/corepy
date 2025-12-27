@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -31,7 +32,7 @@ SPE for the x86 processor family.
 """
 
 import corepy.spre.spe as spe
-import x86_exec
+from . import x86_exec
 
 import corepy.arch.x86.isa as x86
 from   corepy.arch.x86.types.registers import *
@@ -86,9 +87,9 @@ class Program(spe.Program):
     # FP/MMX/XMM regs can be treated just like other archs
     # Skip st0, it's a special register that should always be used explicitly,
     # not via acquire/release.
-    self._register_files[FPRegister] = ["st%d" % i for i in xrange(1, 8)]
-    self._register_files[MMXRegister] = ["mm%d" % i for i in xrange(0, 8)]
-    self._register_files[XMMRegister] = ["xmm%d" % i for i in xrange(0, 8)]
+    self._register_files[FPRegister] = ["st%d" % i for i in range(1, 8)]
+    self._register_files[MMXRegister] = ["mm%d" % i for i in range(0, 8)]
+    self._register_files[XMMRegister] = ["xmm%d" % i for i in range(0, 8)]
 
     RegisterFiles = (('gp8', GPRegister8),   ('gp16', GPRegister16),
                      ('gp32', GPRegister32), ('st', FPRegister),
@@ -100,7 +101,7 @@ class Program(spe.Program):
 
 
   def _align_stream(self, length, align):
-    return [x86.nop() for i in xrange(0, align - (length % align))]
+    return [x86.nop() for i in range(0, align - (length % align))]
 
 
   # ------------------------------
@@ -165,7 +166,7 @@ def TestInt():
 
   code.print_code(pro = False, epi = False, binary = True)
   r = proc.execute(code, debug = True, params = params)
-  print 'int result:', r
+  print ('int result:', r)
   assert(r == 1232)
   return
 
@@ -180,7 +181,7 @@ def TestInt():
 
 #  r = proc.execute(code, mode='fp')
 #  assert(r == 3.14)
-#  print 'float result:', r
+#  print ('float result:', r)
 #  return
 
 

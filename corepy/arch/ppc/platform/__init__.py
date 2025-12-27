@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -33,8 +34,8 @@ platform_imports = [
   'WORD_SIZE', 'WORD_TYPE', 'ExecParams',
   'GPRegister', 'FPRegister', 'VMXRegister']
 
-platform_string = '%(os)s.spre_%(os)s_%(arch)s' % {
-  'os': conf.OS, 'arch': conf.ARCH}
+platform_string = 'corepy.arch.%(arch)s.platform.%(os)s.spre_%(os)s_%(arch)s' % {
+  'arch': conf.ARCH, 'os': conf.OS, 'arch': conf.ARCH}
 #platform_string = '%(os)s.spre_%(os)s_%(arch)s_%(bits)d' % {
 #  'os': conf.OS, 'arch': conf.ARCH, 'bits': conf.BITS}
 
@@ -43,7 +44,7 @@ platform_string = '%(os)s.spre_%(os)s_%(arch)s' % {
 #  platform_imports.append('array_address')
 
 if conf.VERBOSE:  
-  print '# Platform:', platform_string
+  print ('# Platform:', platform_string)
 
 platform_module = __import__(platform_string, globals(), locals(), platform_imports)
 
@@ -51,5 +52,5 @@ for cls in platform_imports:
   try:
     locals()[cls] = getattr(platform_module, cls)
   except:
-    print 'PPC Platform Warning: Unable to load osx.ppc_exec.%s.  Related features will not be available.' % (str(cls),)
+    print ('PPC Platform Warning: Unable to load osx.ppc_exec.%s.  Related features will not be available.' % (str(cls),))
   

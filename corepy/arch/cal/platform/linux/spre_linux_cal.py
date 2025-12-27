@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -34,7 +35,7 @@ import corepy.lib.extarray as extarray
 import corepy.spre.spe as spe
 import corepy.arch.cal.types.registers as reg
 import corepy.arch.cal.isa as isa
-import cal_exec
+from . import cal_exec
 
 # ------------------------------
 # Constants
@@ -122,7 +123,7 @@ class InstructionStream(spe.InstructionStream):
   def release_register(self, register):
     if type(register) != reg.LiteralRegister:
       self._register_files[type(register)].release_register(register)
-    # print 'release', str(self._register_files[type])
+    # print ('release', str(self._register_files[type]))
     return 
 
   
@@ -135,21 +136,21 @@ class InstructionStream(spe.InstructionStream):
 
     # Add declare instructions for any bindings
     #for (regname, (arr, kwargs)) in self._remote_bindings_data.items():
-    #  print "synth prolog check binding", regname, kwargs
+    #  print ("synth prolog check binding", regname, kwargs)
     #  # TODO - do this in set_bindings instead?
-    #  if kwargs.has_key('decl') and kwargs['decl'] == False:
+    #  if 'decl' in kwargs.keys () and kwargs['decl'] == False:
     #    continue;
 
     #  # Switch on the regname
     #  if regname[0] == 'o':
     #    inst = isa.dcl_output(regname, **kwargs)
-    #    print "inserting inst", inst.render()
+    #    print ("inserting inst", inst.render())
     #    self._prologue += inst.render() + '\n'
       #elif regname[0] == 'i':
       #  dim = isa.pixtex_type.oned
       #  #if self._remote_bindings[regname].
       #  inst = isa.dcl_resource(regname[1:], **kwargs)
-      #  print "inserting inst", inst.render()
+      #  print ("inserting inst", inst.render())
       #  self._prologue += inst.render() + '\n'
 
     return
@@ -167,7 +168,7 @@ class InstructionStream(spe.InstructionStream):
     self._synthesize_prologue()
     self._synthesize_epilogue()
 
-    print "PROLOGUE", self._prologue
+    print ("PROLOGUE", self._prologue)
     
     for inst in self._instructions:
       if type(inst) == str:
@@ -179,7 +180,7 @@ class InstructionStream(spe.InstructionStream):
         render_string += inst.render() + '\n'
     self.render_string = self._prologue + render_string + self._epilogue
 
-    print self.render_string
+    print (self.render_string)
     self.render_code = cal_exec.compile(self.render_string)
     self._cached = True
     return
@@ -259,7 +260,7 @@ class Processor(spe.Processor):
     return
 
 
-  def execute(self, code, domain = None, async = False):
+  def execute(self, code, domain = None, _async = False):
     code.cache_code() 
 
     if domain is None:
@@ -270,7 +271,7 @@ class Processor(spe.Processor):
 
       domain = (0, 0, input.gpu_width, len(input) / input.gpu_width)
 
-    if async:
+    if _async:
       th = cal_exec.run_stream_async(code.render_code,
           self.device, domain, code._local_bindings, code._remote_bindings, code._copy_bindings)
       return (th, code)
@@ -450,26 +451,26 @@ def TestCompileExec():
   t1 = time.time()
   image = cal_exec.compile(kernel)
   t2 = time.time()
-  print "compile time", t2 - t1
+  print ("compile time", t2 - t1)
 
   input = cal_exec.alloc_remote(cal_exec.FMT_FLOAT32_4, SIZE, SIZE, 0)
   output = cal_exec.alloc_remote(cal_exec.FMT_FLOAT32_4, SIZE, SIZE, 0)
   #glob = cal_exec.alloc_remote(cal_exec.FMT_FLOAT32_4, 4096, 4096, cal_exec.GLOBAL_BUFFER)
-  print "input", input
-  print "output", output
+  print ("input", input)
+  print ("output", output)
 
   remote = {"o0": output, "i0": input}
   local = {"o1": (SIZE, SIZE, cal_exec.FMT_FLOAT32_4),
            "g[]": (4096, 4096, cal_exec.FMT_FLOAT32_4)}
   domain = (0, 0, SIZE, SIZE)
-  print "remote bindings", remote
-  print "local bindings", local
+  print ("remote bindings", remote)
+  print ("local bindings", local)
 
   # image, dev num, (x, y, w, h)
   t1 = time.time()
   cal_exec.run_stream(image, 0, domain, local, remote)
   t2 = time.time()
-  print "run time", t2 - t1
+  print ("run time", t2 - t1)
 
   cal_exec.free_remote(input)
   cal_exec.free_remote(output)
@@ -480,7 +481,7 @@ def TestCompileExec():
 
 def TestRemoteAlloc():
   mem_handle = cal_exec.alloc_remote(cal_exec.FMT_FLOAT32_4, 1024, 1024, 0)
-  print "mem handle", mem_handle
+  print ("mem handle", mem_handle)
   cal_exec.free_remote(mem_handle)
   return
 
@@ -495,7 +496,7 @@ def TestSimpleKernel():
   ext_input = proc.alloc_remote('f', 4, SIZE, SIZE)
   ext_output = proc.alloc_remote('f', 4, SIZE, SIZE)
 
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     ext_input[i] = float(i + 1)
     ext_output[i] = 0.0
 
@@ -508,7 +509,7 @@ def TestSimpleKernel():
   code.add(isa.sample(0, 0, 'o0', 'v0.xy'))
   #code.add(isa.load(0, 'o0', 'v0.g'))
   code.cache_code()
-  print code.render_string
+  print (code.render_string)
 
   domain = (0, 0, SIZE, SIZE)
   code.set_remote_binding("o0", ext_output)
@@ -517,9 +518,9 @@ def TestSimpleKernel():
   proc.execute(code, domain)
 
   # Check the output
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     if ext_output[i] != float(i + 1):
-      print "ERROR index %d is %f, should be %f" % (i, ext_output[i], float(i + 1))
+      print ("ERROR index %d is %f, should be %f" % (i, ext_output[i], float(i + 1)))
 
 
   proc.free_remote(ext_input)
@@ -537,17 +538,17 @@ def TestSimpleKernelNPy():
   arr_input = proc.alloc_remote_npy('f', 4, SIZE, SIZE)
   arr_output = proc.alloc_remote_npy('f', 4, SIZE, SIZE)
 
-  #for i in xrange(0, SIZE * SIZE * 4):
+  #for i in range(0, SIZE * SIZE * 4):
   #  arr_input[i] = float(i + 1)
   #  arr_output[i] = 0.0
-  print arr_input.shape
-  print arr_output.shape
-  print type(arr_input.data)
+  print (arr_input.shape)
+  print (arr_output.shape)
+  print (type(arr_input.data))
 
   val = 0.0
-  for i in xrange(0, SIZE):
-    for j in xrange(0, SIZE):
-      for k in xrange(0, 4):
+  for i in range(0, SIZE):
+    for j in range(0, SIZE):
+      for k in range(0, 4):
         arr_input[i][j][k] = val
         arr_output[i][j][k] = 0.0
         val += 1.0
@@ -561,7 +562,7 @@ def TestSimpleKernelNPy():
   code.add(isa.sample(0, 0, 'o0', 'v0.xy'))
   #code.add(isa.load(0, 'o0', 'v0.g'))
   code.cache_code()
-  print code.render_string
+  print (code.render_string)
 
   domain = (0, 0, SIZE, SIZE)
   code.set_remote_binding("o0", arr_output)
@@ -571,18 +572,18 @@ def TestSimpleKernelNPy():
 
   # Check the output
   val = 0.0
-  for i in xrange(0, SIZE):
-    for j in xrange(0, SIZE):
-      for k in xrange(0, 4):
+  for i in range(0, SIZE):
+    for j in range(0, SIZE):
+      for k in range(0, 4):
         if arr_output[i][j][k] != val:
-          print "ERROR index %d is %f, should be %f" % (i, arr_output[i], val)
+          print ("ERROR index %d is %f, should be %f" % (i, arr_output[i], val))
         val += 1.0
 
   return
 
 
 if __name__ == '__main__':
-  print "GPUs available:", N_GPUS
+  print ("GPUs available:", N_GPUS)
   #TestCompileExec()
   #TestRemoteAlloc()
   TestSimpleKernel()

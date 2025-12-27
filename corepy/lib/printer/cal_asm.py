@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -65,7 +66,7 @@ class CAL_Asm(object):
         The return value should be a boolean indicating whether prologue
         instructions should be printed. """
     # CAL has a trivial/nonstandard prologue, just print it here.
-    print >>fd, "\til_ps_3_0"
+    print ("\til_ps_3_0", file = fd)
     return False
 
   def epilogue(self, fd):
@@ -77,22 +78,22 @@ class CAL_Asm(object):
 
   def stream(self, fd, stream):
     if self.verbose:
-      print >>fd
-      print >>fd, "# InstructionStream %x\n" % id(stream)
+      print (file = fd)
+      print ("# InstructionStream %x\n" % id(stream), file = fd)
     return
 
   def label(self, fd, lbl):
-    print >>fd, "\n%s:" % lbl.name
+    print ("\n%s:" % lbl.name, file = fd)
     return
 
   def instruction(self, fd, inst):
     # On CAL, instructions are rendered to IL-compatible strings.
     # So just render the instructions and print the strings.
-    print >>fd, "\t%s" % (inst.render())
+    print ("\t%s" % (inst.render()), file = fd)
     return
 
   def string(self, fd, str):
     """Print a string (assumedly representing an instruction)."""
-    print >>fd, "\t%s" % (str)
+    print ("\t%s" % (str), file = fd)
     return
 

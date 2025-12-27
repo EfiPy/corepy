@@ -62,7 +62,7 @@ def Test():
     prgm.add(code)
     #prgm.print_code(pro = True, epi = True, hex = True) 
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 12)
 
     prgm.reset()
@@ -83,7 +83,7 @@ def Test():
     prgm.add(code)
     prgm.print_code(hex = True, pro = True, epi = True) 
     ret = proc.execute(prgm)
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 12)
 
     prgm.reset()
@@ -103,7 +103,7 @@ def Test():
     prgm.add(code)
     prgm.print_code()
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 15)
 
 
@@ -118,14 +118,14 @@ def Test():
     code.add(x86.cmp(prgm.gp_return, 1))
     code.add(x86.jne(fwd_lbl))
     r_foo = prgm.acquire_register()
-    for i in xrange(0, 65):
+    for i in range(0, 65):
       code.add(x86.pop(r_foo))
     prgm.release_register(r_foo)
     code.add(fwd_lbl)
 
     prgm.add(code)
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 0)
 
 
@@ -140,14 +140,14 @@ def Test():
     code.add(loop_lbl)
     r_foo = prgm.acquire_register()
     for i in range(0, 1):
-      for i in xrange(0, 24):
+      for i in range(0, 24):
         code.add(x86.add(r_foo, MemRef(rsp, 4)))
 
       code.add(x86.add(prgm.gp_return, 4))
       code.add(x86.cmp(prgm.gp_return, 20))
       code.add(x86.je(out_lbl))
 
-      for i in xrange(0, 24):
+      for i in range(0, 24):
         code.add(x86.add(r_foo, MemRef(rsp, 4)))
 
       code.add(x86.cmp(prgm.gp_return, 32))
@@ -156,14 +156,14 @@ def Test():
     code.add(out_lbl)
 
     code.add(x86.jmp(skip_lbl))
-    for i in xrange(0, 2):
+    for i in range(0, 2):
       code.add(x86.add(r_foo, MemRef(rsp, 4)))
     code.add(skip_lbl)
 
     prgm.release_register(r_foo)
     prgm.add(code)
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 20)
 
 
@@ -204,7 +204,7 @@ def Test():
 
     prgm.add(code)
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 135)
 
 
@@ -229,7 +229,7 @@ def Test():
     prgm.add(code)
     prgm.print_code(hex = True)
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 7)
 
 
@@ -246,7 +246,7 @@ def Test():
     prgm.release_register(r_tmp)
     prgm.add(code)
     ret = proc.execute(prgm, params = params, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 7)
 
 
@@ -276,16 +276,16 @@ def Test():
 
     prgm.add(code)
     #ret = proc.execute(prgm, debug = True, params = params)
-    id1 = proc.execute(prgm, params = params, mode = 'int', async = True)
-    id2 = proc.execute(prgm, params = params, mode = 'int', async = True)
+    id1 = proc.execute(prgm, params = params, mode = 'int', _async = True)
+    id2 = proc.execute(prgm, params = params, mode = 'int', _async = True)
     ret = proc.execute(prgm, params = params, mode = 'int')
-    print "Return main thread: %d" % (ret)
+    print ("Return main thread: %d" % (ret))
     assert(ret == 1280)
     ret = proc.join(id1)
-    print "Return thread 1: %d" % (ret)
+    print ("Return thread 1: %d" % (ret))
     assert(ret == 1280)
     ret = proc.join(id2)
-    print "Return thread 2: %d" % (ret)
+    print ("Return thread 2: %d" % (ret))
     assert(ret == 1280)
 
 
@@ -313,7 +313,7 @@ def Test():
     prgm.print_code(hex = True)
     ret = proc.execute(prgm, params = params, mode = 'int')
     assert(ret == 1)
-    print "Return main thread: %d" % (ret)
+    print ("Return main thread: %d" % (ret))
 
 
     prgm.reset()
@@ -350,7 +350,7 @@ def Test():
     prgm.add(code)
     prgm.print_code(hex = True)
     ret = proc.execute(prgm, params = params, mode = 'int')
-    print "Return main thread: %d" % (ret)
+    print ("Return main thread: %d" % (ret))
     assert(ret == 6)
 
 
@@ -364,7 +364,7 @@ def Test():
     prgm.add(code)
     prgm.print_code(hex = True)
     ret = proc.execute(prgm, params = params)
-    print "ret:", ret
+    print ("ret:", ret)
     assert(ret == 0x1234)
 
 
@@ -379,14 +379,14 @@ def Test():
     prgm.add(code)
     prgm.print_code(hex = True)
     ret = proc.execute(prgm, params = params)
-    print "ret:", ret
+    print ("ret:", ret)
     assert(ret == 8)
 
 
     prgm.reset()
     code.reset()
 
-    data = extarray.extarray('H', xrange(0, 16))
+    data = extarray.extarray('H', range(0, 16))
 
     r_128 = prgm.acquire_register(reg_type = XMMRegister)
     regs = prgm.acquire_registers(4)
@@ -410,7 +410,7 @@ def Test():
     prgm.add(code)
     prgm.print_code()
     ret = proc.execute(prgm, mode = 'int')
-    print "ret %x" % ret
+    print ("ret %x" % ret)
     assert(ret == 0x0003000200010000)
 
 
@@ -421,7 +421,7 @@ def Test():
 
     prgm.add(code)
     ret = proc.execute(prgm, mode = 'fp')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret - 3.14159 < 0.00001)
 
     return

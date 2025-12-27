@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -34,7 +35,7 @@ import corepy.lib.extarray as extarray
 import corepy.spre.spe as spe
 import corepy.arch.ptx.types.registers as reg
 #import corepy.arch.ptx.isa as isa
-import ptx_exec
+from . import ptx_exec
 
 # ------------------------------
 # Constants
@@ -117,7 +118,7 @@ class InstructionStream(spe.InstructionStream):
 #  def release_register(self, register):
 #    if type(register) != reg.LiteralRegister:
 #      self._register_files[type(register)].release_register(register)
-#    # print 'release', str(self._register_files[type])
+#    # print ('release', str(self._register_files[type]))
 #    return 
 
   
@@ -181,7 +182,7 @@ class Program(spe.Program):
     num_regs = 128
 
     rtypes = ('b8', 'b16', 'b32', 'b64', 'u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'f16', 'f32', 'f64', 'pred')
-    self._register_avail_bins = [[reg.__dict__['r' + str(i) + '_' + rtype] for rtype in rtypes] for i in xrange(num_regs)]
+    self._register_avail_bins = [[reg.__dict__['r' + str(i) + '_' + rtype] for rtype in rtypes] for i in range(num_regs)]
 
     self._reg_map = {reg.ptxRegister_b8: 0, reg.ptxRegister_b16: 1, reg.ptxRegister_b32: 2, reg.ptxRegister_b64: 3,
                      reg.ptxRegister_u8: 4, reg.ptxRegister_u16: 5, reg.ptxRegister_u32: 6, reg.ptxRegister_u64: 7,
@@ -200,7 +201,7 @@ class Program(spe.Program):
 
   
   def acquire_register(self, reg_type = None, reg_name = None):
-    #print "Acquiring register of type ", reg_type
+    #print ("Acquiring register of type ", reg_type)
     r = spe.Program.acquire_register(self, reg_type = reg_type, reg_name = reg_name)
     stmt = '\t.' + str(r.space) + '.' + str(r.type) + ' ' + r.name + ';'
     if not stmt in self._declarations:
@@ -210,7 +211,7 @@ class Program(spe.Program):
   def release_register(self, register):
     spe.Program.release_register(self, register)
     #self._register_files[type(register)].release_register(register)
-    # print 'release', str(self._register_files[type])
+    # print ('release', str(self._register_files[type]))
     return 
 
   def add_variable(self, var_space = None, var_type = None, var_name = None):
@@ -287,24 +288,24 @@ class Program(spe.Program):
 
     self._prologue += '\n'.join(self._declarations) + '\n'
 
-    #print "PRLOG", self._prologue
+    #print ("PRLOG", self._prologue)
     # Add declare instructions for any bindings
     #for (regname, (arr, kwargs)) in self._remote_bindings_data.items():
-    #  print "synth prolog check binding", regname, kwargs
+    #  print ("synth prolog check binding", regname, kwargs)
     #  # TODO - do this in set_bindings instead?
-    #  if kwargs.has_key('decl') and kwargs['decl'] == False:
+    #  if 'decl in kwargs.keys () and kwargs['decl'] == False:
     #    continue;
 
     #  # Switch on the regname
     #  if regname[0] == 'o':
     #    inst = isa.dcl_output(regname, **kwargs)
-    #    print "inserting inst", inst.render()
+    #    print ("inserting inst", inst.render())
     #    self._prologue += inst.render() + '\n'
       #elif regname[0] == 'i':
       #  dim = isa.pixtex_type.oned
       #  #if self._remote_bindings[regname].
       #  inst = isa.dcl_resource(regname[1:], **kwargs)
-      #  print "inserting inst", inst.render()
+      #  print ("inserting inst", inst.render())
       #  self._prologue += inst.render() + '\n'
 
     return
@@ -341,7 +342,7 @@ class Program(spe.Program):
 
     self.render_string = self._prologue + render_string + self._epilogue
 
-    #print self.render_string
+    #print (self.render_string)
     self.render_code = ptx_exec.compile(self.render_string)
     self._cached = True
     return
@@ -389,14 +390,14 @@ class Processor(spe.Processor):
     if device < 0 or device > N_GPUS:
       raise Exception("Invalid device number %d" % device)
 
-    print "Creating ctx"
+    print ("Creating ctx")
     self.ctx = ptx_exec.alloc_ctx(device)
     self.device = device
     return
 
 
   def __del__(self):
-    print "Destroying ctx"
+    print ("Destroying ctx")
     ptx_exec.free_ctx(self.ctx)
     return
 
@@ -591,7 +592,7 @@ class Processor(spe.Processor):
   # Kernel Execution
   # ------------------------------
 
-  def copy(self, dst, src, async = False):
+  def copy(self, dst, src, _async = False):
     """Copy memory from src to dst, using this GPU."""
 
     # Figure out what dst and src are and extract bindings
@@ -609,16 +610,16 @@ class Processor(spe.Processor):
     ## Start the copy
     #hdl = ptx_exec.copy_async(self.ctx, dst_binding, src_binding)
     #
-    #if async:
+    #if _async:
     #  return hdl
     #
-    ## Not async, complete the copy here.
+    ## Not _async, complete the copy here.
     #ptx_exec.join_copy(self.ctx, hdl)
 
     return
     
 
-  def execute(self, prgm, threads = None, params = (), async = False):
+  def execute(self, prgm, threads = None, params = (), _async = False):
     if not isinstance(prgm, Program):
       raise Exception("ERROR: Can only execute a Program, not %s" % type(prgm))
 
@@ -634,9 +635,9 @@ class Processor(spe.Processor):
         raise Exception("ERROR: Invalid thread block specification")
 
 
-    # TODO: Support async
-    if async:
-      print "Asynchronous execution is not yet supported"
+    # TODO: Support _async
+    if _async:
+      print ("Asynchronous execution is not yet supported")
       return
     
       th = ptx_exec.run_stream_async(prgm.render_code,
@@ -663,7 +664,7 @@ class Processor(spe.Processor):
 
       # Replace DeviceMemory parameters with their actual address
       # TODO - any other swaps than need to be done?
-      for i in xrange(0, len(param_list)):
+      for i in range(0, len(param_list)):
         if isinstance(param_list[i], DeviceMemory):
             param_list[i] = param_list[i].address
 
@@ -705,33 +706,33 @@ def TestCompileExec():
             "\t\texit;\n" + 
             "\t}\n" +
             "\n")
-  print kernel
+  print (kernel)
 
   #ctx = ptx_exec.alloc_ctx(0)
   t1 = time.time()
   module = ptx_exec.compile(kernel)
   t2 = time.time()
-  print "compile time", t2 - t1
+  print ("compile time", t2 - t1)
 
   #input = ptx_exec.alloc_remote(ptx_exec.FMT_FLOAT32_4, SIZE, SIZE, 0)
   #output = ptx_exec.alloc_remote(ptx_exec.FMT_FLOAT32_4, SIZE, SIZE, 0)
   ##glob = ptx_exec.alloc_remote(ptx_exec.FMT_FLOAT32_4, 4096, 4096, ptx_exec.GLOBAL_BUFFER)
-  #print "input", input
-  #print "output", output
+  #print ("input", input)
+  #print ("output", output)
 
   #remote = {"o0": output, "i0": input}
   #local = {"o1": (SIZE, SIZE, ptx_exec.FMT_FLOAT32_4),
   #         "g[]": (4096, 4096, ptx_exec.FMT_FLOAT32_4)}
   #domain = (0, 0, SIZE, SIZE)
-  #print "remote bindings", remote
-  #print "local bindings", local
+  #print ("remote bindings", remote)
+  #print ("local bindings", local)
 
-  print "Executing..."
+  print ("Executing...")
   # image, dev num, (x, y, w, h)
   t1 = time.time()
   ptx_exec.run_stream(module, (1, 1, 1, 1, 1), (), [])
   t2 = time.time()
-  print "run time", t2 - t1
+  print ("run time", t2 - t1)
 
   #ptx_exec.free_ctx(ctx)
   
@@ -767,7 +768,7 @@ def TestParams():
   t1 = time.time()
   module = ptx_exec.compile(kernel)
   t2 = time.time()
-  print "compile time", t2 - t1
+  print ("compile time", t2 - t1)
 
   a = 1.0
   b = 2.0
@@ -777,8 +778,8 @@ def TestParams():
   #mem.set_memory(ptx_mem_addr, 4)
   mem[0] = 5.0
 
-  print ptx_mem_addr, type(ptx_mem_addr)
-  print mem.buffer_info()[0], type(mem.buffer_info()[0])
+  print (ptx_mem_addr, type(ptx_mem_addr))
+  print (mem.buffer_info()[0], type(mem.buffer_info()[0]))
   param_list = [ptx_mem_addr, a, b]
   # image, dev num, (x, y, w, h)
 
@@ -786,12 +787,12 @@ def TestParams():
   t1 = time.time()
   ptx_exec.run_stream(module, (1, 1, 1, 1, 1), (ptx_exec.u64, ptx_exec.f32, ptx_exec.f32), param_list)
   t2 = time.time()
-  print "run time", t2 - t1
-  print "X", mem.buffer_info()[0], ptx_mem_addr
+  print ("run time", t2 - t1)
+  print ("X", mem.buffer_info()[0], ptx_mem_addr)
   ptx_exec.copy_dtoh(mem.buffer_info()[0], ptx_mem_addr, 4)
 
-  print param_list
-  print mem
+  print (param_list)
+  print (mem)
 
   #ptx_exec.free(input)
   #ptx_exec.free(output)
@@ -801,7 +802,7 @@ def TestParams():
 
 def TestRemoteAlloc():
   mem_handle = ptx_exec.alloc_remote(ptx_exec.FMT_FLOAT32_4, 1024, 1024, 0)
-  print "mem handle", mem_handle
+  print ("mem handle", mem_handle)
   ptx_exec.free(mem_handle)
   return
 
@@ -897,9 +898,9 @@ def TestSimpleKernel():
   a = 1.0
   b = 2.0
   
-  print mem.buffer_info()[0]
+  print (mem.buffer_info()[0])
   param_list = [ptx_mem_addr, a, b]
-  print map(type, param_list)
+  print (map(type, param_list))
   #   # image, dev num, (x, y, w, h)
 
   #import pdb
@@ -912,15 +913,15 @@ def TestSimpleKernel():
   proc.execute(prgm, (1,1,1,1,1), param_list)
   t2 = time.time()
 #  pdb.set_trace()
-  print "run time", t2 - t1
+  print ("run time", t2 - t1)
 
-  print "YY", mem.buffer_info()[0], ptx_mem_addr, type(mem.buffer_info()[0]), type(ptx_mem_addr)
-  print int(ptx_mem_addr)
-  print int(mem.buffer_info()[0])
+  print ("YY", mem.buffer_info()[0], ptx_mem_addr, type(mem.buffer_info()[0]), type(ptx_mem_addr))
+  print (int(ptx_mem_addr))
+  print (int(mem.buffer_info()[0]))
   ptx_exec.copy_dtoh(mem.buffer_info()[0], ptx_mem_addr, 4)
 
-  print param_list
-  print mem
+  print (param_list)
+  print (mem)
   ####
 
   return
@@ -936,17 +937,17 @@ def TestSimpleKernelNPy():
   arr_input = proc.alloc_remote_npy('f', 4, SIZE, SIZE)
   arr_output = proc.alloc_remote_npy('f', 4, SIZE, SIZE)
 
-  #for i in xrange(0, SIZE * SIZE * 4):
+  #for i in range(0, SIZE * SIZE * 4):
   #  arr_input[i] = float(i + 1)
   #  arr_output[i] = 0.0
-  #print arr_input.shape
-  #print arr_output.shape
-  #print type(arr_input.data)
+  #print (arr_input.shape)
+  #print (arr_output.shape)
+  #print (type(arr_input.data))
 
   val = 0.0
-  for i in xrange(0, SIZE):
-    for j in xrange(0, SIZE):
-      for k in xrange(0, 4):
+  for i in range(0, SIZE):
+    for j in range(0, SIZE):
+      for k in range(0, 4):
         arr_input[i][j][k] = val
         arr_output[i][j][k] = 0.0
         val += 1.0
@@ -974,11 +975,11 @@ def TestSimpleKernelNPy():
 
   # Check the output
   val = 0.0
-  for i in xrange(0, SIZE):
-    for j in xrange(0, SIZE):
-      for k in xrange(0, 4):
+  for i in range(0, SIZE):
+    for j in range(0, SIZE):
+      for k in range(0, 4):
         if arr_output[i][j][k] != val:
-          print "ERROR index %d is %f, should be %f" % (i, arr_output[i], val)
+          print ("ERROR index %d is %f, should be %f" % (i, arr_output[i], val))
         val += 1.0
 
   return
@@ -1031,13 +1032,13 @@ def TestParamsFull():
     t1 = time.time()
     proc.execute(prgm, (1, 1, 1, 1, 1), param_list)
     t2 = time.time()
-    print "run time", t2 - t1
-    print "#####"
-  print "X", mem.buffer_info()[0], ptx_mem_addr.address
+    print ("run time", t2 - t1)
+    print ("#####")
+  print ("X", mem.buffer_info()[0], ptx_mem_addr.address)
   proc.copy(mem, ptx_mem_addr)
 
-  print param_list
-  print mem
+  print (param_list)
+  print (mem)
 
   return
 
@@ -1052,7 +1053,7 @@ def TestCopy():
   local2 = proc.alloc_local('f', 4, SIZE, SIZE)
 
   arr_out.clear()
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     arr_inp[i] = float(i)
 
   bytes = 16 * SIZE * SIZE
@@ -1062,9 +1063,9 @@ def TestCopy():
   proc.copy(local2, local1)
   proc.copy(arr_out, local2)
 
-  for i in xrange(0, SIZE * SIZE * 4):
+  for i in range(0, SIZE * SIZE * 4):
     if arr_out[i] != float(i):
-      print "ERROR arr_out[%d] = %f" % (i, arr_out[i])
+      print ("ERROR arr_out[%d] = %f" % (i, arr_out[i]))
     assert(arr_out[i] == float(i))
 
   return
@@ -1091,8 +1092,8 @@ def TestCopyPerf():
   proc1.copy(arr_out, arr_inp)
   t2 = time.time()
 
-  print "remote->remote copy time", t2 - t1
-  print "%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb)
+  print ("remote->remote copy time", t2 - t1)
+  print ("%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb))
 
   proc1.copy(local1, arr_inp)
   proc1.copy(local1, arr_inp)
@@ -1100,8 +1101,8 @@ def TestCopyPerf():
   proc1.copy(local1, arr_inp)
   t2 = time.time()
 
-  print "remote->local copy time", t2 - t1
-  print "%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb)
+  print ("remote->local copy time", t2 - t1)
+  print ("%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb))
 
   proc1.copy(local2, local1)
   proc1.copy(local2, local1)
@@ -1109,8 +1110,8 @@ def TestCopyPerf():
   proc1.copy(local2, local1)
   t2 = time.time()
 
-  print "local->local (intra GPU) copy time", t2 - t1
-  print "%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb)
+  print ("local->local (intra GPU) copy time", t2 - t1)
+  print ("%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb))
 
   proc1.copy(arr_out, local2)
   proc1.copy(arr_out, local2)
@@ -1118,8 +1119,8 @@ def TestCopyPerf():
   proc1.copy(arr_out, local2)
   t2 = time.time()
 
-  print "local->remote copy time", t2 - t1
-  print "%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb)
+  print ("local->remote copy time", t2 - t1)
+  print ("%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb))
 
   if N_GPUS >= 2:
     # Can't seem to allocate more memory than is on one GPU?
@@ -1136,8 +1137,8 @@ def TestCopyPerf():
     proc1.copy(local3, local2)
     t2 = time.time()
 
-    print "local->local (cross GPU, src copies) copy time", t2 - t1
-    print "%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb)
+    print ("local->local (cross GPU, src copies) copy time", t2 - t1)
+    print ("%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb))
 
     proc2.copy(local3, local2)
     proc2.copy(local3, local2)
@@ -1145,14 +1146,14 @@ def TestCopyPerf():
     proc2.copy(local3, local2)
     t2 = time.time()
 
-    print "local->local (cross GPU, dst copies) copy time", t2 - t1
-    print "%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb)
+    print ("local->local (cross GPU, dst copies) copy time", t2 - t1)
+    print ("%f mbytes/sec" % ((float(bytes) / float(t2 - t1)) / mb))
 
-  print
+  print ()
   return
 
 if __name__ == '__main__':
-  print "GPUs available:", N_GPUS
+  print ("GPUs available:", N_GPUS)
   # Definitely working ptx tests
 #  TestCompileExec()
 #  TestParams()
@@ -1161,7 +1162,7 @@ if __name__ == '__main__':
   
   #for i in range(100):
   TestParamsFull()
-  #  print "#####"
+  #  print ("#####")
   #TestRemoteAlloc()
 
   #if HAS_NUMPY:

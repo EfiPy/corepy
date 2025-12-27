@@ -197,7 +197,7 @@ def ParMD5Transform(parcontext, parblock, blocki):
   proc = env.Processor(0)
 
   N = int(math.sqrt(num/4))
-  #print "N = ", N
+  #print ("N = ", N)
   def address_4_1d(i, pitch=64):
     x = i % N
     y = i // 64*4
@@ -424,13 +424,13 @@ def ParMD5Update(parcontext, parinput, inputLen):
       for i in range(partLen):
         parcontext.buffer[k*64 + index + i] = parinput[k*inputLen + i]
     ParMD5Transform (parcontext, parcontext.buffer, 0)
-    #print map(hex, (parcontext.statea[1], parcontext.stateb[1], parcontext.statec[1], parcontext.stated[1]))
-    #print map(hex, (parcontext.buffer[64 + z] for z in range(64)))
+    #print (map(hex, (parcontext.statea[1], parcontext.stateb[1], parcontext.statec[1], parcontext.stated[1])))
+    #print (map(hex, (parcontext.buffer[64 + z] for z in range(64))))
     i = partLen
     while i + 63 < inputLen:
       ParMD5Transform (parcontext, parinput, i);
-      #print map(hex, (parcontext.statea[1], parcontext.stateb[1], parcontext.statec[1], parcontext.stated[1]))
-      #print map(hex, (parcontext.buffer[64 + z] for z in range(64)))
+      #print (map(hex, (parcontext.statea[1], parcontext.stateb[1], parcontext.statec[1], parcontext.stated[1])))
+      #print (map(hex, (parcontext.buffer[64 + z] for z in range(64))))
       i += 64
     index = 0
     _i = i
@@ -449,7 +449,7 @@ def ParMD5Update(parcontext, parinput, inputLen):
 def ParMD5Final(pardigest, parcontext):
   num = parcontext.number
 
-  #print map(hex, [parPADDING[k*64] for k in range(num)])
+  #print (map(hex, [parPADDING[k*64] for k in range(num)]))
   parbits = extarray.extarray('B', 8*num)
   ParEncode(num, parbits, parcontext.count, 8)
   index = (parcontext.count[0] // 8) % 64
@@ -472,7 +472,7 @@ def ParMD5Final(pardigest, parcontext):
     state[k*4 + 1] = parcontext.stateb[k]
     state[k*4 + 2] = parcontext.statec[k]
     state[k*4 + 3] = parcontext.stated[k]
-  #print map(hex, state)
+  #print (map(hex, state))
   ParEncode(num, pardigest, state, 16)
 
 def ParMD5(num, ss, length):
@@ -482,39 +482,39 @@ def ParMD5(num, ss, length):
   parcontext = ParContext(num)
 
   ParMD5Init(parcontext)
-  #print map(hex, (parcontext.statea[1], parcontext.stateb[1], parcontext.statec[1], parcontext.stated[1]))
-  #print map(hex, (parcontext.buffer[64 + z] for z in range(64)))
+  #print (map(hex, (parcontext.statea[1], parcontext.stateb[1], parcontext.statec[1], parcontext.stated[1])))
+  #print (map(hex, (parcontext.buffer[64 + z] for z in range(64))))
   ParMD5Update(parcontext, ss, length)
   ParMD5Final(pardigest, parcontext)
 
   #for k in range(num):
   for k in range(1):
-    print map(hex, [pardigest[k*16 + i] for i in range(16)])
-  #print map(hex, pardigest)
+    print (map(hex, [pardigest[k*16 + i] for i in range(16)]))
+  #print (map(hex, pardigest))
   check = True
   for k in range(num):
     for i in range(16):
       if pardigest[k*16 + i] != pardigest[i]:
         if check == True:
-          print k, i
+          print (k, i)
         check = False
-  print "Results consistent = ", check
+  print ("Results consistent = ", check)
 
 
   #for k in range(num):
   #  ls = [pardigest[i] for i in range(k*16, (k+1)*16)]
-  #  #print map(hex, map(int, ls))
-  #print map(hex, map(int, ls))
+  #  #print (map(hex, map(int, ls)))
+  #print (map(hex, map(int, ls)))
 
 #MD5('')
-#print '========'
+#print ('========')
 ##for i in range(100):
 #MD5('a')
-#print '========'
+#print ('========')
 #MD5('abc')
-#print '========'
+#print ('========')
 #MD5("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
-#print '========'
+#print ('========')
 
 #num = 1048576
 #num = 512*4*512
@@ -533,4 +533,4 @@ for i in range(num):
   ss += s
 TIME = 0
 ParMD5(num, ss, len(s))
-print "TIME = ", TIME
+print ("TIME = ", TIME)

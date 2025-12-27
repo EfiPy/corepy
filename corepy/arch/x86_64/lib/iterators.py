@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -238,7 +239,7 @@ class syn_iter(object):
     #  raise Exception('Continue point not set.  Has the loop been synthesized yet?')
 
     #next = (self.continue_label - idx)
-    # print 'Continue:', next, idx, self.continue_label
+    # print ('Continue:', next, idx, self.continue_label)
     #code[idx] = branch_inst(next)
     #code[idx] = branch_inst(self.continue_label)
     code.add(branch_inst(self.continue_label))
@@ -248,7 +249,7 @@ class syn_iter(object):
     self.start()
     return self
 
-  def next(self):
+  def __next__(self):
 
     if self.state == 0:
       self.state = 1
@@ -375,7 +376,7 @@ class syn_fp_iter(object):
     #  raise Exception('Continue point not set.  Has the loop been synthesized yet?')
 
     #next = (self.continue_label - idx)
-    # print 'Continue:', next, idx, self.continue_label
+    # print ('Continue:', next, idx, self.continue_label)
     #code[idx] = branch_inst(next)
     #code[idx] = branch_inst(self.continue_label)
     code.add(branch_inst(self.continue_label))
@@ -406,7 +407,7 @@ def TestINCRegImm():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   code = env.InstructionStream()
@@ -435,7 +436,7 @@ def TestINCRegReg():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -470,7 +471,7 @@ def TestINCRegMem():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000) 
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -505,7 +506,7 @@ def TestINCMemMem():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
 
@@ -543,7 +544,7 @@ def TestINCMemMem_ImmStep():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -578,7 +579,7 @@ def TestINCMemMem_RegStep():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -615,7 +616,7 @@ def TestINCMemMem_MemStep():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -654,7 +655,7 @@ def TestDECImm():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -685,7 +686,7 @@ def TestDECReg():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -718,7 +719,7 @@ def TestDECMem():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -751,7 +752,7 @@ def TestDECMemMem():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -786,7 +787,7 @@ def TestDECMemMem_ImmStep():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -821,7 +822,7 @@ def TestDECMemMem_RegStep():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -858,7 +859,7 @@ def TestDECMemMem_MemStep():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -898,7 +899,7 @@ def TestCTRImm():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()
@@ -929,7 +930,7 @@ def TestCTRReg():
   A = extarray.extarray('l', 1000)
   B = extarray.extarray('l', 1000)
 
-  for i in xrange(1000):
+  for i in range(1000):
     A[i] = i
 
   prgm = env.Program()

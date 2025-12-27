@@ -51,7 +51,7 @@ code.add(subcode)
 prgm.add(code)
 prgm.print_code()
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 
 prgm = env.Program()
@@ -79,7 +79,7 @@ code.add(subcode)
 prgm.add(code)
 prgm.print_code()
 ret = proc.execute(prgm, mode = 'int')
-print "ret", ret
+print ("ret", ret)
 
 
 

@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -61,7 +62,7 @@ prgm.print_code(pro=True, epi=True, binary=True)
 
 r = proc.execute(prgm, debug=True)
 
-print 'int result:', r
+print ('int result:', r)
 assert(r == 12)
 
 code.reset()
@@ -73,7 +74,7 @@ ppc.lfd(prgm.fp_return, prgm.gp_return, 0)
 
 r = proc.execute(prgm, mode='fp', debug=True)
 assert(r == 3.14)
-print 'float result:', r
+print ('float result:', r)
 
 
 code.reset()
@@ -81,7 +82,7 @@ code.reset()
 load_word(code, prgm.gp_return, 0xFFFFFFFF)
 
 r = proc.execute(prgm, mode='int', debug=True)
-print "int result:",r
+print ("int result:",r)
 assert(r == -1)
 
 
@@ -98,7 +99,7 @@ ppc.bdnz(lbl_loop)
 
 #prgm.print_code(hex = True)
 r = proc.execute(prgm, mode='int', debug=True)
-print "int result:",r
+print ("int result:",r)
 assert(r == 32)
 
 #sys.exit(0)
@@ -122,7 +123,7 @@ c.v = a + (byte_mask & b) + 12
 
 
 r = proc.execute(prgm, debug = True)
-print 'result:', r
+print ('result:', r)
 assert(r == (42 + 12))
 
 # With active code
@@ -165,7 +166,7 @@ r_addr = prgm.acquire_register()
 addr = result.buffer_info()[0]
 if addr % 16 != 0:
   addr += 16 - (addr % 16)
-  print 'aligning addr'
+  print ('aligning addr')
 
 load_word(code, r_addr, addr)
 
@@ -177,4 +178,4 @@ vmx.set_active_code(None)
 r = proc.execute(prgm) # , debug = True)
 # code.print_code(pro = True, epi = True)
 
-print result
+print (result)

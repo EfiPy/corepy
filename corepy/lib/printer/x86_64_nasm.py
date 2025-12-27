@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -64,12 +65,12 @@ class x86_64_Nasm(object):
 
   def header(self, fd):
     if self.function_name != "":
-      #print >>fd, ".global %s\n%s:" % (self.function_name, self.function_name)
-      print >>fd, "BITS 64\nSECTION .text\nglobal %s\n%s:" % (self.function_name, self.function_name)
+      #print (".global %s\n%s:" % (self.function_name, self.function_name), file = fd)
+      print ("BITS 64\nSECTION .text\nglobal %s\n%s:" % (self.function_name, self.function_name), file = fd)
     return
 
   def footer(self, fd):
-    print >>fd, "resw 16384"
+    print ("resw 16384", file = fd)
     return
 
   def prologue(self, fd):
@@ -77,7 +78,7 @@ class x86_64_Nasm(object):
         The return value should be a boolean indicating whether prologue
         instructions should be printed. """
     #if self.show_prologue:
-    #  print >>fd, "\nprologue:"
+    #  print ("\nprologue:", file = fd)
 
     return self.show_prologue
 
@@ -86,12 +87,12 @@ class x86_64_Nasm(object):
         The return value should be a boolean indicating whether epilogue
         instructions should be printed. """
     #if self.show_epilogue:
-    #  print >>fd, "\nepilogue:"
+    #  print ("\nepilogue:", file = fd)
 
     return self.show_epilogue
 
   def stream(self, fd, stream):
-    #print >>fd, "\nbody:"
+    #print ("\nbody:", file = fd)
     return
 
   def str_op(self, op, op_sig, no_size_word = False):
@@ -126,7 +127,7 @@ class x86_64_Nasm(object):
         return ref + "[%s]" % (op.base.name)
       elif op.addr != None:
         return "[0x%x]" % (op.addr)
-    elif isinstance(op, (long, int)):
+    elif isinstance(op, (int, int)):
       return str(op)
     return
 
@@ -143,11 +144,11 @@ class x86_64_Nasm(object):
       lock = "lock "
 
     name = inst.__class__.__name__.strip("_")
-    print >>fd, "\t%s%s %s" % (lock, name, op_str)
+    print ("\t%s%s %s" % (lock, name, op_str), file = fd)
     return
 
   def label(self, fd, lbl):
-    print >>fd, "\n%s:" % lbl.name
+    print ("\n%s:" % lbl.name, file = fd)
     return
 
 

@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -28,8 +29,8 @@
 
 from corepy.spre.spe import Instruction, DispatchInstruction
 
-from x86_fields import *
-from x86_insts import *
+from .x86_fields import *
+from .x86_insts import *
 
 __annoy__ = True
 

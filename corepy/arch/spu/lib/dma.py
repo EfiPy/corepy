@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -176,9 +177,9 @@ def mem_write_in_mbox(code, psmap, lsa, tag, cache = False):
      This is a DMA operation; it must be completed using mem_complete() or
      similar method."""
 
-  if isinstance(lsa, (int, long)):
+  if isinstance(lsa, (int, int)):
     if (lsa % 16) != 12:
-      print "ERROR LSA for mem_write_mbox() must be 12 mod 16"
+      print ("ERROR LSA for mem_write_mbox() must be 12 mod 16")
       assert(0)
 
 #  r_mbox_mma_cached = True
@@ -187,7 +188,7 @@ def mem_write_in_mbox(code, psmap, lsa, tag, cache = False):
 #  if not isinstance(r_mbox_mma, spu.Register):
 #    r_size_cached = False
 #    r_mbox_mma = code.acquire_register()
-#    if isinstance(psmap, (int, long)):
+#    if isinstance(psmap, (int, int)):
 #      util.load_word(code, r_mbox_mma, psmap + 0x400C)
 #    else:
 #      util.load_word(code, r_mbox_mma, 0x400C)
@@ -198,7 +199,7 @@ def mem_write_in_mbox(code, psmap, lsa, tag, cache = False):
 #      code.prgm.add_storage(ref, r_mbox_mma)
 
   r_mbox_mma = code.prgm.acquire_register()
-  if isinstance(psmap, (int, long)):
+  if isinstance(psmap, (int, int)):
     util.load_word(code, r_mbox_mma, psmap + 0x400C)
   else:
     util.load_word(code, r_mbox_mma, 0x400C)
@@ -219,7 +220,7 @@ def mem_write_in_mbox(code, psmap, lsa, tag, cache = False):
 
   code.prgm.release_register(r_mbox_mma)
   if cache == False:
-    #if not isinstance(psmap, (int, long)) and r_mbox_mma_cached == False:
+    #if not isinstance(psmap, (int, int)) and r_mbox_mma_cached == False:
     if r_size_cached == False:
       code.prgm.release_register(r_size)
   return
@@ -233,9 +234,9 @@ def mem_write_signal(code, which, psmap, lsa, tag, cache = False):
      This is a DMA operation; it must be completed using mem_complete() or
      similar method."""
 
-  if isinstance(lsa, (int, long)):
+  if isinstance(lsa, (int, int)):
     if (lsa % 16) != 12:
-      print "ERROR LSA for mem_write_signal() must be 12 mod 16"
+      print ("ERROR LSA for mem_write_signal() must be 12 mod 16")
       assert(0)
 
   addr = 0x1400C
@@ -248,7 +249,7 @@ def mem_write_signal(code, which, psmap, lsa, tag, cache = False):
 #  if not isinstance(r_sig_mma, spu.Register):
 #    r_sig_mma_cached = False
 #    r_sig_mma = code.acquire_register()
-#    if isinstance(psmap, (int, long)):
+#    if isinstance(psmap, (int, int)):
 #      util.load_word(code, r_sig_mma, psmap + addr)
 #    else:
 #      util.load_word(code, r_sig_mma, addr)
@@ -259,7 +260,7 @@ def mem_write_signal(code, which, psmap, lsa, tag, cache = False):
 #      code.prgm.add_storage(ref, r_sig_mma)
 
   r_sig_mma = code.prgm.acquire_register()
-  if isinstance(psmap, (int, long)):
+  if isinstance(psmap, (int, int)):
     util.load_word(code, r_sig_mma, psmap + addr)
   else:
     util.load_word(code, r_sig_mma, addr)
@@ -284,7 +285,7 @@ def mem_write_signal(code, which, psmap, lsa, tag, cache = False):
   code.prgm.release_register(r_sig_mma)
 
   #if cache == False:
-    #if not isinstance(psmap, (int, long)):
+    #if not isinstance(psmap, (int, int)):
     #if r_size_cached == False:
     #  code.release_register(r_size)
   return
@@ -325,7 +326,7 @@ def MFC_CMD_WORD(tid, rid, cmd):
 # ------------------------------------------------------------
 
 def spu_mfcdma32(code, r_ls, r_ea, r_size, r_tagid, cmd):
-#  print "spu_mfcdma32 cmd", cmd, str(cmd)
+#  print ("spu_mfcdma32 cmd", cmd, str(cmd))
 #  ref = "__spu_mfcdma32_cmd_%s" % str(cmd)
 #  r_cmd = code.prgm.get_storage(ref)
 #  if not isinstance(r_cmd, spu.Register):
@@ -509,12 +510,12 @@ def TestMFC():
   # Load zero
   util.load_word(code, r_zero, 0)
 
-  print 'array ea: %X' % (data.buffer_info()[0])
-  print 'r_zero = %s, ea_data = %s, ls_data = %s, r_size = %s, r_tag = %s' % (
-    str(r_zero), str(r_ea_data), str(r_ls_data), str(r_size), str(r_tag))
+  print ('array ea: %X' % (data.buffer_info()[0]))
+  print ('r_zero = %s, ea_data = %s, ls_data = %s, r_size = %s, r_tag = %s' % (
+    str(r_zero), str(r_ea_data), str(r_ls_data), str(r_size), str(r_tag)))
   
   # Load the effective address
-  print 'test ea: %X' % data.buffer_info()[0]
+  print ('test ea: %X' % data.buffer_info()[0])
   util.load_word(code, r_ea_data, data.buffer_info()[0])
 
   # Load the size
@@ -569,7 +570,7 @@ def TestMFC():
   # Execute the code
   proc = synspu.Processor()
   # code.print_code()
-  #print data_array
+  #print (data_array)
   proc.execute(code)
 
   #data.copy_from(data_array.buffer_info()[0], len(data_array))
@@ -596,13 +597,13 @@ def TestMbox():
   
   proc = synspu.Processor()
 
-  spe_id = proc.execute(code, async=True)
+  spe_id = proc.execute(code, _async=True)
   synspu.spu_exec.write_in_mbox(spe_id, 0x88CAFE)
 
   while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-  print 'spe said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+  print ('spe said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
   while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-  print 'spe said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+  print ('spe said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
   proc.join(spe_id)
   
@@ -622,12 +623,12 @@ def TestSignal():
   
   proc = synspu.Processor()
 
-  spe_id = proc.execute(code, async=True)
+  spe_id = proc.execute(code, _async=True)
   synspu.spu_exec.write_signal(spe_id, 1, 0xCAFEBABEl)
   
   while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
 
-  print 'sig said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+  print ('sig said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
   proc.join(spe_id)
   
@@ -652,15 +653,15 @@ def TestDecrementer():
 
   proc = synspu.Processor()
 
-  spe_id = proc.execute(code, async=True)
+  spe_id = proc.execute(code, _async=True)
 
-  print 'test is sleeping for 1 second'
+  print ('test is sleeping for 1 second')
   time.sleep(1)
   synspu.spu_exec.write_in_mbox(spe_id, 0x44CAFE)
 
   while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
 
-  print 'spu said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+  print ('spu said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
 
   proc.join(spe_id)
 

@@ -13,7 +13,7 @@ inp = proc.alloc_remote('f', 4, 64)
 out = proc.alloc_remote('f', 4, 64)
 
 out.clear()
-for i in xrange(0, 64):
+for i in range(0, 64):
   inp[i] = float(i + 1)
 
 cal.set_active_code(code)
@@ -32,8 +32,8 @@ prgm.print_code()
 
 proc.execute(prgm)
 
-print "inp", inp
-print "out", out
+print ("inp", inp)
+print ("out", out)
 
 import corepy.lib.printer as printer
 

@@ -154,12 +154,12 @@ def test_DFT_native():
   for i in range(10):
     X = DFT_naive(x)
   stop = time.time()
-  print '%.6f' % ((stop - start) / 10.0)
+  print ('%.6f' % ((stop - start) / 10.0))
   
   XX = FFT.fft(x)
 
   # for x1, x2 in zip(X, XX):
-  #    print x1, x2
+  #    print (x1, x2)
   return
 
 def test_DFT_native_roots():
@@ -169,12 +169,12 @@ def test_DFT_native_roots():
   for i in range(10):
     X = DFT_naive_roots(x)
   stop = time.time()
-  print '%.6f' % ((stop - start) / 10.0)
+  print ('%.6f' % ((stop - start) / 10.0))
 
   XX = FFT.fft(x)
 
   # for x1, x2 in zip(X, XX):
-  #   print x1, x2
+  #   print (x1, x2)
   return
 
 def test_FFT_simple():
@@ -184,7 +184,7 @@ def test_FFT_simple():
   for i in range(1):
     X = FFT_simple(x)
   stop = time.time()
-  print '%.6f' % ((stop - start) / 1.0)
+  print ('%.6f' % ((stop - start) / 1.0))
 
   XX = FFT.fft(x)
 
@@ -202,12 +202,12 @@ def test_FFT_bit_reversal():
   for i in range(10):
     X = FFT_bit_reversal(x)
   stop = time.time()
-  print '%.6f' % ((stop - start) / 10.0)
+  print ('%.6f' % ((stop - start) / 10.0))
 
   # start = time.time()
   XX = FFT.fft(x)
   # stop = time.time()
-  # print '%.6f' % ((stop - start) / 1.0)
+  # print ('%.6f' % ((stop - start) / 1.0))
 
   i = 0
   for x1, x2 in zip(X, XX):

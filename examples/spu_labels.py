@@ -74,7 +74,7 @@ def SimpleSPU():
   prgm.add(code) 
   prgm.print_code() 
   r = proc.execute(prgm, mode = 'int', stop = True) 
-  print "ret", r
+  print ("ret", r)
   assert(r[0] == 42)
   assert(r[1] == 0x100A)
 
@@ -109,7 +109,7 @@ def SimpleSPU():
   prgm.add(code)
   prgm.print_code()
   r = proc.execute(prgm, mode = 'int', stop = True)
-  print "ret", r
+  print ("ret", r)
   assert(r[0] == 55)
 
   return

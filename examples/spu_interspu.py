@@ -51,7 +51,7 @@ if __name__ == '__main__':
   SPUS = 6
 
   proc = env.Processor()
-  prgms = [env.Program() for i in xrange(0, SPUS)]
+  prgms = [env.Program() for i in range(0, SPUS)]
 
   for rank, prgm in enumerate(prgms):
     code = prgm.get_stream()
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     # Load the PS info into some registers.. one register per address
     r_psinfo = prgm.acquire_registers(SPUS)
-    for i in xrange(0, SPUS):
+    for i in range(0, SPUS):
       spu.lqd(r_psinfo[i], code.r_zero, i)
 
     # Initialize a data register with this rank and store it at LSA 0
@@ -91,22 +91,22 @@ if __name__ == '__main__':
 
 
   # Start the SPUs
-  id = [proc.execute(prgms[i], async = True) for i in xrange(0, SPUS)]
+  id = [proc.execute(prgms[i], _async = True) for i in range(0, SPUS)]
 
   # Set up an array of pointers to PS maps.
   psinfo = extarray.extarray('I', SPUS * 4)
-  for i in xrange(0, SPUS * 4, 4):
+  for i in range(0, SPUS * 4, 4):
     psinfo[i] = id[i / 4].spups
   psinfo.synchronize()
 
   # Send the psinfo address to all the SPUs.
   addr = psinfo.buffer_info()[0]
-  for i in xrange(0, SPUS):
+  for i in range(0, SPUS):
     env.spu_exec.write_signal(id[i], 1, addr)
 
   # Wait for a mailbox message from each SPU; the value should be the preceding
   # rank.  Join each SPU once the message is received, too.
-  for i in xrange(0, SPUS):
+  for i in range(0, SPUS):
     val = env.spu_exec.read_out_ibox(id[i])
     assert(val == (i - 1) % SPUS)
 

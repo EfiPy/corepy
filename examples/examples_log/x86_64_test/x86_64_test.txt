@@ -1,0 +1,4292 @@
+Testing instruction: adc r12, 13
+PASS
+Testing instruction: adc MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: adc rax, 514703087
+PASS
+Testing instruction: adc r12, 514703087
+PASS
+Testing instruction: adc MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: adc r12, r12
+PASS
+Testing instruction: adc MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: adc r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: adc edx, 13
+PASS
+Testing instruction: adc MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: adc eax, 514703087
+PASS
+Testing instruction: adc edx, 514703087
+PASS
+Testing instruction: adc MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: adc edx, edx
+PASS
+Testing instruction: adc MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: adc edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: adc cx, 13
+PASS
+Testing instruction: adc MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: adc ax, 10234
+PASS
+Testing instruction: adc cx, 10234
+PASS
+Testing instruction: adc MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: adc cx, cx
+PASS
+Testing instruction: adc MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: adc cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: adc al, 13
+PASS
+Testing instruction: adc bl, 13
+PASS
+Testing instruction: adc MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: adc bl, bl
+PASS
+Testing instruction: adc MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: adc bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: add r12, 13
+PASS
+Testing instruction: add MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: add rax, 514703087
+PASS
+Testing instruction: add r12, 514703087
+PASS
+Testing instruction: add MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: add r12, r12
+PASS
+Testing instruction: add MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: add r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: add edx, 13
+PASS
+Testing instruction: add MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: add eax, 514703087
+PASS
+Testing instruction: add edx, 514703087
+PASS
+Testing instruction: add MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: add edx, edx
+PASS
+Testing instruction: add MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: add edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: add cx, 13
+PASS
+Testing instruction: add MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: add ax, 10234
+PASS
+Testing instruction: add cx, 10234
+PASS
+Testing instruction: add MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: add cx, cx
+PASS
+Testing instruction: add MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: add cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: add al, 13
+PASS
+Testing instruction: add bl, 13
+PASS
+Testing instruction: add MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: add bl, bl
+PASS
+Testing instruction: add MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: add bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: addpd xmm5, xmm5
+PASS
+Testing instruction: addpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: addps xmm5, xmm5
+PASS
+Testing instruction: addps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: addsd xmm5, xmm5
+PASS
+Testing instruction: addsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: addss xmm5, xmm5
+PASS
+Testing instruction: addss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: addsubpd xmm5, xmm5
+PASS
+Testing instruction: addsubpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: addsubps xmm5, xmm5
+PASS
+Testing instruction: addsubps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: and_ r12, 13
+PASS
+Testing instruction: and_ MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: and_ rax, 514703087
+PASS
+Testing instruction: and_ r12, 514703087
+PASS
+Testing instruction: and_ MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: and_ r12, r12
+PASS
+Testing instruction: and_ MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: and_ r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: and_ edx, 13
+PASS
+Testing instruction: and_ MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: and_ eax, 514703087
+PASS
+Testing instruction: and_ edx, 514703087
+PASS
+Testing instruction: and_ MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: and_ edx, edx
+PASS
+Testing instruction: and_ MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: and_ edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: and_ cx, 13
+PASS
+Testing instruction: and_ MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: and_ ax, 10234
+PASS
+Testing instruction: and_ cx, 10234
+PASS
+Testing instruction: and_ MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: and_ cx, cx
+PASS
+Testing instruction: and_ MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: and_ cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: and_ al, 13
+PASS
+Testing instruction: and_ bl, 13
+PASS
+Testing instruction: and_ MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: and_ bl, bl
+PASS
+Testing instruction: and_ MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: and_ bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: andnpd xmm5, xmm5
+PASS
+Testing instruction: andnpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: andnps xmm5, xmm5
+PASS
+Testing instruction: andnps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: andpd xmm5, xmm5
+PASS
+Testing instruction: andpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: andps xmm5, xmm5
+PASS
+Testing instruction: andps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: blendpd xmm5, xmm5, 13
+PASS
+Testing instruction: blendpd xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: blendps xmm5, xmm5, 13
+PASS
+Testing instruction: blendps xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: blendvpd xmm5, xmm5
+PASS
+Testing instruction: blendvpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: blendvps xmm5, xmm5
+PASS
+Testing instruction: blendvps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: bsf r12, r12
+PASS
+Testing instruction: bsf r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: bsf edx, edx
+PASS
+Testing instruction: bsf edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: bsf cx, cx
+PASS
+Testing instruction: bsf cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: bsr r12, r12
+PASS
+Testing instruction: bsr r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: bsr edx, edx
+PASS
+Testing instruction: bsr edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: bsr cx, cx
+PASS
+Testing instruction: bsr cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: bswap r12
+PASS
+Testing instruction: bswap edx
+PASS
+Testing instruction: bt r12, 13
+PASS
+Testing instruction: bt MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: bt r12, r12
+PASS
+Testing instruction: bt MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: bt edx, 13
+PASS
+Testing instruction: bt MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: bt edx, edx
+PASS
+Testing instruction: bt MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: bt cx, 13
+PASS
+Testing instruction: bt MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: bt cx, cx
+PASS
+Testing instruction: bt MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: btc r12, 13
+PASS
+Testing instruction: btc MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: btc r12, r12
+PASS
+Testing instruction: btc MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: btc edx, 13
+PASS
+Testing instruction: btc MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: btc edx, edx
+PASS
+Testing instruction: btc MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: btc cx, 13
+PASS
+Testing instruction: btc MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: btc cx, cx
+PASS
+Testing instruction: btc MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: btr r12, 13
+PASS
+Testing instruction: btr MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: btr r12, r12
+PASS
+Testing instruction: btr MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: btr edx, 13
+PASS
+Testing instruction: btr MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: btr edx, edx
+PASS
+Testing instruction: btr MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: btr cx, 13
+PASS
+Testing instruction: btr MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: btr cx, cx
+PASS
+Testing instruction: btr MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: bts r12, 13
+PASS
+Testing instruction: bts MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: bts r12, r12
+PASS
+Testing instruction: bts MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: bts edx, 13
+PASS
+Testing instruction: bts MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: bts edx, edx
+PASS
+Testing instruction: bts MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: bts cx, 13
+PASS
+Testing instruction: bts MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: bts cx, cx
+PASS
+Testing instruction: bts MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: call Label(BODY)
+PASS
+Testing instruction: call 65541
+***************************  ERROR
+nasm output:    e8f3ff0000
+corepy output:  e8f1ff0000
+	call 65541
+Testing instruction: call r12
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41ffd4
+corepy output:  49ffd4
+Testing instruction: call MemRef(r12, 32, data_size = 64)
+PASS
+x86_64_test.s:16: error: instruction not supported in 64-bit mode
+Testing instruction: call cx
+***************************  NASM ERROR
+corepy output: 66ffd1
+	call cx
+x86_64_test.s:16: error: instruction not supported in 64-bit mode
+Testing instruction: call MemRef(rsi, data_size = 16)
+***************************  NASM ERROR
+corepy output: 66ff16
+	call word [rsi]
+Testing instruction: cbw 
+PASS
+Testing instruction: cdq 
+PASS
+Testing instruction: cdqe 
+PASS
+Testing instruction: clc 
+PASS
+Testing instruction: cld 
+PASS
+x86_64_test.s:16: error: mismatch in operand sizes
+Testing instruction: clflush MemRef(rbp, -8, data_size = 8)
+***************************  NASM ERROR
+corepy output: 0fae7df8
+	clflush byte [rbp + -8]
+Testing instruction: cli 
+PASS
+Testing instruction: clts 
+PASS
+Testing instruction: cmc 
+PASS
+Testing instruction: cmova r12, r12
+PASS
+Testing instruction: cmova r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmova edx, edx
+PASS
+Testing instruction: cmova edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmova cx, cx
+PASS
+Testing instruction: cmova cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovae r12, r12
+PASS
+Testing instruction: cmovae r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovae edx, edx
+PASS
+Testing instruction: cmovae edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovae cx, cx
+PASS
+Testing instruction: cmovae cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovb r12, r12
+PASS
+Testing instruction: cmovb r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovb edx, edx
+PASS
+Testing instruction: cmovb edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovb cx, cx
+PASS
+Testing instruction: cmovb cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovbe r12, r12
+PASS
+Testing instruction: cmovbe r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovbe edx, edx
+PASS
+Testing instruction: cmovbe edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovbe cx, cx
+PASS
+Testing instruction: cmovbe cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovc r12, r12
+PASS
+Testing instruction: cmovc r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovc edx, edx
+PASS
+Testing instruction: cmovc edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovc cx, cx
+PASS
+Testing instruction: cmovc cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmove r12, r12
+PASS
+Testing instruction: cmove r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmove edx, edx
+PASS
+Testing instruction: cmove edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmove cx, cx
+PASS
+Testing instruction: cmove cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovg r12, r12
+PASS
+Testing instruction: cmovg r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovg edx, edx
+PASS
+Testing instruction: cmovg edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovg cx, cx
+PASS
+Testing instruction: cmovg cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovge r12, r12
+PASS
+Testing instruction: cmovge r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovge edx, edx
+PASS
+Testing instruction: cmovge edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovge cx, cx
+PASS
+Testing instruction: cmovge cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovl r12, r12
+PASS
+Testing instruction: cmovl r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovl edx, edx
+PASS
+Testing instruction: cmovl edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovl cx, cx
+PASS
+Testing instruction: cmovl cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovle r12, r12
+PASS
+Testing instruction: cmovle r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovle edx, edx
+PASS
+Testing instruction: cmovle edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovle cx, cx
+PASS
+Testing instruction: cmovle cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovna r12, r12
+PASS
+Testing instruction: cmovna r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovna edx, edx
+PASS
+Testing instruction: cmovna edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovna cx, cx
+PASS
+Testing instruction: cmovna cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnae r12, r12
+PASS
+Testing instruction: cmovnae r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnae edx, edx
+PASS
+Testing instruction: cmovnae edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnae cx, cx
+PASS
+Testing instruction: cmovnae cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnb r12, r12
+PASS
+Testing instruction: cmovnb r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnb edx, edx
+PASS
+Testing instruction: cmovnb edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnb cx, cx
+PASS
+Testing instruction: cmovnb cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnbe r12, r12
+PASS
+Testing instruction: cmovnbe r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnbe edx, edx
+PASS
+Testing instruction: cmovnbe edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnbe cx, cx
+PASS
+Testing instruction: cmovnbe cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnc r12, r12
+PASS
+Testing instruction: cmovnc r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnc edx, edx
+PASS
+Testing instruction: cmovnc edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnc cx, cx
+PASS
+Testing instruction: cmovnc cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovne r12, r12
+PASS
+Testing instruction: cmovne r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovne edx, edx
+PASS
+Testing instruction: cmovne edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovne cx, cx
+PASS
+Testing instruction: cmovne cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovng r12, r12
+PASS
+Testing instruction: cmovng r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovng edx, edx
+PASS
+Testing instruction: cmovng edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovng cx, cx
+PASS
+Testing instruction: cmovng cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnge r12, r12
+PASS
+Testing instruction: cmovnge r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnge edx, edx
+PASS
+Testing instruction: cmovnge edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnge cx, cx
+PASS
+Testing instruction: cmovnge cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnl r12, r12
+PASS
+Testing instruction: cmovnl r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnl edx, edx
+PASS
+Testing instruction: cmovnl edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnl cx, cx
+PASS
+Testing instruction: cmovnl cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnle r12, r12
+PASS
+Testing instruction: cmovnle r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnle edx, edx
+PASS
+Testing instruction: cmovnle edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnle cx, cx
+PASS
+Testing instruction: cmovnle cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovno r12, r12
+PASS
+Testing instruction: cmovno r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovno edx, edx
+PASS
+Testing instruction: cmovno edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovno cx, cx
+PASS
+Testing instruction: cmovno cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnp r12, r12
+PASS
+Testing instruction: cmovnp r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnp edx, edx
+PASS
+Testing instruction: cmovnp edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnp cx, cx
+PASS
+Testing instruction: cmovnp cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovns r12, r12
+PASS
+Testing instruction: cmovns r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovns edx, edx
+PASS
+Testing instruction: cmovns edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovns cx, cx
+PASS
+Testing instruction: cmovns cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovnz r12, r12
+PASS
+Testing instruction: cmovnz r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovnz edx, edx
+PASS
+Testing instruction: cmovnz edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovnz cx, cx
+PASS
+Testing instruction: cmovnz cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovo r12, r12
+PASS
+Testing instruction: cmovo r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovo edx, edx
+PASS
+Testing instruction: cmovo edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovo cx, cx
+PASS
+Testing instruction: cmovo cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovp r12, r12
+PASS
+Testing instruction: cmovp r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovp edx, edx
+PASS
+Testing instruction: cmovp edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovp cx, cx
+PASS
+Testing instruction: cmovp cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovpe r12, r12
+PASS
+Testing instruction: cmovpe r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovpe edx, edx
+PASS
+Testing instruction: cmovpe edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovpe cx, cx
+PASS
+Testing instruction: cmovpe cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovpo r12, r12
+PASS
+Testing instruction: cmovpo r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovpo edx, edx
+PASS
+Testing instruction: cmovpo edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovpo cx, cx
+PASS
+Testing instruction: cmovpo cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovs r12, r12
+PASS
+Testing instruction: cmovs r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovs edx, edx
+PASS
+Testing instruction: cmovs edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovs cx, cx
+PASS
+Testing instruction: cmovs cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmovz r12, r12
+PASS
+Testing instruction: cmovz r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmovz edx, edx
+PASS
+Testing instruction: cmovz edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmovz cx, cx
+PASS
+Testing instruction: cmovz cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmp r12, 13
+PASS
+Testing instruction: cmp MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: cmp rax, 514703087
+PASS
+Testing instruction: cmp r12, 514703087
+PASS
+Testing instruction: cmp MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: cmp r12, r12
+PASS
+Testing instruction: cmp MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: cmp r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmp edx, 13
+PASS
+Testing instruction: cmp MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: cmp eax, 514703087
+PASS
+Testing instruction: cmp edx, 514703087
+PASS
+Testing instruction: cmp MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: cmp edx, edx
+PASS
+Testing instruction: cmp MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: cmp edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmp cx, 13
+PASS
+Testing instruction: cmp MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: cmp ax, 10234
+PASS
+Testing instruction: cmp cx, 10234
+PASS
+Testing instruction: cmp MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: cmp cx, cx
+PASS
+Testing instruction: cmp MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: cmp cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: cmp al, 13
+PASS
+Testing instruction: cmp bl, 13
+PASS
+Testing instruction: cmp MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: cmp bl, bl
+PASS
+Testing instruction: cmp MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: cmp bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: cmpeqpd xmm5, xmm5
+PASS
+Testing instruction: cmpeqpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpeqps xmm5, xmm5
+PASS
+Testing instruction: cmpeqps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpeqsd xmm5, xmm5
+PASS
+Testing instruction: cmpeqsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpeqss xmm5, xmm5
+PASS
+Testing instruction: cmpeqss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmplepd xmm5, xmm5
+PASS
+Testing instruction: cmplepd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpleps xmm5, xmm5
+PASS
+Testing instruction: cmpleps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmplesd xmm5, xmm5
+PASS
+Testing instruction: cmplesd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpless xmm5, xmm5
+PASS
+Testing instruction: cmpless xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmpltpd xmm5, xmm5
+PASS
+Testing instruction: cmpltpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpltps xmm5, xmm5
+PASS
+Testing instruction: cmpltps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpltsd xmm5, xmm5
+PASS
+Testing instruction: cmpltsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpltss xmm5, xmm5
+PASS
+Testing instruction: cmpltss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmpneqpd xmm5, xmm5
+PASS
+Testing instruction: cmpneqpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpneqps xmm5, xmm5
+PASS
+Testing instruction: cmpneqps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpneqsd xmm5, xmm5
+PASS
+Testing instruction: cmpneqsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpneqss xmm5, xmm5
+PASS
+Testing instruction: cmpneqss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmpnlepd xmm5, xmm5
+PASS
+Testing instruction: cmpnlepd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpnleps xmm5, xmm5
+PASS
+Testing instruction: cmpnleps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpnlesd xmm5, xmm5
+PASS
+Testing instruction: cmpnlesd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpnless xmm5, xmm5
+PASS
+Testing instruction: cmpnless xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmpnltpd xmm5, xmm5
+PASS
+Testing instruction: cmpnltpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpnltps xmm5, xmm5
+PASS
+Testing instruction: cmpnltps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpnltsd xmm5, xmm5
+PASS
+Testing instruction: cmpnltsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpnltss xmm5, xmm5
+PASS
+Testing instruction: cmpnltss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmpordpd xmm5, xmm5
+PASS
+Testing instruction: cmpordpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpordps xmm5, xmm5
+PASS
+Testing instruction: cmpordps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpordsd xmm5, xmm5
+PASS
+Testing instruction: cmpordsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpordss xmm5, xmm5
+PASS
+Testing instruction: cmpordss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmppd xmm5, xmm5, 13
+PASS
+Testing instruction: cmppd xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: cmpps xmm5, xmm5, 13
+PASS
+Testing instruction: cmpps xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: cmpsb 
+PASS
+Testing instruction: cmpsd xmm5, xmm5, 13
+PASS
+Testing instruction: cmpsd xmm5, MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: cmpsq 
+PASS
+Testing instruction: cmpss xmm5, xmm5, 13
+PASS
+Testing instruction: cmpss xmm5, MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: cmpsw 
+PASS
+Testing instruction: cmpunordpd xmm5, xmm5
+PASS
+Testing instruction: cmpunordpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpunordps xmm5, xmm5
+PASS
+Testing instruction: cmpunordps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpunordsd xmm5, xmm5
+PASS
+Testing instruction: cmpunordsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cmpunordss xmm5, xmm5
+PASS
+Testing instruction: cmpunordss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cmpxchg r12, r12
+PASS
+Testing instruction: cmpxchg MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: cmpxchg edx, edx
+PASS
+Testing instruction: cmpxchg MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: cmpxchg cx, cx
+PASS
+Testing instruction: cmpxchg MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: cmpxchg bl, bl
+PASS
+Testing instruction: cmpxchg MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: cmpxchg16b MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cmpxchg8b MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: comisd xmm5, xmm5
+PASS
+Testing instruction: comisd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: comiss xmm5, xmm5
+PASS
+Testing instruction: comiss xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cpuid 
+PASS
+Testing instruction: cqo 
+PASS
+Testing instruction: crc32 r12, r12
+PASS
+Testing instruction: crc32 r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: crc32 r12, bl
+PASS
+Testing instruction: crc32 r12, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: crc32 edx, edx
+PASS
+Testing instruction: crc32 edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: crc32 edx, cx
+PASS
+Testing instruction: crc32 edx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: crc32 edx, bl
+PASS
+Testing instruction: crc32 edx, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: cvtdq2pd xmm5, xmm5
+PASS
+Testing instruction: cvtdq2pd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtdq2ps xmm5, xmm5
+PASS
+Testing instruction: cvtdq2ps xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtpd2dq xmm5, xmm5
+PASS
+Testing instruction: cvtpd2dq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvtpd2pi mm3, xmm5
+PASS
+Testing instruction: cvtpd2pi mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvtpd2ps xmm5, xmm5
+PASS
+Testing instruction: cvtpd2ps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvtpi2pd xmm5, mm3
+PASS
+Testing instruction: cvtpi2pd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtpi2ps xmm5, mm3
+PASS
+Testing instruction: cvtpi2ps xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtps2dq xmm5, xmm5
+PASS
+Testing instruction: cvtps2dq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvtps2pd xmm5, xmm5
+PASS
+Testing instruction: cvtps2pd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtps2pi mm3, xmm5
+PASS
+Testing instruction: cvtps2pi mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtsd2si edx, xmm5
+PASS
+Testing instruction: cvtsd2si edx, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtsd2ss xmm5, xmm5
+PASS
+Testing instruction: cvtsd2ss xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtsi2sd xmm5, r12
+PASS
+Testing instruction: cvtsi2sd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvtsi2sd xmm5, edx
+PASS
+Testing instruction: cvtsi2sd xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cvtss2sd xmm5, xmm5
+PASS
+Testing instruction: cvtss2sd xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cvtss2si r12, xmm5
+PASS
+Testing instruction: cvtss2si edx, xmm5
+PASS
+Testing instruction: cvtss2si edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cvttpd2dq xmm5, xmm5
+PASS
+Testing instruction: cvttpd2dq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvttpd2pi mm3, xmm5
+PASS
+Testing instruction: cvttpd2pi mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvttps2dq xmm5, xmm5
+PASS
+Testing instruction: cvttps2dq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: cvttps2pi mm3, xmm5
+PASS
+Testing instruction: cvttps2pi mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvttsd2si r12, xmm5
+PASS
+Testing instruction: cvttsd2si edx, xmm5
+PASS
+Testing instruction: cvttsd2si edx, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: cvttss2si r12, xmm5
+PASS
+Testing instruction: cvttss2si edx, xmm5
+PASS
+Testing instruction: cvttss2si edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: cwd 
+PASS
+Testing instruction: cwde 
+PASS
+Testing instruction: dec r12
+PASS
+Testing instruction: dec MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: dec edx
+PASS
+Testing instruction: dec MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: dec cx
+PASS
+Testing instruction: dec MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: dec bl
+PASS
+Testing instruction: dec MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: div r12
+PASS
+Testing instruction: div MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: div edx
+PASS
+Testing instruction: div MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: div cx
+PASS
+Testing instruction: div MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: div bl
+PASS
+Testing instruction: div MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: divpd xmm5, xmm5
+PASS
+Testing instruction: divpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: divps xmm5, xmm5
+PASS
+Testing instruction: divps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: divsd xmm5, xmm5
+PASS
+Testing instruction: divsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: divss xmm5, xmm5
+PASS
+Testing instruction: divss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: dppd xmm5, xmm5, 13
+PASS
+Testing instruction: dppd xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: dpps xmm5, xmm5, 13
+PASS
+Testing instruction: dpps xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: emms 
+PASS
+Testing instruction: enter 10234, 13
+PASS
+Testing instruction: extractps r12, xmm5, 13
+PASS
+Testing instruction: extractps edx, xmm5, 13
+PASS
+Testing instruction: extractps MemRef(r15, 1024, data_size = 32), xmm5, 13
+PASS
+Testing instruction: extrq xmm5, 13, 13
+PASS
+Testing instruction: extrq xmm5, xmm5
+PASS
+Testing instruction: f2xm1 
+PASS
+Testing instruction: fabs 
+PASS
+Testing instruction: fadd st0, st1
+PASS
+Testing instruction: fadd st1, st0
+PASS
+Testing instruction: fadd MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fadd MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc442420
+corepy output:  49dc442420
+Testing instruction: faddp 
+PASS
+Testing instruction: faddp st1, st0
+PASS
+Testing instruction: fchs 
+PASS
+Testing instruction: fcmovb st0, st1
+PASS
+Testing instruction: fcmovbe st0, st1
+PASS
+Testing instruction: fcmove st0, st1
+PASS
+Testing instruction: fcmovnb st0, st1
+PASS
+Testing instruction: fcmovnbe st0, st1
+PASS
+Testing instruction: fcmovne st0, st1
+PASS
+Testing instruction: fcmovnu st0, st1
+PASS
+Testing instruction: fcmovu st0, st1
+PASS
+Testing instruction: fcom 
+PASS
+Testing instruction: fcom st1
+PASS
+Testing instruction: fcom MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fcom MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc542420
+corepy output:  49dc542420
+Testing instruction: fcomi st0, st1
+PASS
+Testing instruction: fcomip st0, st1
+PASS
+Testing instruction: fcomp 
+PASS
+Testing instruction: fcomp st1
+PASS
+Testing instruction: fcomp MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fcomp MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc5c2420
+corepy output:  49dc5c2420
+Testing instruction: fcompp 
+PASS
+Testing instruction: fcos 
+PASS
+Testing instruction: fdecstp 
+PASS
+Testing instruction: fdiv st0, st1
+PASS
+Testing instruction: fdiv st1, st0
+PASS
+Testing instruction: fdiv MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fdiv MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc742420
+corepy output:  49dc742420
+Testing instruction: fdivp 
+PASS
+Testing instruction: fdivp st1, st0
+PASS
+Testing instruction: fdivr st0, st1
+PASS
+Testing instruction: fdivr st1, st0
+PASS
+Testing instruction: fdivr MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fdivr MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc7c2420
+corepy output:  49dc7c2420
+Testing instruction: fdivrp 
+PASS
+Testing instruction: fdivrp st1, st0
+PASS
+Testing instruction: ffree st1
+PASS
+Testing instruction: fiadd MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fiadd MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: ficom MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: ficom MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: ficomp MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: ficomp MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fidiv MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fidiv MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fidivr MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fidivr MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fild MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41df6c2420
+corepy output:  49df6c2420
+Testing instruction: fild MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fild MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fimul MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fimul MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fincstp 
+PASS
+Testing instruction: finit 
+PASS
+Testing instruction: fist MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fist MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fistp MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41df7c2420
+corepy output:  49df7c2420
+Testing instruction: fistp MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fistp MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fisttp MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dd4c2420
+corepy output:  49dd4c2420
+Testing instruction: fisttp MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fisttp MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fisub MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fisub MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fisubr MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fisubr MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fld st1
+PASS
+Testing instruction: fld MemRef(rdi, data_size = 80)
+PASS
+Testing instruction: fld MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dd442420
+corepy output:  49dd442420
+Testing instruction: fld MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fld1 
+PASS
+Testing instruction: fldcw MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fldenv MemRef(rsp, data_size = 228)
+PASS
+Testing instruction: fldl2e 
+PASS
+Testing instruction: fldl2t 
+PASS
+Testing instruction: fldlg2 
+PASS
+Testing instruction: fldln2 
+PASS
+Testing instruction: fldpi 
+PASS
+Testing instruction: fldz 
+PASS
+Testing instruction: fmul st0, st1
+PASS
+Testing instruction: fmul st1, st0
+PASS
+Testing instruction: fmul MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fmul MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc4c2420
+corepy output:  49dc4c2420
+Testing instruction: fmulp 
+PASS
+Testing instruction: fmulp st1, st0
+PASS
+Testing instruction: fninit 
+PASS
+Testing instruction: fnop 
+PASS
+Testing instruction: fnsave MemRef(rsp, data_size = 752)
+PASS
+Testing instruction: fnstcw MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fnstenv MemRef(rsp, data_size = 228)
+PASS
+Testing instruction: fnstsw ax
+PASS
+Testing instruction: fnstsw MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fpatan 
+PASS
+Testing instruction: fprem 
+PASS
+Testing instruction: fprem1 
+PASS
+Testing instruction: fptan 
+PASS
+Testing instruction: frndint 
+PASS
+Testing instruction: frstor MemRef(rsp, data_size = 752)
+PASS
+Testing instruction: fsave MemRef(rsp, data_size = 752)
+PASS
+Testing instruction: fscale 
+PASS
+Testing instruction: fsin 
+PASS
+Testing instruction: fsincos 
+PASS
+Testing instruction: fsqrt 
+PASS
+Testing instruction: fst st1
+PASS
+Testing instruction: fst MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dd542420
+corepy output:  49dd542420
+Testing instruction: fst MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fstcw MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fstenv MemRef(rsp, data_size = 228)
+PASS
+Testing instruction: fstp st1
+PASS
+Testing instruction: fstp MemRef(rdi, data_size = 80)
+PASS
+Testing instruction: fstp MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dd5c2420
+corepy output:  49dd5c2420
+Testing instruction: fstp MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fstsw ax
+PASS
+Testing instruction: fstsw MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: fsub st0, st1
+PASS
+Testing instruction: fsub st1, st0
+PASS
+Testing instruction: fsub MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fsub MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc642420
+corepy output:  49dc642420
+Testing instruction: fsubp 
+PASS
+Testing instruction: fsubp st1, st0
+PASS
+Testing instruction: fsubr st0, st1
+PASS
+Testing instruction: fsubr st1, st0
+PASS
+Testing instruction: fsubr MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: fsubr MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41dc6c2420
+corepy output:  49dc6c2420
+Testing instruction: fsubrp 
+PASS
+Testing instruction: fsubrp st1, st0
+PASS
+Testing instruction: ftst 
+PASS
+Testing instruction: fucom 
+PASS
+Testing instruction: fucom st1
+PASS
+Testing instruction: fucomi st0, st1
+PASS
+Testing instruction: fucomip st0, st1
+PASS
+Testing instruction: fucomp 
+PASS
+Testing instruction: fucomp st1
+PASS
+Testing instruction: fucompp 
+PASS
+Testing instruction: fwait 
+PASS
+Testing instruction: fxam 
+PASS
+Testing instruction: fxch 
+PASS
+Testing instruction: fxch st1
+PASS
+Testing instruction: fxrstor MemRef(rsp, data_size = 4096)
+PASS
+Testing instruction: fxsave MemRef(rsp, data_size = 4096)
+PASS
+Testing instruction: fxtract 
+PASS
+Testing instruction: fyl2x 
+PASS
+Testing instruction: fyl2xp1 
+PASS
+Testing instruction: haddpd xmm5, xmm5
+PASS
+Testing instruction: haddpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: haddps xmm5, xmm5
+PASS
+Testing instruction: haddps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: hlt 
+PASS
+Testing instruction: hsubpd xmm5, xmm5
+PASS
+Testing instruction: hsubpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: hsubps xmm5, xmm5
+PASS
+Testing instruction: hsubps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: idiv edx
+PASS
+Testing instruction: idiv MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: idiv cx
+PASS
+Testing instruction: idiv MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: idiv bl
+PASS
+Testing instruction: idiv MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: imul r12
+PASS
+Testing instruction: imul MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: imul r12, r12
+PASS
+Testing instruction: imul r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: imul r12, r12, 13
+PASS
+Testing instruction: imul r12, MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: imul r12, r12, 514703087
+PASS
+Testing instruction: imul r12, MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: imul edx
+PASS
+Testing instruction: imul MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: imul edx, edx
+PASS
+Testing instruction: imul edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: imul edx, edx, 13
+PASS
+Testing instruction: imul edx, MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: imul edx, edx, 514703087
+PASS
+Testing instruction: imul edx, MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: imul cx
+PASS
+Testing instruction: imul MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: imul cx, cx
+PASS
+Testing instruction: imul cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: imul cx, cx, 13
+PASS
+Testing instruction: imul cx, MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: imul cx, cx, 10234
+PASS
+Testing instruction: imul cx, MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: imul bl
+PASS
+Testing instruction: imul MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: in_ eax, dx
+PASS
+Testing instruction: in_ ax, dx
+PASS
+Testing instruction: in_ al, dx
+PASS
+Testing instruction: in_ eax, 13
+PASS
+Testing instruction: in_ ax, 13
+PASS
+Testing instruction: in_ al, 13
+PASS
+Testing instruction: inc r12
+PASS
+Testing instruction: inc MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: inc edx
+PASS
+Testing instruction: inc MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: inc cx
+PASS
+Testing instruction: inc MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: inc bl
+PASS
+Testing instruction: inc MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: insb 
+PASS
+Testing instruction: insd 
+PASS
+Testing instruction: insertps xmm5, xmm5, 13
+PASS
+Testing instruction: insertps xmm5, MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: insertq xmm5, xmm5, 13, 13
+PASS
+Testing instruction: insertq xmm5, xmm5
+PASS
+Testing instruction: insw 
+PASS
+Testing instruction: int_ 13
+PASS
+PASS
+Testing instruction: invd 
+PASS
+x86_64_test.s:16: error: mismatch in operand sizes
+Testing instruction: invlpg MemRef(rbp, -8, data_size = 8)
+***************************  NASM ERROR
+corepy output: 0f017df8
+	invlpg byte [rbp + -8]
+Testing instruction: iret 
+PASS
+Testing instruction: iretd 
+PASS
+Testing instruction: iretq 
+PASS
+Testing instruction: ja Label(BODY)
+PASS
+Testing instruction: ja 65541
+***************************  ERROR
+nasm output:    0f87f2ff0000
+corepy output:  0f87f0ff0000
+	ja 65541
+Testing instruction: jae Label(BODY)
+PASS
+Testing instruction: jae 65541
+***************************  ERROR
+nasm output:    0f83f2ff0000
+corepy output:  0f83f0ff0000
+	jae 65541
+Testing instruction: jb Label(BODY)
+PASS
+Testing instruction: jb 65541
+***************************  ERROR
+nasm output:    0f82f2ff0000
+corepy output:  0f82f0ff0000
+	jb 65541
+Testing instruction: jbe Label(BODY)
+PASS
+Testing instruction: jbe 65541
+***************************  ERROR
+nasm output:    0f86f2ff0000
+corepy output:  0f86f0ff0000
+	jbe 65541
+Testing instruction: jc Label(BODY)
+PASS
+Testing instruction: jc 65541
+***************************  ERROR
+nasm output:    0f82f2ff0000
+corepy output:  0f82f0ff0000
+	jc 65541
+Testing instruction: je Label(BODY)
+PASS
+Testing instruction: je 65541
+***************************  ERROR
+nasm output:    0f84f2ff0000
+corepy output:  0f84f0ff0000
+	je 65541
+Testing instruction: jecxz Label(BODY)
+PASS
+Testing instruction: jecxz 4
+***************************  ERROR
+nasm output:    67e3f4
+corepy output:  67e3f2
+	jecxz 4
+Testing instruction: jg Label(BODY)
+PASS
+Testing instruction: jg 65541
+***************************  ERROR
+nasm output:    0f8ff2ff0000
+corepy output:  0f8ff0ff0000
+	jg 65541
+Testing instruction: jge Label(BODY)
+PASS
+Testing instruction: jge 65541
+***************************  ERROR
+nasm output:    0f8df2ff0000
+corepy output:  0f8df0ff0000
+	jge 65541
+Testing instruction: jl Label(BODY)
+PASS
+Testing instruction: jl 65541
+***************************  ERROR
+nasm output:    0f8cf2ff0000
+corepy output:  0f8cf0ff0000
+	jl 65541
+Testing instruction: jle Label(BODY)
+PASS
+Testing instruction: jle 65541
+***************************  ERROR
+nasm output:    0f8ef2ff0000
+corepy output:  0f8ef0ff0000
+	jle 65541
+Testing instruction: jmp Label(BODY)
+PASS
+Testing instruction: jmp 65541
+***************************  ERROR
+nasm output:    e9f3ff0000
+corepy output:  e9f1ff0000
+	jmp 65541
+Testing instruction: jmp r12
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41ffe4
+corepy output:  49ffe4
+Testing instruction: jmp MemRef(r12, 32, data_size = 64)
+PASS
+x86_64_test.s:16: error: instruction not supported in 64-bit mode
+Testing instruction: jmp cx
+***************************  NASM ERROR
+corepy output: 66ffe1
+	jmp cx
+x86_64_test.s:16: error: instruction not supported in 64-bit mode
+Testing instruction: jmp MemRef(rsi, data_size = 16)
+***************************  NASM ERROR
+corepy output: 66ff26
+	jmp word [rsi]
+Testing instruction: jna Label(BODY)
+PASS
+Testing instruction: jna 65541
+***************************  ERROR
+nasm output:    0f86f2ff0000
+corepy output:  0f86f0ff0000
+	jna 65541
+Testing instruction: jnae Label(BODY)
+PASS
+Testing instruction: jnae 65541
+***************************  ERROR
+nasm output:    0f82f2ff0000
+corepy output:  0f82f0ff0000
+	jnae 65541
+Testing instruction: jnb Label(BODY)
+PASS
+Testing instruction: jnb 65541
+***************************  ERROR
+nasm output:    0f83f2ff0000
+corepy output:  0f83f0ff0000
+	jnb 65541
+Testing instruction: jnbe Label(BODY)
+PASS
+Testing instruction: jnbe 65541
+***************************  ERROR
+nasm output:    0f87f2ff0000
+corepy output:  0f87f0ff0000
+	jnbe 65541
+Testing instruction: jnc Label(BODY)
+PASS
+Testing instruction: jnc 65541
+***************************  ERROR
+nasm output:    0f83f2ff0000
+corepy output:  0f83f0ff0000
+	jnc 65541
+Testing instruction: jne Label(BODY)
+PASS
+Testing instruction: jne 65541
+***************************  ERROR
+nasm output:    0f85f2ff0000
+corepy output:  0f85f0ff0000
+	jne 65541
+Testing instruction: jng Label(BODY)
+PASS
+Testing instruction: jng 65541
+***************************  ERROR
+nasm output:    0f8ef2ff0000
+corepy output:  0f8ef0ff0000
+	jng 65541
+Testing instruction: jnge Label(BODY)
+PASS
+Testing instruction: jnge 65541
+***************************  ERROR
+nasm output:    0f8cf2ff0000
+corepy output:  0f8cf0ff0000
+	jnge 65541
+Testing instruction: jnl Label(BODY)
+PASS
+Testing instruction: jnl 65541
+***************************  ERROR
+nasm output:    0f8df2ff0000
+corepy output:  0f8df0ff0000
+	jnl 65541
+Testing instruction: jnle Label(BODY)
+PASS
+Testing instruction: jnle 65541
+***************************  ERROR
+nasm output:    0f8ff2ff0000
+corepy output:  0f8ff0ff0000
+	jnle 65541
+Testing instruction: jno Label(BODY)
+PASS
+Testing instruction: jno 65541
+***************************  ERROR
+nasm output:    0f81f2ff0000
+corepy output:  0f81f0ff0000
+	jno 65541
+Testing instruction: jnp Label(BODY)
+PASS
+Testing instruction: jnp 65541
+***************************  ERROR
+nasm output:    0f8bf2ff0000
+corepy output:  0f8bf0ff0000
+	jnp 65541
+Testing instruction: jns Label(BODY)
+PASS
+Testing instruction: jns 65541
+***************************  ERROR
+nasm output:    0f89f2ff0000
+corepy output:  0f89f0ff0000
+	jns 65541
+Testing instruction: jnz Label(BODY)
+PASS
+Testing instruction: jnz 65541
+***************************  ERROR
+nasm output:    0f85f2ff0000
+corepy output:  0f85f0ff0000
+	jnz 65541
+Testing instruction: jo Label(BODY)
+PASS
+Testing instruction: jo 65541
+***************************  ERROR
+nasm output:    0f80f2ff0000
+corepy output:  0f80f0ff0000
+	jo 65541
+Testing instruction: jp Label(BODY)
+PASS
+Testing instruction: jp 65541
+***************************  ERROR
+nasm output:    0f8af2ff0000
+corepy output:  0f8af0ff0000
+	jp 65541
+Testing instruction: jpe Label(BODY)
+PASS
+Testing instruction: jpe 65541
+***************************  ERROR
+nasm output:    0f8af2ff0000
+corepy output:  0f8af0ff0000
+	jpe 65541
+Testing instruction: jpo Label(BODY)
+PASS
+Testing instruction: jpo 65541
+***************************  ERROR
+nasm output:    0f8bf2ff0000
+corepy output:  0f8bf0ff0000
+	jpo 65541
+Testing instruction: jrcxz Label(BODY)
+PASS
+Testing instruction: jrcxz 4
+***************************  ERROR
+nasm output:    e3f5
+corepy output:  e3f3
+	jrcxz 4
+Testing instruction: js Label(BODY)
+PASS
+Testing instruction: js 65541
+***************************  ERROR
+nasm output:    0f88f2ff0000
+corepy output:  0f88f0ff0000
+	js 65541
+Testing instruction: jz Label(BODY)
+PASS
+Testing instruction: jz 65541
+***************************  ERROR
+nasm output:    0f84f2ff0000
+corepy output:  0f84f0ff0000
+	jz 65541
+Testing instruction: lahf 
+PASS
+Testing instruction: lddqu xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: ldmxcsr MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: lea r12, MemRef(rbx, data_size = None)
+PASS
+Testing instruction: lea edx, MemRef(rbx, data_size = None)
+PASS
+Testing instruction: lea cx, MemRef(rbx, data_size = None)
+PASS
+Testing instruction: leave 
+PASS
+Testing instruction: lfence 
+PASS
+Testing instruction: lodsb 
+PASS
+Testing instruction: lodsd 
+PASS
+Testing instruction: lodsq 
+PASS
+Testing instruction: lodsw 
+PASS
+Testing instruction: loop Label(BODY)
+PASS
+Testing instruction: loop 4
+***************************  ERROR
+nasm output:    e2f5
+corepy output:  e2f3
+	loop 4
+Testing instruction: loope Label(BODY)
+PASS
+Testing instruction: loope 4
+***************************  ERROR
+nasm output:    e1f5
+corepy output:  e1f3
+	loope 4
+Testing instruction: loopne Label(BODY)
+PASS
+Testing instruction: loopne 4
+***************************  ERROR
+nasm output:    e0f5
+corepy output:  e0f3
+	loopne 4
+Testing instruction: loopnz Label(BODY)
+PASS
+Testing instruction: loopnz 4
+***************************  ERROR
+nasm output:    e0f5
+corepy output:  e0f3
+	loopnz 4
+Testing instruction: loopz Label(BODY)
+PASS
+Testing instruction: loopz 4
+***************************  ERROR
+nasm output:    e1f5
+corepy output:  e1f3
+	loopz 4
+Testing instruction: lzcnt r12, r12
+PASS
+Testing instruction: lzcnt r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: lzcnt edx, edx
+PASS
+Testing instruction: lzcnt edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: lzcnt cx, cx
+PASS
+Testing instruction: lzcnt cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: maskmovdqu xmm5, xmm5
+PASS
+Testing instruction: maskmovq mm3, mm3
+PASS
+Testing instruction: maxpd xmm5, xmm5
+PASS
+Testing instruction: maxpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: maxps xmm5, xmm5
+PASS
+Testing instruction: maxps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: maxsd xmm5, xmm5
+PASS
+Testing instruction: maxsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: maxss xmm5, xmm5
+PASS
+Testing instruction: maxss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: mfence 
+PASS
+Testing instruction: minpd xmm5, xmm5
+PASS
+Testing instruction: minpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: minps xmm5, xmm5
+PASS
+Testing instruction: minps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: minsd xmm5, xmm5
+PASS
+Testing instruction: minsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: minss xmm5, xmm5
+PASS
+Testing instruction: minss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: mov r12, 514703087
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41bcefbead1e
+corepy output:  49c7c4efbead1e
+Testing instruction: mov MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: mov r12, 33732114104047
+PASS
+Testing instruction: mov r12, r12
+PASS
+Testing instruction: mov MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: mov r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: mov edx, 514703087
+PASS
+Testing instruction: mov MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: mov edx, edx
+PASS
+Testing instruction: mov MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: mov edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: mov cx, 10234
+PASS
+Testing instruction: mov MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: mov cx, cx
+PASS
+Testing instruction: mov MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: mov cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: mov bl, 13
+PASS
+Testing instruction: mov MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: mov bl, bl
+PASS
+Testing instruction: mov MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: mov bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: movapd xmm5, xmm5
+PASS
+Testing instruction: movapd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movapd MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movaps xmm5, xmm5
+PASS
+Testing instruction: movaps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movaps MemRef(r9, -16, data_size = 128), xmm5
+PASS
+x86_64_test.s:16: error: invalid combination of opcode and operands
+Testing instruction: movd xmm5, r12
+***************************  NASM ERROR
+corepy output: 66490f6eec
+	movd xmm5, r12
+x86_64_test.s:16: error: invalid combination of opcode and operands
+Testing instruction: movd r12, xmm5
+***************************  NASM ERROR
+corepy output: 66490f7eec
+	movd r12, xmm5
+Testing instruction: movd mm3, r12
+PASS
+Testing instruction: movd r12, mm3
+PASS
+Testing instruction: movd xmm5, edx
+PASS
+Testing instruction: movd xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: movd MemRef(r15, 1024, data_size = 32), xmm5
+PASS
+Testing instruction: movd edx, xmm5
+PASS
+Testing instruction: movd mm3, edx
+PASS
+Testing instruction: movd mm3, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: movd MemRef(r15, 1024, data_size = 32), mm3
+PASS
+Testing instruction: movd edx, mm3
+PASS
+Testing instruction: movddup xmm5, xmm5
+PASS
+Testing instruction: movddup xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movdq2q mm3, xmm5
+PASS
+Testing instruction: movdqa xmm5, xmm5
+PASS
+Testing instruction: movdqa xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movdqa MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movdqu xmm5, xmm5
+PASS
+Testing instruction: movdqu xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movdqu MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movhlps xmm5, xmm5
+PASS
+Testing instruction: movhpd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movhpd MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movhps xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movhps MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movlhps xmm5, xmm5
+PASS
+Testing instruction: movlpd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movlpd MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movlps xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movlps MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movmskpd edx, xmm5
+PASS
+Testing instruction: movmskps edx, xmm5
+PASS
+Testing instruction: movntdq MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movntdqa xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movnti MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: movnti MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: movntpd MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movntps MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movntq MemRef(r12, 32, data_size = 64), mm3
+PASS
+Testing instruction: movntsd MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movntss MemRef(r15, 1024, data_size = 32), xmm5
+PASS
+Testing instruction: movq xmm5, r12
+PASS
+Testing instruction: movq r12, xmm5
+PASS
+Testing instruction: movq mm3, r12
+PASS
+Testing instruction: movq r12, mm3
+PASS
+Testing instruction: movq xmm5, xmm5
+PASS
+Testing instruction: movq xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movq MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movq mm3, mm3
+PASS
+Testing instruction: movq mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movq MemRef(r12, 32, data_size = 64), mm3
+PASS
+Testing instruction: movq2dq xmm5, mm3
+PASS
+Testing instruction: movsb 
+PASS
+Testing instruction: movsd xmm5, xmm5
+PASS
+Testing instruction: movsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: movsd MemRef(r12, 32, data_size = 64), xmm5
+PASS
+Testing instruction: movshdup xmm5, xmm5
+PASS
+Testing instruction: movshdup xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movsldup xmm5, xmm5
+PASS
+Testing instruction: movsldup xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movsq 
+PASS
+Testing instruction: movss xmm5, xmm5
+PASS
+Testing instruction: movss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: movss MemRef(r15, 1024, data_size = 32), xmm5
+PASS
+Testing instruction: movsw 
+PASS
+Testing instruction: movsx r12, bl
+PASS
+Testing instruction: movsx r12, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: movsx r12, cx
+PASS
+Testing instruction: movsx r12, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: movsx edx, bl
+PASS
+Testing instruction: movsx edx, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: movsx edx, cx
+PASS
+Testing instruction: movsx edx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: movsx cx, bl
+PASS
+Testing instruction: movsx cx, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: movsxd r12, edx
+PASS
+Testing instruction: movsxd r12, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: movupd xmm5, xmm5
+PASS
+Testing instruction: movupd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movupd MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movups xmm5, xmm5
+PASS
+Testing instruction: movups xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: movups MemRef(r9, -16, data_size = 128), xmm5
+PASS
+Testing instruction: movzx r12, bl
+PASS
+Testing instruction: movzx r12, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: movzx r12, cx
+PASS
+Testing instruction: movzx r12, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: movzx edx, bl
+PASS
+Testing instruction: movzx edx, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: movzx edx, cx
+PASS
+Testing instruction: movzx edx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: movzx cx, bl
+PASS
+Testing instruction: movzx cx, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: mpsadbw xmm5, xmm5, 13
+PASS
+Testing instruction: mpsadbw xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: mul r12
+PASS
+Testing instruction: mul MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: mul edx
+PASS
+Testing instruction: mul MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: mul cx
+PASS
+Testing instruction: mul MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: mul bl
+PASS
+Testing instruction: mul MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: mulpd xmm5, xmm5
+PASS
+Testing instruction: mulpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: mulps xmm5, xmm5
+PASS
+Testing instruction: mulps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: mulsd xmm5, xmm5
+PASS
+Testing instruction: mulsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: mulss xmm5, xmm5
+PASS
+Testing instruction: mulss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: neg r12
+PASS
+Testing instruction: neg MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: neg edx
+PASS
+Testing instruction: neg MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: neg cx
+PASS
+Testing instruction: neg MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: neg bl
+PASS
+Testing instruction: neg MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: nop 
+PASS
+Testing instruction: not_ r12
+PASS
+Testing instruction: not_ MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: not_ edx
+PASS
+Testing instruction: not_ MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: not_ cx
+PASS
+Testing instruction: not_ MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: not_ bl
+PASS
+Testing instruction: not_ MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: or_ r12, 13
+PASS
+Testing instruction: or_ MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: or_ rax, 514703087
+PASS
+Testing instruction: or_ r12, 514703087
+PASS
+Testing instruction: or_ MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: or_ MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: or_ r12, r12
+PASS
+Testing instruction: or_ r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: or_ edx, 13
+PASS
+Testing instruction: or_ MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: or_ eax, 514703087
+PASS
+Testing instruction: or_ edx, 514703087
+PASS
+Testing instruction: or_ MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: or_ MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: or_ edx, edx
+PASS
+Testing instruction: or_ edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: or_ cx, 13
+PASS
+Testing instruction: or_ MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: or_ ax, 10234
+PASS
+Testing instruction: or_ cx, 10234
+PASS
+Testing instruction: or_ MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: or_ MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: or_ cx, cx
+PASS
+Testing instruction: or_ cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: or_ al, 13
+PASS
+Testing instruction: or_ bl, 13
+PASS
+Testing instruction: or_ MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: or_ bl, bl
+PASS
+Testing instruction: or_ MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: or_ bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: orpd xmm5, xmm5
+PASS
+Testing instruction: orpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: orps xmm5, xmm5
+PASS
+Testing instruction: orps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: out dx, eax
+PASS
+Testing instruction: out dx, ax
+PASS
+Testing instruction: out dx, al
+PASS
+Testing instruction: out 13, eax
+PASS
+Testing instruction: out 13, ax
+PASS
+Testing instruction: out 13, al
+PASS
+Testing instruction: outsb 
+PASS
+Testing instruction: outsd 
+PASS
+Testing instruction: outsw 
+PASS
+Testing instruction: pabsb xmm5, xmm5
+PASS
+Testing instruction: pabsb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pabsb mm3, mm3
+PASS
+Testing instruction: pabsb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pabsd xmm5, xmm5
+PASS
+Testing instruction: pabsd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pabsd mm3, mm3
+PASS
+Testing instruction: pabsd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pabsw xmm5, xmm5
+PASS
+Testing instruction: pabsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pabsw mm3, mm3
+PASS
+Testing instruction: pabsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: packssdw xmm5, xmm5
+PASS
+Testing instruction: packssdw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: packssdw mm3, mm3
+PASS
+Testing instruction: packssdw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: packsswb xmm5, xmm5
+PASS
+Testing instruction: packsswb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: packsswb mm3, mm3
+PASS
+Testing instruction: packsswb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: packusdw xmm5, xmm5
+PASS
+Testing instruction: packusdw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: packuswb xmm5, xmm5
+PASS
+Testing instruction: packuswb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: packuswb mm3, mm3
+PASS
+Testing instruction: packuswb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddb xmm5, xmm5
+PASS
+Testing instruction: paddb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddb mm3, mm3
+PASS
+Testing instruction: paddb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddd xmm5, xmm5
+PASS
+Testing instruction: paddd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddd mm3, mm3
+PASS
+Testing instruction: paddd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddq xmm5, xmm5
+PASS
+Testing instruction: paddq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddq mm3, mm3
+PASS
+Testing instruction: paddq mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddsb xmm5, xmm5
+PASS
+Testing instruction: paddsb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddsb mm3, mm3
+PASS
+Testing instruction: paddsb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddsw xmm5, xmm5
+PASS
+Testing instruction: paddsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddsw mm3, mm3
+PASS
+Testing instruction: paddsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddusb xmm5, xmm5
+PASS
+Testing instruction: paddusb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddusb mm3, mm3
+PASS
+Testing instruction: paddusb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddusw xmm5, xmm5
+PASS
+Testing instruction: paddusw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddusw mm3, mm3
+PASS
+Testing instruction: paddusw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: paddw xmm5, xmm5
+PASS
+Testing instruction: paddw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: paddw mm3, mm3
+PASS
+Testing instruction: paddw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: palignr xmm5, xmm5, 13
+PASS
+Testing instruction: palignr xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: palignr mm3, mm3, 13
+PASS
+Testing instruction: palignr mm3, MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: pand xmm5, xmm5
+PASS
+Testing instruction: pand xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pand mm3, mm3
+PASS
+Testing instruction: pand mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pandn xmm5, xmm5
+PASS
+Testing instruction: pandn xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pandn mm3, mm3
+PASS
+Testing instruction: pandn mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pause 
+PASS
+Testing instruction: pavgb xmm5, xmm5
+PASS
+Testing instruction: pavgb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pavgb mm3, mm3
+PASS
+Testing instruction: pavgb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pavgw xmm5, xmm5
+PASS
+Testing instruction: pavgw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pavgw mm3, mm3
+PASS
+Testing instruction: pavgw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pblendvb xmm5, xmm5
+PASS
+Testing instruction: pblendvb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pblendw xmm5, xmm5, 13
+PASS
+Testing instruction: pblendw xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pcmpeqb xmm5, xmm5
+PASS
+Testing instruction: pcmpeqb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpeqb mm3, mm3
+PASS
+Testing instruction: pcmpeqb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pcmpeqd xmm5, xmm5
+PASS
+Testing instruction: pcmpeqd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpeqd mm3, mm3
+PASS
+Testing instruction: pcmpeqd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pcmpeqq xmm5, xmm5
+PASS
+Testing instruction: pcmpeqq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpeqw xmm5, xmm5
+PASS
+Testing instruction: pcmpeqw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpeqw mm3, mm3
+PASS
+Testing instruction: pcmpeqw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pcmpestri xmm5, xmm5, 13
+PASS
+Testing instruction: pcmpestri xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pcmpestrm xmm5, xmm5, 13
+PASS
+Testing instruction: pcmpestrm xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pcmpgtb xmm5, xmm5
+PASS
+Testing instruction: pcmpgtb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpgtb mm3, mm3
+PASS
+Testing instruction: pcmpgtb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pcmpgtd xmm5, xmm5
+PASS
+Testing instruction: pcmpgtd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpgtd mm3, mm3
+PASS
+Testing instruction: pcmpgtd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pcmpgtq xmm5, xmm5
+PASS
+Testing instruction: pcmpgtq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpgtw xmm5, xmm5
+PASS
+Testing instruction: pcmpgtw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pcmpgtw mm3, mm3
+PASS
+Testing instruction: pcmpgtw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pcmpistri xmm5, xmm5, 13
+PASS
+Testing instruction: pcmpistri xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pcmpistrm xmm5, xmm5, 13
+PASS
+Testing instruction: pcmpistrm xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pextrb r12, xmm5, 13
+***************************  ERROR
+nasm output:    66410f3a14ec0d
+corepy output:  66490f3a14ec0d
+	pextrb r12, xmm5, 13
+Testing instruction: pextrb edx, xmm5, 13
+PASS
+Testing instruction: pextrb MemRef(rbp, -8, data_size = 8), xmm5, 13
+PASS
+Testing instruction: pextrd edx, xmm5, 13
+PASS
+Testing instruction: pextrd MemRef(r15, 1024, data_size = 32), xmm5, 13
+PASS
+Testing instruction: pextrq r12, xmm5, 13
+PASS
+Testing instruction: pextrq MemRef(r12, 32, data_size = 64), xmm5, 13
+***************************  ERROR
+nasm output:    66490f3a166c24200d
+corepy output:  66410f3a166c24200d
+	pextrq [r12 + 32], xmm5, 13
+Testing instruction: pextrw r12, xmm5, 13
+PASS
+Testing instruction: pextrw edx, xmm5, 13
+PASS
+Testing instruction: pextrw MemRef(rsi, data_size = 16), xmm5, 13
+PASS
+x86_64_test.s:16: error: invalid combination of opcode and operands
+Testing instruction: pextrw r12, mm3, 13
+***************************  NASM ERROR
+corepy output: 4c0fc5e30d
+	pextrw r12, mm3, 13
+Testing instruction: pextrw edx, mm3, 13
+PASS
+Testing instruction: phaddd xmm5, xmm5
+PASS
+Testing instruction: phaddd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phaddd mm3, mm3
+PASS
+Testing instruction: phaddd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: phaddsw xmm5, xmm5
+PASS
+Testing instruction: phaddsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phaddsw mm3, mm3
+PASS
+Testing instruction: phaddsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: phaddw xmm5, xmm5
+PASS
+Testing instruction: phaddw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phaddw mm3, mm3
+PASS
+Testing instruction: phaddw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: phminposuw xmm5, xmm5
+PASS
+Testing instruction: phminposuw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phsubd xmm5, xmm5
+PASS
+Testing instruction: phsubd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phsubd mm3, mm3
+PASS
+Testing instruction: phsubd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: phsubsw xmm5, xmm5
+PASS
+Testing instruction: phsubsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phsubsw mm3, mm3
+PASS
+Testing instruction: phsubsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: phsubw xmm5, xmm5
+PASS
+Testing instruction: phsubw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: phsubw mm3, mm3
+PASS
+Testing instruction: phsubw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pinsrb xmm5, edx, 13
+PASS
+Testing instruction: pinsrb xmm5, MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: pinsrd xmm5, edx, 13
+PASS
+Testing instruction: pinsrd xmm5, MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: pinsrq xmm5, r12, 13
+PASS
+Testing instruction: pinsrq xmm5, MemRef(r12, 32, data_size = 64), 13
+***************************  ERROR
+nasm output:    66490f3a226c24200d
+corepy output:  66410f3a226c24200d
+	pinsrq xmm5, [r12 + 32], 13
+Testing instruction: pinsrw xmm5, edx, 13
+PASS
+Testing instruction: pinsrw xmm5, MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: pinsrw mm3, edx, 13
+PASS
+Testing instruction: pinsrw mm3, MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: pmaddubsw xmm5, xmm5
+PASS
+Testing instruction: pmaddubsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaddubsw mm3, mm3
+PASS
+Testing instruction: pmaddubsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmaddwd xmm5, xmm5
+PASS
+Testing instruction: pmaddwd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaddwd mm3, mm3
+PASS
+Testing instruction: pmaddwd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmaxsb xmm5, xmm5
+PASS
+Testing instruction: pmaxsb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaxsd xmm5, xmm5
+PASS
+Testing instruction: pmaxsd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaxsw xmm5, xmm5
+PASS
+Testing instruction: pmaxsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaxsw mm3, mm3
+PASS
+Testing instruction: pmaxsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmaxub xmm5, xmm5
+PASS
+Testing instruction: pmaxub xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaxub mm3, mm3
+PASS
+Testing instruction: pmaxub mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmaxud xmm5, xmm5
+PASS
+Testing instruction: pmaxud xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmaxuw xmm5, xmm5
+PASS
+Testing instruction: pmaxuw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pminsb xmm5, xmm5
+PASS
+Testing instruction: pminsb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pminsd xmm5, xmm5
+PASS
+Testing instruction: pminsd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pminsw xmm5, xmm5
+PASS
+Testing instruction: pminsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pminsw mm3, mm3
+PASS
+Testing instruction: pminsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pminub xmm5, xmm5
+PASS
+Testing instruction: pminub xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pminub mm3, mm3
+PASS
+Testing instruction: pminub mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pminud xmm5, xmm5
+PASS
+Testing instruction: pminud xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pminuw xmm5, xmm5
+PASS
+Testing instruction: pminuw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+x86_64_test.s:16: error: invalid combination of opcode and operands
+Testing instruction: pmovmskb r12, mm3
+***************************  NASM ERROR
+corepy output: 4c0fd7e3
+	pmovmskb r12, mm3
+Testing instruction: pmovmskb edx, xmm5
+PASS
+Testing instruction: pmovmskb edx, mm3
+PASS
+Testing instruction: pmovsxbd xmm5, xmm5
+PASS
+Testing instruction: pmovsxbd xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: pmovsxbq xmm5, xmm5
+PASS
+Testing instruction: pmovsxbq xmm5, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: pmovsxbw xmm5, xmm5
+PASS
+Testing instruction: pmovsxbw xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmovsxdq xmm5, xmm5
+PASS
+Testing instruction: pmovsxdq xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmovsxwd xmm5, xmm5
+PASS
+Testing instruction: pmovsxwd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmovsxwq xmm5, xmm5
+PASS
+Testing instruction: pmovsxwq xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: pmovzxbd xmm5, xmm5
+PASS
+Testing instruction: pmovzxbd xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: pmovzxbq xmm5, xmm5
+PASS
+Testing instruction: pmovzxbq xmm5, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: pmovzxbw xmm5, xmm5
+PASS
+Testing instruction: pmovzxbw xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmovzxdq xmm5, xmm5
+PASS
+Testing instruction: pmovzxdq xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmovzxwd xmm5, xmm5
+PASS
+Testing instruction: pmovzxwd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmovzxwq xmm5, xmm5
+PASS
+Testing instruction: pmovzxwq xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: pmuldq xmm5, xmm5
+PASS
+Testing instruction: pmuldq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmulhrsw xmm5, xmm5
+PASS
+Testing instruction: pmulhrsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmulhrsw mm3, mm3
+PASS
+Testing instruction: pmulhrsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmulhuw xmm5, xmm5
+PASS
+Testing instruction: pmulhuw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmulhuw mm3, mm3
+PASS
+Testing instruction: pmulhuw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmulhw xmm5, xmm5
+PASS
+Testing instruction: pmulhw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmulhw mm3, mm3
+PASS
+Testing instruction: pmulhw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmulld xmm5, xmm5
+PASS
+Testing instruction: pmulld xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmullw xmm5, xmm5
+PASS
+Testing instruction: pmullw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmullw mm3, mm3
+PASS
+Testing instruction: pmullw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pmuludq xmm5, xmm5
+PASS
+Testing instruction: pmuludq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pmuludq mm3, mm3
+PASS
+Testing instruction: pmuludq mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pop r12
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    415c
+corepy output:  495c
+Testing instruction: pop MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    418f442420
+corepy output:  498f442420
+Testing instruction: pop cx
+PASS
+Testing instruction: pop MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: popcnt r12, r12
+PASS
+Testing instruction: popcnt r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: popcnt edx, edx
+PASS
+Testing instruction: popcnt edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: popcnt cx, cx
+PASS
+Testing instruction: popcnt cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: popf 
+***************************  ERROR
+nasm output:    9d
+corepy output:  669d
+	popf 
+Testing instruction: popfq 
+PASS
+Testing instruction: por xmm5, xmm5
+PASS
+Testing instruction: por xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: por mm3, mm3
+PASS
+Testing instruction: por mm3, MemRef(r12, 32, data_size = 64)
+PASS
+x86_64_test.s:16: error: mismatch in operand sizes
+Testing instruction: prefetch MemRef(rbp, -8, data_size = 8)
+***************************  NASM ERROR
+corepy output: 0f0d45f8
+	prefetch byte [rbp + -8]
+Testing instruction: prefetchnta MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: prefetcht0 MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: prefetcht1 MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: prefetcht2 MemRef(rbp, -8, data_size = 8)
+PASS
+x86_64_test.s:16: error: mismatch in operand sizes
+Testing instruction: prefetchw MemRef(rbp, -8, data_size = 8)
+***************************  NASM ERROR
+corepy output: 0f0d4df8
+	prefetchw byte [rbp + -8]
+Testing instruction: psadbw xmm5, xmm5
+PASS
+Testing instruction: psadbw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psadbw mm3, mm3
+PASS
+Testing instruction: psadbw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pshufb xmm5, xmm5
+PASS
+Testing instruction: pshufb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pshufb mm3, mm3
+PASS
+Testing instruction: pshufb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pshufd xmm5, xmm5, 13
+PASS
+Testing instruction: pshufd xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pshufhw xmm5, xmm5, 13
+PASS
+Testing instruction: pshufhw xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pshuflw xmm5, xmm5, 13
+PASS
+Testing instruction: pshuflw xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: pshufw mm3, mm3, 13
+PASS
+Testing instruction: pshufw mm3, MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: psignb xmm5, xmm5
+PASS
+Testing instruction: psignb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psignb mm3, mm3
+PASS
+Testing instruction: psignb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psignd xmm5, xmm5
+PASS
+Testing instruction: psignd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psignd mm3, mm3
+PASS
+Testing instruction: psignd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psignw xmm5, xmm5
+PASS
+Testing instruction: psignw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psignw mm3, mm3
+PASS
+Testing instruction: psignw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: pslld xmm5, 13
+PASS
+Testing instruction: pslld xmm5, xmm5
+PASS
+Testing instruction: pslld xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pslld mm3, 13
+PASS
+Testing instruction: pslld mm3, mm3
+PASS
+Testing instruction: pslld mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pslldq xmm5, 13
+PASS
+Testing instruction: psllq xmm5, 13
+PASS
+Testing instruction: psllq xmm5, xmm5
+PASS
+Testing instruction: psllq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psllq mm3, 13
+PASS
+Testing instruction: psllq mm3, mm3
+PASS
+Testing instruction: psllq mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psllw xmm5, 13
+PASS
+Testing instruction: psllw xmm5, xmm5
+PASS
+Testing instruction: psllw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psllw mm3, 13
+PASS
+Testing instruction: psllw mm3, mm3
+PASS
+Testing instruction: psllw mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrad xmm5, 13
+PASS
+Testing instruction: psrad xmm5, xmm5
+PASS
+Testing instruction: psrad xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrad mm3, 13
+PASS
+Testing instruction: psrad mm3, mm3
+PASS
+Testing instruction: psrad mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psraw xmm5, 13
+PASS
+Testing instruction: psraw xmm5, xmm5
+PASS
+Testing instruction: psraw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psraw mm3, 13
+PASS
+Testing instruction: psraw mm3, mm3
+PASS
+Testing instruction: psraw mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrld xmm5, 13
+PASS
+Testing instruction: psrld xmm5, xmm5
+PASS
+Testing instruction: psrld xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrld mm3, 13
+PASS
+Testing instruction: psrld mm3, mm3
+PASS
+Testing instruction: psrld mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrldq xmm5, 13
+PASS
+Testing instruction: psrlq xmm5, 13
+PASS
+Testing instruction: psrlq xmm5, xmm5
+PASS
+Testing instruction: psrlq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrlq mm3, 13
+PASS
+Testing instruction: psrlq mm3, mm3
+PASS
+Testing instruction: psrlq mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrlw xmm5, 13
+PASS
+Testing instruction: psrlw xmm5, xmm5
+PASS
+Testing instruction: psrlw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psrlw mm3, 13
+PASS
+Testing instruction: psrlw mm3, mm3
+PASS
+Testing instruction: psrlw mm3, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubb xmm5, xmm5
+PASS
+Testing instruction: psubb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubb mm3, mm3
+PASS
+Testing instruction: psubb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubd xmm5, xmm5
+PASS
+Testing instruction: psubd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubd mm3, mm3
+PASS
+Testing instruction: psubd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubq xmm5, xmm5
+PASS
+Testing instruction: psubq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubq mm3, mm3
+PASS
+Testing instruction: psubq mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubsb xmm5, xmm5
+PASS
+Testing instruction: psubsb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubsb mm3, mm3
+PASS
+Testing instruction: psubsb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubsw xmm5, xmm5
+PASS
+Testing instruction: psubsw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubsw mm3, mm3
+PASS
+Testing instruction: psubsw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubusb xmm5, xmm5
+PASS
+Testing instruction: psubusb xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubusb mm3, mm3
+PASS
+Testing instruction: psubusb mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubusw xmm5, xmm5
+PASS
+Testing instruction: psubusw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubusw mm3, mm3
+PASS
+Testing instruction: psubusw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: psubw xmm5, xmm5
+PASS
+Testing instruction: psubw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: psubw mm3, mm3
+PASS
+Testing instruction: psubw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: ptest xmm5, xmm5
+PASS
+Testing instruction: ptest xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpckhbw xmm5, xmm5
+PASS
+Testing instruction: punpckhbw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpckhbw mm3, mm3
+PASS
+Testing instruction: punpckhbw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: punpckhdq xmm5, xmm5
+PASS
+Testing instruction: punpckhdq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpckhdq mm3, mm3
+PASS
+Testing instruction: punpckhdq mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: punpckhqdq xmm5, xmm5
+PASS
+Testing instruction: punpckhqdq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpckhwd xmm5, xmm5
+PASS
+Testing instruction: punpckhwd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpckhwd mm3, mm3
+PASS
+Testing instruction: punpckhwd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: punpcklbw xmm5, xmm5
+PASS
+Testing instruction: punpcklbw xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpcklbw mm3, mm3
+PASS
+Testing instruction: punpcklbw mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: punpckldq xmm5, xmm5
+PASS
+Testing instruction: punpckldq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpckldq mm3, mm3
+PASS
+Testing instruction: punpckldq mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: punpcklqdq xmm5, xmm5
+PASS
+Testing instruction: punpcklqdq xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpcklwd xmm5, xmm5
+PASS
+Testing instruction: punpcklwd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: punpcklwd mm3, mm3
+PASS
+Testing instruction: punpcklwd mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: push r12
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    4154
+corepy output:  4954
+Testing instruction: push MemRef(r12, 32, data_size = 64)
+WARNING CorePy is enabling 64bit for this inst, NASM is not
+nasm output:    41ff742420
+corepy output:  49ff742420
+Testing instruction: push 514703087
+PASS
+Testing instruction: push cx
+PASS
+Testing instruction: push MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: pushf 
+***************************  ERROR
+nasm output:    9c
+corepy output:  669c
+	pushf 
+Testing instruction: pushfq 
+PASS
+Testing instruction: pxor xmm5, xmm5
+PASS
+Testing instruction: pxor xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: pxor mm3, mm3
+PASS
+Testing instruction: pxor mm3, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: rcl r12, 1
+PASS
+Testing instruction: rcl MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: rcl r12, cl
+PASS
+Testing instruction: rcl MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: rcl r12, 13
+PASS
+Testing instruction: rcl MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: rcl edx, 1
+PASS
+Testing instruction: rcl MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: rcl edx, cl
+PASS
+Testing instruction: rcl MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: rcl edx, 13
+PASS
+Testing instruction: rcl MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: rcl cx, 1
+PASS
+Testing instruction: rcl MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: rcl cx, cl
+PASS
+Testing instruction: rcl MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: rcl cx, 13
+PASS
+Testing instruction: rcl MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: rcl bl, 1
+PASS
+Testing instruction: rcl MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: rcl bl, cl
+PASS
+Testing instruction: rcl MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: rcl bl, 13
+PASS
+Testing instruction: rcl MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: rcpps xmm5, xmm5
+PASS
+Testing instruction: rcpps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: rcpss xmm5, xmm5
+PASS
+Testing instruction: rcpss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: rcr r12, 1
+PASS
+Testing instruction: rcr MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: rcr r12, cl
+PASS
+Testing instruction: rcr MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: rcr r12, 13
+PASS
+Testing instruction: rcr MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: rcr edx, 1
+PASS
+Testing instruction: rcr MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: rcr edx, cl
+PASS
+Testing instruction: rcr MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: rcr edx, 13
+PASS
+Testing instruction: rcr MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: rcr cx, 1
+PASS
+Testing instruction: rcr MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: rcr cx, cl
+PASS
+Testing instruction: rcr MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: rcr cx, 13
+PASS
+Testing instruction: rcr MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: rcr bl, 1
+PASS
+Testing instruction: rcr MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: rcr bl, cl
+PASS
+Testing instruction: rcr MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: rcr bl, 13
+PASS
+Testing instruction: rcr MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: rdmsr 
+PASS
+Testing instruction: rdtsc 
+PASS
+Testing instruction: rdtscp 
+PASS
+Testing instruction: ret 
+PASS
+Testing instruction: ret 10234
+PASS
+Testing instruction: rol r12, 1
+PASS
+Testing instruction: rol MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: rol r12, cl
+PASS
+Testing instruction: rol MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: rol r12, 13
+PASS
+Testing instruction: rol MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: rol edx, 1
+PASS
+Testing instruction: rol MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: rol edx, cl
+PASS
+Testing instruction: rol MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: rol edx, 13
+PASS
+Testing instruction: rol MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: rol cx, 1
+PASS
+Testing instruction: rol MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: rol cx, cl
+PASS
+Testing instruction: rol MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: rol cx, 13
+PASS
+Testing instruction: rol MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: rol bl, 1
+PASS
+Testing instruction: rol MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: rol bl, cl
+PASS
+Testing instruction: rol MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: rol bl, 13
+PASS
+Testing instruction: rol MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: ror r12, 1
+PASS
+Testing instruction: ror MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: ror r12, cl
+PASS
+Testing instruction: ror MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: ror r12, 13
+PASS
+Testing instruction: ror MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: ror edx, 1
+PASS
+Testing instruction: ror MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: ror edx, cl
+PASS
+Testing instruction: ror MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: ror edx, 13
+PASS
+Testing instruction: ror MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: ror cx, 1
+PASS
+Testing instruction: ror MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: ror cx, cl
+PASS
+Testing instruction: ror MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: ror cx, 13
+PASS
+Testing instruction: ror MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: ror bl, 1
+PASS
+Testing instruction: ror MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: ror bl, cl
+PASS
+Testing instruction: ror MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: ror bl, 13
+PASS
+Testing instruction: ror MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: roundpd xmm5, xmm5, 13
+PASS
+Testing instruction: roundpd xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: roundps xmm5, xmm5, 13
+PASS
+Testing instruction: roundps xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: roundsd xmm5, xmm5, 13
+PASS
+Testing instruction: roundsd xmm5, MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: roundss xmm5, xmm5, 13
+PASS
+Testing instruction: roundss xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: rsqrtps xmm5, xmm5
+PASS
+Testing instruction: rsqrtps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: rsqrtss xmm5, xmm5
+PASS
+Testing instruction: rsqrtss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: sahf 
+PASS
+Testing instruction: sal r12, 1
+PASS
+Testing instruction: sal MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: sal r12, cl
+PASS
+Testing instruction: sal MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: sal r12, 13
+PASS
+Testing instruction: sal MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: sal edx, 1
+PASS
+Testing instruction: sal MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: sal edx, cl
+PASS
+Testing instruction: sal MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: sal edx, 13
+PASS
+Testing instruction: sal MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: sal cx, 1
+PASS
+Testing instruction: sal MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: sal cx, cl
+PASS
+Testing instruction: sal MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: sal cx, 13
+PASS
+Testing instruction: sal MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: sal bl, 1
+PASS
+Testing instruction: sal MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: sal bl, cl
+PASS
+Testing instruction: sal MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: sal bl, 13
+PASS
+Testing instruction: sal MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: sar r12, 1
+PASS
+Testing instruction: sar MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: sar r12, cl
+PASS
+Testing instruction: sar MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: sar r12, 13
+PASS
+Testing instruction: sar MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: sar edx, 1
+PASS
+Testing instruction: sar MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: sar edx, cl
+PASS
+Testing instruction: sar MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: sar edx, 13
+PASS
+Testing instruction: sar MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: sar cx, 1
+PASS
+Testing instruction: sar MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: sar cx, cl
+PASS
+Testing instruction: sar MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: sar cx, 13
+PASS
+Testing instruction: sar MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: sar bl, 1
+PASS
+Testing instruction: sar MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: sar bl, cl
+PASS
+Testing instruction: sar MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: sar bl, 13
+PASS
+Testing instruction: sar MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: sbb r12, 13
+PASS
+Testing instruction: sbb MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: sbb rax, 514703087
+PASS
+Testing instruction: sbb r12, 514703087
+PASS
+Testing instruction: sbb MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: sbb r12, r12
+PASS
+Testing instruction: sbb MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: sbb r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: sbb edx, 13
+PASS
+Testing instruction: sbb MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: sbb eax, 514703087
+PASS
+Testing instruction: sbb edx, 514703087
+PASS
+Testing instruction: sbb MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: sbb edx, edx
+PASS
+Testing instruction: sbb MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: sbb edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: sbb cx, 13
+PASS
+Testing instruction: sbb MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: sbb ax, 10234
+PASS
+Testing instruction: sbb cx, 10234
+PASS
+Testing instruction: sbb MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: sbb cx, cx
+PASS
+Testing instruction: sbb MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: sbb cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: sbb al, 13
+PASS
+Testing instruction: sbb bl, 13
+PASS
+Testing instruction: sbb MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: sbb bl, bl
+PASS
+Testing instruction: sbb MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: sbb bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: scasb 
+PASS
+Testing instruction: scasd 
+PASS
+Testing instruction: scasq 
+PASS
+Testing instruction: scasw 
+PASS
+Testing instruction: seta bl
+PASS
+Testing instruction: seta MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setae bl
+PASS
+Testing instruction: setae MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setb bl
+PASS
+Testing instruction: setb MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setbe bl
+PASS
+Testing instruction: setbe MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setc bl
+PASS
+Testing instruction: setc MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: sete bl
+PASS
+Testing instruction: sete MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setg bl
+PASS
+Testing instruction: setg MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setge bl
+PASS
+Testing instruction: setge MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setl bl
+PASS
+Testing instruction: setl MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setle bl
+PASS
+Testing instruction: setle MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setna bl
+PASS
+Testing instruction: setna MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnae bl
+PASS
+Testing instruction: setnae MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnb bl
+PASS
+Testing instruction: setnb MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnbe bl
+PASS
+Testing instruction: setnbe MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnc bl
+PASS
+Testing instruction: setnc MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setne bl
+PASS
+Testing instruction: setne MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setng bl
+PASS
+Testing instruction: setng MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnge bl
+PASS
+Testing instruction: setnge MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnl bl
+PASS
+Testing instruction: setnl MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnle bl
+PASS
+Testing instruction: setnle MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setno bl
+PASS
+Testing instruction: setno MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnp bl
+PASS
+Testing instruction: setnp MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setns bl
+PASS
+Testing instruction: setns MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setnz bl
+PASS
+Testing instruction: setnz MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: seto bl
+PASS
+Testing instruction: seto MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setp bl
+PASS
+Testing instruction: setp MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setpe bl
+PASS
+Testing instruction: setpe MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setpo bl
+PASS
+Testing instruction: setpo MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: sets bl
+PASS
+Testing instruction: sets MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: setz bl
+PASS
+Testing instruction: setz MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: sfence 
+PASS
+Testing instruction: shl r12, 1
+PASS
+Testing instruction: shl MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: shl r12, cl
+PASS
+Testing instruction: shl MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: shl r12, 13
+PASS
+Testing instruction: shl MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: shl edx, 1
+PASS
+Testing instruction: shl MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: shl edx, cl
+PASS
+Testing instruction: shl MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: shl edx, 13
+PASS
+Testing instruction: shl MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: shl cx, 1
+PASS
+Testing instruction: shl MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: shl cx, cl
+PASS
+Testing instruction: shl MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: shl cx, 13
+PASS
+Testing instruction: shl MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: shl bl, 1
+PASS
+Testing instruction: shl MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: shl bl, cl
+PASS
+Testing instruction: shl MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: shl bl, 13
+PASS
+Testing instruction: shl MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: shld r12, r12, 13
+PASS
+Testing instruction: shld MemRef(r12, 32, data_size = 64), r12, 13
+PASS
+Testing instruction: shld r12, r12, cl
+PASS
+Testing instruction: shld MemRef(r12, 32, data_size = 64), r12, cl
+PASS
+Testing instruction: shld edx, edx, 13
+PASS
+Testing instruction: shld MemRef(r15, 1024, data_size = 32), edx, 13
+PASS
+Testing instruction: shld edx, edx, cl
+PASS
+Testing instruction: shld MemRef(r15, 1024, data_size = 32), edx, cl
+PASS
+Testing instruction: shld cx, cx, 13
+PASS
+Testing instruction: shld MemRef(rsi, data_size = 16), cx, 13
+PASS
+Testing instruction: shld cx, cx, cl
+PASS
+Testing instruction: shld MemRef(rsi, data_size = 16), cx, cl
+PASS
+Testing instruction: shr r12, 1
+PASS
+Testing instruction: shr MemRef(r12, 32, data_size = 64), 1
+PASS
+Testing instruction: shr r12, cl
+PASS
+Testing instruction: shr MemRef(r12, 32, data_size = 64), cl
+PASS
+Testing instruction: shr r12, 13
+PASS
+Testing instruction: shr MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: shr edx, 1
+PASS
+Testing instruction: shr MemRef(r15, 1024, data_size = 32), 1
+PASS
+Testing instruction: shr edx, cl
+PASS
+Testing instruction: shr MemRef(r15, 1024, data_size = 32), cl
+PASS
+Testing instruction: shr edx, 13
+PASS
+Testing instruction: shr MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: shr cx, 1
+PASS
+Testing instruction: shr MemRef(rsi, data_size = 16), 1
+PASS
+Testing instruction: shr cx, cl
+PASS
+Testing instruction: shr MemRef(rsi, data_size = 16), cl
+PASS
+Testing instruction: shr cx, 13
+PASS
+Testing instruction: shr MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: shr bl, 1
+PASS
+Testing instruction: shr MemRef(rbp, -8, data_size = 8), 1
+PASS
+Testing instruction: shr bl, cl
+PASS
+Testing instruction: shr MemRef(rbp, -8, data_size = 8), cl
+PASS
+Testing instruction: shr bl, 13
+PASS
+Testing instruction: shr MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: shrd r12, r12, 13
+PASS
+Testing instruction: shrd MemRef(r12, 32, data_size = 64), r12, 13
+PASS
+Testing instruction: shrd r12, r12, cl
+PASS
+Testing instruction: shrd MemRef(r12, 32, data_size = 64), r12, cl
+PASS
+Testing instruction: shrd edx, edx, 13
+PASS
+Testing instruction: shrd MemRef(r15, 1024, data_size = 32), edx, 13
+PASS
+Testing instruction: shrd edx, edx, cl
+PASS
+Testing instruction: shrd MemRef(r15, 1024, data_size = 32), edx, cl
+PASS
+Testing instruction: shrd cx, cx, 13
+PASS
+Testing instruction: shrd MemRef(rsi, data_size = 16), cx, 13
+PASS
+Testing instruction: shrd cx, cx, cl
+PASS
+Testing instruction: shrd MemRef(rsi, data_size = 16), cx, cl
+PASS
+Testing instruction: shufpd xmm5, xmm5, 13
+PASS
+Testing instruction: shufpd xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: shufps xmm5, xmm5, 13
+PASS
+Testing instruction: shufps xmm5, MemRef(r9, -16, data_size = 128), 13
+PASS
+Testing instruction: sqrtpd xmm5, xmm5
+PASS
+Testing instruction: sqrtpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: sqrtps xmm5, xmm5
+PASS
+Testing instruction: sqrtps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: sqrtsd xmm5, xmm5
+PASS
+Testing instruction: sqrtsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: sqrtss xmm5, xmm5
+PASS
+Testing instruction: sqrtss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: stc 
+PASS
+Testing instruction: std 
+PASS
+Testing instruction: stmxcsr MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: stosb 
+PASS
+Testing instruction: stosd 
+PASS
+Testing instruction: stosq 
+PASS
+Testing instruction: stosw 
+PASS
+Testing instruction: sub r12, 13
+PASS
+Testing instruction: sub MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: sub rax, 514703087
+PASS
+Testing instruction: sub r12, 514703087
+PASS
+Testing instruction: sub MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: sub r12, r12
+PASS
+Testing instruction: sub MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: sub r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: sub edx, 13
+PASS
+Testing instruction: sub MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: sub eax, 514703087
+PASS
+Testing instruction: sub edx, 514703087
+PASS
+Testing instruction: sub MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: sub edx, edx
+PASS
+Testing instruction: sub MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: sub edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: sub cx, 13
+PASS
+Testing instruction: sub MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: sub ax, 10234
+PASS
+Testing instruction: sub cx, 10234
+PASS
+Testing instruction: sub MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: sub cx, cx
+PASS
+Testing instruction: sub MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: sub cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: sub al, 13
+PASS
+Testing instruction: sub bl, 13
+PASS
+Testing instruction: sub MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: sub bl, bl
+PASS
+Testing instruction: sub MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: sub bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: subpd xmm5, xmm5
+PASS
+Testing instruction: subpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: subps xmm5, xmm5
+PASS
+Testing instruction: subps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: subsd xmm5, xmm5
+PASS
+Testing instruction: subsd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: subss xmm5, xmm5
+PASS
+Testing instruction: subss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: test rax, 514703087
+PASS
+Testing instruction: test r12, 514703087
+PASS
+Testing instruction: test MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: test r12, r12
+PASS
+Testing instruction: test MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: test eax, 514703087
+PASS
+Testing instruction: test edx, 514703087
+PASS
+Testing instruction: test MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: test edx, edx
+PASS
+Testing instruction: test MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: test ax, 10234
+PASS
+Testing instruction: test cx, 10234
+PASS
+Testing instruction: test MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: test cx, cx
+PASS
+Testing instruction: test MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: test al, 13
+PASS
+Testing instruction: test bl, 13
+PASS
+Testing instruction: test MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: test bl, bl
+PASS
+Testing instruction: test MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: ucomisd xmm5, xmm5
+PASS
+Testing instruction: ucomisd xmm5, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: ucomiss xmm5, xmm5
+PASS
+Testing instruction: ucomiss xmm5, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: ud2 
+PASS
+Testing instruction: unpckhpd xmm5, xmm5
+PASS
+Testing instruction: unpckhpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: unpckhps xmm5, xmm5
+PASS
+Testing instruction: unpckhps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: unpcklpd xmm5, xmm5
+PASS
+Testing instruction: unpcklpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: unpcklps xmm5, xmm5
+PASS
+Testing instruction: unpcklps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: wrmsr 
+PASS
+Testing instruction: xadd r12, r12
+PASS
+Testing instruction: xadd MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: xadd edx, edx
+PASS
+Testing instruction: xadd MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: xadd cx, cx
+PASS
+Testing instruction: xadd MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: xadd bl, bl
+PASS
+Testing instruction: xadd MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: xchg rax, r12
+PASS
+Testing instruction: xchg r12, rax
+PASS
+Testing instruction: xchg r12, r12
+PASS
+Testing instruction: xchg MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: xchg r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: xchg eax, edx
+PASS
+Testing instruction: xchg edx, eax
+PASS
+Testing instruction: xchg edx, edx
+PASS
+Testing instruction: xchg MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: xchg edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: xchg cx, ax
+PASS
+Testing instruction: xchg ax, cx
+PASS
+Testing instruction: xchg cx, cx
+PASS
+Testing instruction: xchg MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: xchg cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: xchg bl, bl
+PASS
+Testing instruction: xchg MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: xchg bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: xlatb 
+PASS
+Testing instruction: xor r12, 13
+PASS
+Testing instruction: xor MemRef(r12, 32, data_size = 64), 13
+PASS
+Testing instruction: xor rax, 514703087
+PASS
+Testing instruction: xor r12, 514703087
+PASS
+Testing instruction: xor MemRef(r12, 32, data_size = 64), 514703087
+PASS
+Testing instruction: xor r12, r12
+PASS
+Testing instruction: xor MemRef(r12, 32, data_size = 64), r12
+PASS
+Testing instruction: xor r12, MemRef(r12, 32, data_size = 64)
+PASS
+Testing instruction: xor edx, 13
+PASS
+Testing instruction: xor MemRef(r15, 1024, data_size = 32), 13
+PASS
+Testing instruction: xor eax, 514703087
+PASS
+Testing instruction: xor edx, 514703087
+PASS
+Testing instruction: xor MemRef(r15, 1024, data_size = 32), 514703087
+PASS
+Testing instruction: xor edx, edx
+PASS
+Testing instruction: xor MemRef(r15, 1024, data_size = 32), edx
+PASS
+Testing instruction: xor edx, MemRef(r15, 1024, data_size = 32)
+PASS
+Testing instruction: xor cx, 13
+PASS
+Testing instruction: xor MemRef(rsi, data_size = 16), 13
+PASS
+Testing instruction: xor ax, 10234
+PASS
+Testing instruction: xor cx, 10234
+PASS
+Testing instruction: xor MemRef(rsi, data_size = 16), 10234
+PASS
+Testing instruction: xor cx, cx
+PASS
+Testing instruction: xor MemRef(rsi, data_size = 16), cx
+PASS
+Testing instruction: xor cx, MemRef(rsi, data_size = 16)
+PASS
+Testing instruction: xor al, 13
+PASS
+Testing instruction: xor bl, 13
+PASS
+Testing instruction: xor MemRef(rbp, -8, data_size = 8), 13
+PASS
+Testing instruction: xor bl, bl
+PASS
+Testing instruction: xor MemRef(rbp, -8, data_size = 8), bl
+PASS
+Testing instruction: xor bl, MemRef(rbp, -8, data_size = 8)
+PASS
+Testing instruction: xorpd xmm5, xmm5
+PASS
+Testing instruction: xorpd xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+Testing instruction: xorps xmm5, xmm5
+PASS
+Testing instruction: xorps xmm5, MemRef(r9, -16, data_size = 128)
+PASS
+1963 passes 21 rex_passes
+44 failures 12 NASM failures
+2040 total

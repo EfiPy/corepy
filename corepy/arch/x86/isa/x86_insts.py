@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -44,7 +45,7 @@ def w16(n):
   return [n & 0xFF, (n & 0xFF00) >> 8]
 
 def w32(n):
-  return [n & 0xFF, (n & 0xFF00) >> 8, (n & 0xFF0000) >> 16, (n & 0xFF000000l) >> 24]
+  return [n & 0xFF, (n & 0xFF00) >> 8, (n & 0xFF0000) >> 16, (n & 0xFF000000) >> 24]
 
 
 # ------------------------------
@@ -409,23 +410,23 @@ class lbl32_8off(MachineInstruction):
   def _render(params, operands):
     lbl = operands['lbl32off']
     # Relative offset is computed from the end of this instruction
-    #print "lbl position", lbl.position
-    #print "inst position", operands['position']
+    #print ("lbl position", lbl.position)
+    #print ("inst position", operands['position'])
     offset = lbl.position - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     # Will an 8bit offset do the job?
     off = offset - (len(params['opcode'][0]) + 1)
-    #print "off is", off
+    #print ("off is", off)
     if rel8off_t.fits(off):
-      #print "encoding 8bit offset", off
+      #print ("encoding 8bit offset", off)
       return params['opcode'][0] + w8(off)
 
     # Fall back to 32bit, or nothing if even that doesn't fit
     off = offset - (len(params['opcode'][1]) + 4)
-    #print "off is", off, len(params['opcode'][1]) + 4
+    #print ("off is", off, len(params['opcode'][1]) + 4)
     if rel32off_t.fits(off):
-      #print "encoding 32bit offset", off
+      #print ("encoding 32bit offset", off)
       return params['opcode'][1] + w32(off)
   render = staticmethod(_render)
 
@@ -437,15 +438,15 @@ class lbl32off(MachineInstruction):
   def _render(params, operands):
     lbl = operands['lbl32off']
     # Relative offset is computed from the end of this instruction
-    #print "lbl position", lbl.position
-    #print "inst position", operands['position']
+    #print ("lbl position", lbl.position)
+    #print ("inst position", operands['position'])
     offset = lbl.position - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     off = offset - (len(params['opcode']) + 4)
-    #print "off is", off, len(params['opcode']) + 4
+    #print ("off is", off, len(params['opcode']) + 4)
     if rel32off_t.fits(off):
-      #print "encoding 32bit offset", off
+      #print ("encoding 32bit offset", off)
       return params['opcode'] + w32(off)
   render = staticmethod(_render)
 
@@ -457,11 +458,11 @@ class lbl8off(MachineInstruction):
   def _render(params, operands):
     lbl = operands['lbl8off']
     offset = lbl.position - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     off = offset - (len(params['opcode']) + 1)
     if rel8off_t.fits(off):
-      #print "encoding 8bit offset", off
+      #print ("encoding 8bit offset", off)
       return params['opcode'] + w8(off)
   render = staticmethod(_render)
 
@@ -670,7 +671,7 @@ class mem32_reg32(MachineInstruction):
     # it in every operand combination function that supports lock.  Same thing
     # for all the other prefixes..
     # Should it go into common_memref?
-    if operands.has_key('lock') and operands['lock'] == True:
+    if 'lock' in operands.keys () and operands['lock'] == True:
       ret = [lock_p.value] + ret
     return ret
     #return common_memref(params['opcode'], operands['mem32'], operands['reg32'].reg << 3)
@@ -1598,25 +1599,25 @@ class rel32_8off(MachineInstruction):
   def _render(params, operands):
     rel = operands['rel32off']
     # Relative offset is computed from the end of this instruction
-    #print "lbl position", lbl.position
-    #print "inst position", operands['position']
+    #print ("lbl position", lbl.position)
+    #print ("inst position", operands['position'])
     #offset = rel - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     # Will an 8bit offset do the job?
     #off = offset - (len(params['opcode'][0]) + 1)
     off = rel - (operands['position'] + len(params['opcode'][0]) + 1)
-    print "off is", off
+    print ("off is", off)
     if rel8off_t.fits(off):
-      print "encoding 8bit offset", off
+      print ("encoding 8bit offset", off)
       return params['opcode'][0] + w8(off)
 
     # Fall back to 32bit, or nothing if even that doesn't fit
     #off = offset - (len(params['opcode'][1]) + 4)
     off = rel - (operands['position'] + len(params['opcode'][1]) + 4)
-    print "off is", off, len(params['opcode'][1]) + 4
+    print ("off is", off, len(params['opcode'][1]) + 4)
     if rel32off_t.fits(off):
-      print "encoding 32bit offset", off
+      print ("encoding 32bit offset", off)
       return params['opcode'][1] + w32(off)
   render = staticmethod(_render)
 
@@ -1639,7 +1640,8 @@ class rel8off(MachineInstruction):
   
   def _render(params, operands):
     rel8off = operands['rel8off']
-    offset = rel8off - (operands['position'] + len(params['opcode']) + 1)
+    # offset = rel8off - (operands['position'] + len(params['opcode']) + 1)
+    offset = rel8off - (params['position'] + len(params['opcode']) + 1)
     return params['opcode'] + w8(offset)
   render = staticmethod(_render)
 

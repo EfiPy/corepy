@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -33,13 +34,13 @@ platform_imports = [
   'WORD_SIZE', 'WORD_TYPE', 'ExecParams',
   ]
 
-platform_string = '%(os)s.spre_%(os)s_%(arch)s' % {
-  'os': conf.OS, 'arch': conf.ARCH}
+platform_string = 'corepy.arch.%(arch)s.platform.%(os)s.spre_%(os)s_%(arch)s' % {
+  'arch': conf.ARCH, 'os': conf.OS, 'arch': conf.ARCH}
 #platform_string = '%(os)s.spre_%(os)s_%(arch)s_%(bits)d' % {
 #  'os': conf.OS, 'arch': conf.ARCH, 'bits': conf.BITS}
 
 if conf.VERBOSE:
-  print '# Platform:', platform_string
+  print ('# Platform:', platform_string)
 
 platform_module = __import__(platform_string, globals(), locals(), platform_imports)
 

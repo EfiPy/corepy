@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -51,7 +52,7 @@ class SPUField(InstructionOperand):
     return
 
   def render(self, value):
-    return (long(value) & self.bit_mask)  << self.shift
+    return (int(value) & self.bit_mask)  << self.shift
 
   #def __eq__(self, other):
   #  return type(self) == type(other)
@@ -68,11 +69,11 @@ class RegisterField(SPUField):
 
   def render(self, value):
     if isinstance(value, Register):
-      return (long(value.reg) & self.bit_mask) << self.shift
+      return (int(value.reg) & self.bit_mask) << self.shift
     elif isinstance(value, Variable):
-      return (long(value.reg.reg) & self.bit_mask) << self.shift
+      return (int(value.reg.reg) & self.bit_mask) << self.shift
     else:
-      return (long(value) & self.bit_mask) << self.shift
+      return (int(value) & self.bit_mask) << self.shift
 
   #def __eq__(self, other):
   #  return isinstance(other, (RegisterField, Immediate7))
@@ -85,10 +86,10 @@ class ImmediateField(SPUField):
     return
 
   def check(self, value):
-    return isinstance(value, (int, long)) and self.range[0] <= value and value < self.range[1]
+    return isinstance(value, (int, int)) and self.range[0] <= value and value < self.range[1]
 
   def fits(self, value):
-    return isinstance(value, (int, long)) and (self.range[0] <= value and value < self.range[1])
+    return isinstance(value, (int, int)) and (self.range[0] <= value and value < self.range[1])
 
 
 class LabelField(SPUField):
@@ -114,10 +115,10 @@ class ROField(InstructionOperand):
     return
 
   def render(self, value):
-    return ((long(value) >> self.widths[1] & self.bit_masks[0]) << self.shifts[0]) | ((long(value) & self.bit_masks[1]) << self.shifts[1])
+    return ((int(value) >> self.widths[1] & self.bit_masks[0]) << self.shifts[0]) | ((int(value) & self.bit_masks[1]) << self.shifts[1])
 
   def check(self, value):
-    return isinstance(value, (int, long)) and self.range[0] <= value and value < self.range[1]
+    return isinstance(value, (int, int)) and self.range[0] <= value and value < self.range[1]
 
 
 #class Immediate7(ImmediateField): pass

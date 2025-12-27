@@ -101,7 +101,7 @@ def fb_draw():
   draw0.synthesize(code0)
 
   draw1 = FBDraw()
-  draw1.set_buffers(cell_fb.fb_addr(fb, 1), cell_fb.fb_addr(fb, 0))cell_fb.fb_addr(fb, 0))
+  draw1.set_buffers(cell_fb.fb_addr(fb, 1), cell_fb.fb_addr(fb, 0))
   draw1.set_stride(fb.stride)
 
   draw1.synthesize(code1)

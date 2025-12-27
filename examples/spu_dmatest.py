@@ -42,12 +42,12 @@ if __name__ == '__main__':
   spu.set_active_code(code)
 
   abi = a.buffer_info()
-  print "abi", abi, a.itemsize
+  print ("abi", abi, a.itemsize)
   dma.mem_get(code, 0x1000, abi[0], abi[1] * a.itemsize, 2)
   dma.mem_complete(code, 2)
 
   bbi = b.buffer_info()
-  print "bbi", bbi, b.itemsize
+  print ("bbi", bbi, b.itemsize)
   dma.mem_put(code, 0x1000, bbi[0], bbi[1] * b.itemsize, 2)
   dma.mem_complete(code, 2)
 
@@ -57,6 +57,6 @@ if __name__ == '__main__':
  
   for i in range(0, 32):
     if b[i] != i:
-      print "ERROR %d %d %d" % (i, b[i], a[i])
+      print ("ERROR %d %d %d" % (i, b[i], a[i]))
 
  

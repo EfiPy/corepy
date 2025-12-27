@@ -32,11 +32,11 @@ def reg_block():
   mr = 4
   nr = 4
   
-  def load_a(i): print 'load a[%d]' % i
-  def load_b(i): print 'load b[%d]' % i
+  def load_a(i): print ('load a[%d]' % i)
+  def load_b(i): print ('load b[%d]' % i)
   
   def compute(i,j):
-    print 'compute c[%d][%d]' % (i,j)
+    print ('compute c[%d][%d]' % (i,j))
     
   # load_a(0)
   # load_b(0)
@@ -101,7 +101,7 @@ def pack_b():
   tB.shape = (nc, kc)
   B.shape  = (K, N)
   
-  print tB
+  print (tB)
   return
 
 pack_b()

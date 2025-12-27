@@ -64,7 +64,7 @@ def Test():
 
     prgm += code
     ret = proc.execute(prgm)
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 12)
 
     prgm = env.Program()
@@ -77,7 +77,7 @@ def Test():
     code.add(bck_lbl)
     code.add(x86_isa.cmp(eax, 1))
     code.add(x86_isa.jne(fwd_lbl))
-    for i in xrange(0, 65):
+    for i in range(0, 65):
       code.add(x86_isa.pop(edi))
     code.add(fwd_lbl)
 
@@ -97,14 +97,14 @@ def Test():
     code.add(loop_lbl)
     r_tmp = prgm.acquire_register()
     for i in range(0, 1):
-      for i in xrange(0, 24):
+      for i in range(0, 24):
         code.add(x86_isa.add(r_tmp, MemRef(esp, 4)))
 
       code.add(x86_isa.add(eax, 4))
       code.add(x86_isa.cmp(eax, 20))
       code.add(x86_isa.je(out_lbl))
 
-      for i in xrange(0, 24):
+      for i in range(0, 24):
         code.add(x86_isa.add(r_tmp, MemRef(esp, 4)))
 
       code.add(x86_isa.cmp(eax, 32))
@@ -113,7 +113,7 @@ def Test():
     code.add(out_lbl)
 
     code.add(x86_isa.jmp(skip_lbl))
-    for i in xrange(0, 2):
+    for i in range(0, 2):
       code.add(x86_isa.add(r_tmp, MemRef(esp, 4)))
     code.add(skip_lbl)
 
@@ -121,7 +121,7 @@ def Test():
 
     prgm += code
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 20)
 
 
@@ -158,7 +158,7 @@ def Test():
 
     prgm += code
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 1)
 
 
@@ -179,7 +179,7 @@ def Test():
 
     prgm += code
     ret = proc.execute(prgm, mode = 'int')
-    print "ret", ret
+    print ("ret", ret)
     assert(ret == 7)
 
 
@@ -209,14 +209,14 @@ def Test():
 
     prgm += code
     #ret = proc.execute(code, debug = True, params = params)
-    id1 = proc.execute(prgm, params = params, mode = 'int', async = True)
-    id2 = proc.execute(prgm, params = params, mode = 'int', async = True)
+    id1 = proc.execute(prgm, params = params, mode = 'int', _async = True)
+    id2 = proc.execute(prgm, params = params, mode = 'int', _async = True)
     ret = proc.execute(prgm, params = params, mode = 'int')
-    print "Return main thread: %d" % (ret)
+    print ("Return main thread: %d" % (ret))
     ret = proc.join(id1)
-    print "Return thread 1: %d" % (ret)
+    print ("Return thread 1: %d" % (ret))
     ret = proc.join(id2)
-    print "Return thread 2: %d" % (ret)
+    print ("Return thread 2: %d" % (ret))
 
     prgm = env.Program()
     code = prgm.get_stream()
@@ -231,7 +231,7 @@ def Test():
 
     prgm += code
     ret = proc.execute(prgm, params = params, mode = 'fp')
-    print "Return main thread: %f" % (ret)
+    print ("Return main thread: %f" % (ret))
 
     prgm = env.Program()
     code = prgm.get_stream()
@@ -255,7 +255,7 @@ def Test():
     prgm += code
     prgm.print_code(hex = True)
     ret = proc.execute(prgm, params = params, mode = 'int')
-    print "Return main thread: %d" % (ret)
+    print ("Return main thread: %d" % (ret))
 
 
     # Try the LOCK prefix

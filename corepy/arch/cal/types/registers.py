@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -52,7 +53,7 @@ class Address(object):
   def __init__(self, base, offset):
     if not isinstance(base, QualifiedCALRegister) and not isinstance(CALRegister):
       raise "base must be a register."
-    if type(offset) != int and type(offset) != long and type(offset) != float:
+    if type(offset) != int and type(offset) != int and type(offset) != float:
       raise "offset must be a numeric type"
     self.base = base
     self.offset = offset
@@ -71,13 +72,13 @@ class CALRegister(spe.Register):
     return
 
   def __add__(self, other):
-    if type(other) == int or type(other) == long or type(other) == float:
+    if type(other) == int or type(other) == int or type(other) == float:
       return Address(self, other)
     else:
       raise "Can't do that with a CALRegister."
 
   def __radd__(self, other):
-    if type(other) == int or type(other) == long or type(other) == float:
+    if type(other) == int or type(other) == int or type(other) == float:
       return Address(self, other)
     else:
       raise "Can't do that with a CALRegister."
@@ -248,7 +249,7 @@ class CALBuffer:
 
   def __getitem__(self, i):
 
-    if type(i) != int and type(i) != long and type(i) != float and not isinstance(i, QualifiedCALRegister) and not isinstance(i, Address):
+    if type(i) != int and type(i) != int and type(i) != float and not isinstance(i, QualifiedCALRegister) and not isinstance(i, Address):
       if self.rel_addressable == True:
         if type(i) != str:
           raise "Index must be numeric or a register"
@@ -350,12 +351,12 @@ def TestRelativeAddressing():
   proc.execute(prgm, domain)
   
   # code.cache_code()
-  # print code.render_string
+  # print (code.render_string)
  
   if output_mem[0] == 120:
-    print "Passed relative addressing test"
+    print ("Passed relative addressing test")
   else:
-    print "Failed relative addressing test"
+    print ("Failed relative addressing test")
 
   proc.free(input_mem)
   proc.free(output_mem)
@@ -394,7 +395,7 @@ def TestRelativeAddressing2():
   cal.mov(o0, r1)
 
   #code.cache_code()
-  #print code.render_string
+  #print (code.render_string)
   
   prgm.set_binding('g[]', input_mem)
   prgm.set_binding('o0', output_mem)
@@ -404,10 +405,10 @@ def TestRelativeAddressing2():
   proc.execute(prgm, domain)
    
   if output_mem[0] == 136:
-    print "Passed relative addressing with offset test"
+    print ("Passed relative addressing with offset test")
   else:
-    print "Failed relative addressing with offset test"
-  # print output_mem
+    print ("Failed relative addressing with offset test")
+  # print (output_mem)
  
   proc.free(input_mem)
   proc.free(output_mem)

@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -317,17 +318,17 @@ def TestSynIterDec():
 
   proc.copy(ptx_mem_addr, mem)
   prgm.cache_code()
-  print prgm.render_string
+  print (prgm.render_string)
   proc.execute(prgm, (1, 1, 1, 1, 1), param_list)
   proc.copy(mem, ptx_mem_addr)
 
-  print mem
+  print (mem)
 
   #passed = True
-  #for i in xrange(0, SIZE):
+  #for i in range(0, SIZE):
   #  if ext_output[i] != 5:
   #    passed = False
-  #print "Passed == ", passed
+  #print ("Passed == ", passed)
 
   return
 
@@ -359,10 +360,10 @@ def TestSynIterInc():
   proc.execute(prgm, domain)
 
   passed = True
-  for i in xrange(0, SIZE):
+  for i in range(0, SIZE):
     if ext_output[i] != 5:
       passed = False
-  print "Passed == ", passed
+  print ("Passed == ", passed)
 
   proc.free(ext_output)
 
@@ -382,7 +383,7 @@ def TestSynIterInc():
 #    code.add(ptx.iadd(reg.r1, reg.r1, reg.l1))
 #
 #  code.cache_code()
-#  print code.render_string
+#  print (code.render_string)
 #
 #  domain = (0, 0, SIZE, SIZE)
 #
@@ -420,10 +421,10 @@ def TestSynIterDecFloat():
   proc.execute(prgm, domain)
 
   passed = True
-  for i in xrange(0, SIZE):
+  for i in range(0, SIZE):
     if ext_output[i] != 5:
       passed = False
-  print "Passed == ", passed
+  print ("Passed == ", passed)
 
   proc.free(ext_output)
 
@@ -458,10 +459,10 @@ def TestSynIterIncFloat():
   proc.execute(prgm, domain)
 
   passed = True
-  for i in xrange(0, SIZE):
+  for i in range(0, SIZE):
     if ext_output[i] != 5:
       passed = False
-  print "Passed == ", passed
+  print ("Passed == ", passed)
 
   proc.free(ext_output)
 
@@ -498,10 +499,10 @@ def TestSynIterIncFloatExtStop():
   proc.execute(prgm, domain)
 
   passed = True
-  for i in xrange(0, SIZE):
+  for i in range(0, SIZE):
     if ext_output[i] != 5:
       passed = False
-  print "Passed == ", passed
+  print ("Passed == ", passed)
 
   proc.free(ext_output)
 
@@ -541,10 +542,10 @@ def TestSynIterIncFloatExtStopExtStart():
   proc.execute(prgm, domain)
 
   passed = True
-  for i in xrange(0, SIZE):
+  for i in range(0, SIZE):
     if ext_output[i] != 3:
       passed = False
-  print "Passed == ", passed
+  print ("Passed == ", passed)
 
   proc.free(ext_output)
 

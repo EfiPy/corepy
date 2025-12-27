@@ -84,7 +84,7 @@ def SimpleSPU():
   prgm.add(code)
   prgm.print_code(hex = True)
   r = proc.execute(prgm, mode = 'fp')
-  print r
+  print (r)
   return
 
 
@@ -155,13 +155,13 @@ def MemoryDescExample(data_size = 20000):
   # Execute the synthetic program
   # code.print_code()
   
-  spe_id = proc.execute(code, async=True)
+  spe_id = proc.execute(code, _async=True)
   proc.join(spe_id)
 
   # Copy it back to the Python array
   #a_data.copy_from(data.buffer_info()[0], data_size)
 
-  for i in xrange(data_size):
+  for i in range(data_size):
     assert(data[i] == i + 1)
   return
 
@@ -214,7 +214,7 @@ def DoubleBufferExample(n_spus = 6):
     try:
       assert(a[i] == i - 2)
     except:
-      print 'DoubleBuffer error:', a[i], i - 2
+      print ('DoubleBuffer error:', a[i], i - 2)
   
   return
 
@@ -243,7 +243,7 @@ def SpeedTest(n_spus = 6, n_floats = 6):
   simd = 4
   for x in syn_iter(code, outer):
     for y in syn_iter(code, inner):
-      for u in xrange(unroll):
+      for u in range(unroll):
         for i in f_range:
           t[i].v = spu.fma.ex(a[i], b[i], c[i])
     
@@ -257,8 +257,8 @@ def SpeedTest(n_spus = 6, n_floats = 6):
   r = proc.execute(prgm, n_spus = n_spus)
   stop = time.time()
   total = stop - start
-  n_ops = long(outer) * inner * long(unroll) * long(n_floats) * long(fuse) * long(simd) * long(n_spus)
-  print '%.6f sec, %.2f GFlops' % (total, n_ops / total / 1e9)
+  n_ops = int(outer) * inner * int(unroll) * int(n_floats) * int(fuse) * int(simd) * int(n_spus)
+  print ('%.6f sec, %.2f GFlops' % (total, n_ops / total / 1e9))
 
 #   # Run the native program and copy the results back to the array
 #   outer = 2**14
@@ -273,8 +273,8 @@ def SpeedTest(n_spus = 6, n_floats = 6):
 #   r = proc.execute(ncode, n_spus = n_spus)
 #   stop = time.time()
 #   total = stop - start
-#   n_ops = long(outer) * inner * long(unroll) * long(n_floats) * long(fuse) * long(simd) * long(n_spus)
-#   print '%.6f sec, %.2f GFlops' % (total, n_ops / total / 1e9)
+#   n_ops = int(outer) * inner * int(unroll) * int(n_floats) * int(fuse) * int(simd) * int(n_spus)
+#   print ('%.6f sec, %.2f GFlops' % (total, n_ops / total / 1e9))
 
   results = """
   --> No optimizations

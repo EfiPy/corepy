@@ -26,8 +26,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.          
 
-import arch.spu as spu
-import spre.spe as spe
+import corepy.arch.spu as spu
+import corepy.spre.spe as spe
 
 class Byte_t: pass
 class Halfword_t: pass
@@ -56,7 +56,7 @@ class I10(Literal):
     if (value & 0x3FF) == value:
       return value
     else:
-      print 'Warning: %d does not fit in 10 bits' 
+      print ('Warning: %d does not fit in 10 bits' )
       return value
     return
     
@@ -71,7 +71,7 @@ class I7(Literal):
     if (value & 0x7F) == value:
       return value
     else:
-      print 'Warning: %d does not fit in 10 bits' 
+      print ('Warning: %d does not fit in 10 bits')
       return value
     return
     
@@ -97,7 +97,7 @@ class Variable(object):
     newinst = None
 
     if isinstance(other, spe.Expression):
-      print 'Casting to:', cls.expr_cls
+      print ('Casting to:', cls.expr_cls)
       newinst = cls.expr_cls(other._inst, *other._operands, **other._koperands)
       
     elif isinstance(other, Variable):

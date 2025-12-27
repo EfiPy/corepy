@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -90,7 +91,7 @@ def heurcompare_block(a, b, pipe, g_maxdist, blocks, block_ind):
     # Iterate forward from the current block, adding up the inst_cnt for each
     # block until the block with the target branch is found.
     pending_insts = 0
-    for i in xrange(block_ind, len(blocks)):
+    for i in range(block_ind, len(blocks)):
       pending_insts += blocks[i].inst_cnt
       if blocks[i].branch is not None:
         pending_insts += 1

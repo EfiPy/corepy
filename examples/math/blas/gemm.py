@@ -946,7 +946,7 @@ def syn_gemm(A, B, C, mc, kc, nc, mr=1, nr=1, gepb_mode = gepb_simple):
 
   start = time.time()
   
-  # print hex(pm.p3), hex(pm.p4)
+  # print (hex(pm.p3), hex(pm.p4))
   k = 0
   for k in range(0, K, kc):
     # Pack A into tA
@@ -957,7 +957,7 @@ def syn_gemm(A, B, C, mc, kc, nc, mr=1, nr=1, gepb_mode = gepb_simple):
     # kN = B_addr + k * N * 8
     pack_params.p1 =  B_addr + k * N * 8
     for j in range(0, N, nc):
-      # print k, j, M, K, N, kc, nc, mr, nr
+      # print (k, j, M, K, N, kc, nc, mr, nr)
       # Pack B into tB --
       # tB[:,:] = numpy.transpose(B[k:k+kc, j:j+nc])
       proc.execute(cpackb, params = pack_params)
@@ -966,7 +966,7 @@ def syn_gemm(A, B, C, mc, kc, nc, mr=1, nr=1, gepb_mode = gepb_simple):
       proc.execute(cgepb, params = pm)
       # stop1  = time.time()
       # total += stop1 - start1
-      # print 'ping'
+      # print ('ping')
       pack_params.p1 +=  nc8
       pm.p3 += nc8 
 
@@ -1094,15 +1094,15 @@ def _validate(name, m, n, k, C, C_valid):
       # (i == 0 or i == 1 or i == 2 ) and 
       if numpy.product(row) == 0:
         if True or (0 <= i <= 3): # (i == 99999):
-          print 'row', i, 'failed'
-          print C[i,:4]
-          print C_valid[i,:4]
-          print row#[:4]
+          print ('row', i, 'failed')
+          print (C[i,:4])
+          print (C_valid[i,:4])
+          print (row) #[:4]
       else:
-        print 'row', i, 'succeeded'
+        print ('row', i, 'succeeded')
     raise Exception("Algorithm '%s' failed validation for %d x %d x %d matrices" %
                     (name, m, k, n))
-  print name, 'passed'
+  print (name, 'passed')
   return
 
 def run_alg(alg, A, B, C, mc, kc, nc, mr, nr, niters):
@@ -1299,8 +1299,8 @@ def test_syn_gemm_pp():
 
   syn_gemm_pp(A, B, C, mc, kc, nc, mr = mr, nr = nr)
 
-  print A[0, :4]
-  print B[0, :4]  
+  print (A[0, :4])
+  print (B[0, :4])  
   C_valid = numpy.matrixmultiply(A, B)
 
   _validate('syn_gemm_pp', m,n,k, C, C_valid)
@@ -1384,7 +1384,7 @@ def test(algs, niters = 5, validate = False):
       C_valid = numpy.matrixmultiply(A, B)
 
     for alg in algs:
-      print alg.func_name, size
+      print (alg.func_name, size)
       if validate:
         alg(A, B, C)
         _validate(alg.func_name, m, n, k, C, C_valid)
@@ -1404,15 +1404,15 @@ def test(algs, niters = 5, validate = False):
       for mc in [32]: # , 64, 128, 256]:
         for kc in KC:
           for nc in NC:
-            # print '  ', mc, kc, nc
+            # print ('  ', mc, kc, nc)
             # try:
             if True:
               times = run_alg(alg, A, B, C, mc, kc, nc, 4, 4, niters)
               result = _result(alg.func_name, m, k, n, mc, kc, nc, times)
               results.append(result)
-              print result
+              print (result)
             # except:
-            #   print 'Failed: ', alg.func_name, m, k, n, mc, kc, nc, times
+            #   print ('Failed: ', alg.func_name, m, k, n, mc, kc, nc, times)
 
   return results
 
@@ -1451,13 +1451,13 @@ def main():
       times = algs[alg]
       lines = pylab.plot(size, times)
       pylab.setp(lines, color=colors[i])
-      print alg, colors[i]
+      print (alg, colors[i])
     pylab.show()
   else:
-    print 'Algorithm           \tSize\tBlocks        \tAvg      \tMin      \tMax      \t'
+    print ('Algorithm           \tSize\tBlocks        \tAvg      \tMin      \tMax      \t')
 
     for result in results:
-      print str(result)
+      print (str(result))
 
   return
 

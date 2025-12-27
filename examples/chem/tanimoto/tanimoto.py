@@ -219,7 +219,7 @@ class Tanimoto:
 
     self._compute_ratio(ab_temp, c_temp, result)
 
-    print '%d registers,' % (len(regs) + len(self._x_regs) + len(self._y_regs)),
+    print ('%d registers,' % (len(regs) + len(self._x_regs) + len(self._y_regs)), end = '')
     code.release_registers(regs)
     if old_code is not None:
       spu.set_active_code(old_code)
@@ -657,10 +657,10 @@ def TestTanimotoBlock(n_vecs = 4):
 
   # code.print_code()
   start = time.time()
-  spe_id = proc.execute(code, async=True)
+  spe_id = proc.execute(code, _async=True)
   
   while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass
-  # print 'tb said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id))
+  # print ('tb said: 0x%X' % (synspu.spu_exec.read_out_mbox(spe_id)))
   stop = time.time()
 
   # mm_results_buffer.copy_from(mm_results_data.buffer_info()[0], len(mm_results_data))
@@ -672,7 +672,7 @@ def TestTanimotoBlock(n_vecs = 4):
   insts_per_compare = 56
   gops = (m * n * n_vecs * n_samples * ops_per_compare ) / total / 1e9
   ginsts = (m * n * n_vecs * n_samples * insts_per_compare ) / total / 1e9  
-  print '%.6f sec, %.2f Gbits/sec, %.2f GOps, %.2f GInsts, %d insts' % (
+  print ('%.6f sec, %.2f Gbits/sec, %.2f GOps, %.2f GInsts, %d insts' % ()
     total, bits_sec, gops, ginsts, code.size())
   return
 
@@ -680,5 +680,5 @@ if __name__=='__main__':
   # Test()
 
   for n_vecs in range(24):
-    print '%d bits/vec,' %  (n_vecs * 128),
+    print ('%d bits/vec,' %  (n_vecs * 128), end = '')
     TestTanimotoBlock(n_vecs)

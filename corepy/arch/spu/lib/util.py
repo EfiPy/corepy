@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -189,7 +190,7 @@ def TestSetSlotValue():
     spu.rotqbyi(r, r, 4)
 
   prgm.add(code)
-  spe_id = proc.execute(prgm, async = True)
+  spe_id = proc.execute(prgm, _async = True)
 
   for i in range(4):
     while synspu.spu_exec.stat_out_mbox(spe_id) == 0: pass

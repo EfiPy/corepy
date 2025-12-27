@@ -1,4 +1,5 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
+# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -28,7 +29,7 @@
 
 from corepy.spre.spe import MachineInstruction
 #from corepy.arch.x86_64.lib.memory import MemoryReference
-from x86_64_fields import *
+from .x86_64_fields import *
 import corepy.arch.x86_64.types.registers as regs
 
 # TODO - blah, anything that wraps around a common_memref needs an if-statement
@@ -113,10 +114,10 @@ def w16(n):
   return [n & 0xFF, (n & 0xFF00) >> 8]
 
 def w32(n):
-  return [n & 0xFF, (n & 0xFF00) >> 8, (n & 0xFF0000) >> 16, (n & 0xFF000000l) >> 24]
+  return [n & 0xFF, (n & 0xFF00) >> 8, (n & 0xFF0000) >> 16, (n & 0xFF000000) >> 24]
 
 def w64(n):
-  return [n & 0xFF, (n & 0xFF00) >> 8, (n & 0xFF0000) >> 16, (n & 0xFF000000l) >> 24, (n & 0xFF00000000l) >> 32, (n & 0xFF0000000000l) >> 40, (n & 0xFF000000000000l) >> 48, (n & 0xFF00000000000000l) >> 56]
+  return [n & 0xFF, (n & 0xFF00) >> 8, (n & 0xFF0000) >> 16, (n & 0xFF000000) >> 24, (n & 0xFF00000000) >> 32, (n & 0xFF0000000000) >> 40, (n & 0xFF000000000000) >> 48, (n & 0xFF00000000000000) >> 56]
 
 
 def common_memref_modrm(opcode, ref, modrm, rex, force_rex):
@@ -398,23 +399,23 @@ class lbl32_8off(MachineInstruction):
   def _render(params, operands):
     lbl = operands['lbl32off']
     # Relative offset is computed from the end of this instruction
-    #print "lbl position", lbl.position
-    #print "inst position", operands['position']
+    #print ("lbl position", lbl.position)
+    #print ("inst position", operands['position'])
     offset = lbl.position - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     # Will an 8bit offset do the job?
     off = offset - (len(params['opcode'][0]) + 1)
-    #print "off is", off
+    #print ("off is", off)
     if rel8off_t.fits(off):
-      #print "encoding 8bit offset", off
+      #print ("encoding 8bit offset", off)
       return params['opcode'][0] + w8(off)
 
     # Fall back to 32bit, or nothing if even that doesn't fit
     off = offset - (len(params['opcode'][1]) + 4)
-    #print "off is", off, len(params['opcode'][1]) + 4
+    #print ("off is", off, len(params['opcode'][1]) + 4)
     if rel32off_t.fits(off):
-      #print "encoding 32bit offset", off
+      #print ("encoding 32bit offset", off)
       return params['opcode'][1] + w32(off)
   render = staticmethod(_render)
 
@@ -441,11 +442,11 @@ class lbl8off(MachineInstruction):
   def _render(params, operands):
     lbl = operands['lbl8off']
     offset = lbl.position - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     off = offset - (len(params['opcode']) + 1)
     if rel8off_t.fits(off):
-      #print "encoding 8bit offset", off
+      #print ("encoding 8bit offset", off)
       return params['opcode'] + w8(off)
   render = staticmethod(_render)
 
@@ -457,7 +458,7 @@ class mem128(MachineInstruction):
   # Only cmpxchg16b uses this -- if something else does, it might not be correct.
   def _render(params, operands):
     ret = common_memref(params['opcode'], operands['mem128'], params['modrm'], 0x08)
-    if operands.has_key('lock') and operands['lock'] == True and ret is not None:
+    if 'lock' in operands.keys() and operands['lock'] == True and ret is not None:
       return [lock_p.value] + ret
     return ret
   render = staticmethod(_render)
@@ -632,7 +633,7 @@ class mem32_imm32(MachineInstruction):
   def _render(params, operands):
     ret = common_memref(params['opcode'], operands['mem32'], params['modrm'])
     if ret != None:
-      #if operands.has_key('lock') and operands['lock'] == True and ret is not None:
+      #if lock in operands.keys () and operands['lock'] == True and ret is not None:
       #  return [lock_p.value] + ret + w32(operands['imm32'])
       return ret + w32(operands['imm32'])
   render = staticmethod(_render)
@@ -675,7 +676,7 @@ class mem32_reg32(MachineInstruction):
     # it in every operand combination function that supports lock.  Same thing
     # for all the other prefixes..
     # Should it go into common_memref?
-    if operands.has_key('lock') and operands['lock'] == True and ret is not None:
+    if 'lock' in operands.keys () and operands['lock'] == True and ret is not None:
       return [lock_p.value] + ret
     return ret
     #return common_memref32(params['opcode'], operands['mem32'], operands['reg32'].reg << 3)
@@ -723,7 +724,7 @@ class mem32_simm8(MachineInstruction):
   def _render(params, operands):
     ret = common_memref(params['opcode'], operands['mem32'], params['modrm'])
     if ret is not None:
-      if operands.has_key('lock') and operands['lock'] == True:
+      if 'lock' in operands.keys () and operands['lock'] == True:
         return [lock_p.value] + ret + w8(operands['simm8'])
       return ret + w8(operands['simm8'])
   render = staticmethod(_render)
@@ -781,7 +782,7 @@ class mem64(MachineInstruction):
     # failures.
     #return common_memref(params['opcode'], operands['mem64'], params['modrm'])
     ret = common_memref(params['opcode'], operands['mem64'], params['modrm'], 0x08)
-    if operands.has_key('lock') and operands['lock'] == True and ret is not None:
+    if 'lock' in operands.keys () and operands['lock'] == True and ret is not None:
       return [lock_p.value] + ret
     return ret
   render = staticmethod(_render)
@@ -845,7 +846,7 @@ class mem64_reg64(MachineInstruction):
   def _render(params, operands):
     reg64 = operands['reg64']
     ret = common_memref(params['opcode'], operands['mem64'], reg64.reg << 3, 0x08 | (reg64.rex << 2))
-    if operands.has_key('lock') and operands['lock'] == True and ret is not None:
+    if 'lock' in operands.keys () and operands['lock'] == True and ret is not None:
       return [lock_p.value] + ret
     return ret
   render = staticmethod(_render)
@@ -1011,7 +1012,7 @@ class mmx_mem128(MachineInstruction):
   
   def _render(params, operands):
     ret = common_memref(params['opcode'], operands['mem128'], operands['mmx'].reg << 3)
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -1043,7 +1044,7 @@ class mmx_mem64(MachineInstruction):
   
   def _render(params, operands):
     ret = common_memref(params['opcode'], operands['mem64'], operands['mmx'].reg << 3)
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -1286,7 +1287,7 @@ class reg16_mem16(MachineInstruction):
     reg16 = operands['reg16']
     ret = common_memref(params['opcode'], operands['mem16'], reg16.reg << 3, reg16.rex << 2)
     if ret != None:
-      if params.has_key('prefix'):
+      if 'prefix' in params.keys ():
         return [0x66] + params['prefix'] + ret
       return [0x66] + ret
   render = staticmethod(_render)
@@ -1328,7 +1329,7 @@ class reg16_reg16(MachineInstruction):
       rex = []
 
     ret = rex + params['opcode'] + [0xC0 | (ra.reg << 3) | rd.reg]
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return [0x66] + params['prefix'] + ret
     return [0x66] + ret
   render = staticmethod(_render)
@@ -1561,7 +1562,7 @@ class reg32_mem32(MachineInstruction):
   def _render(params, operands):
     reg32 = operands['reg32']
     ret = common_memref(params['opcode'], operands['mem32'], reg32.reg << 3, reg32.rex << 2)
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -1598,7 +1599,7 @@ class reg32_mem64(MachineInstruction):
   def _render(params, operands):
     reg32 = operands['reg32']
     ret = common_memref(params['opcode'], operands['mem64'], reg32.reg << 3, reg32.rex << 2)
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -1684,7 +1685,7 @@ class reg32_reg32(MachineInstruction):
       rex = []
 
     ret = rex + params['opcode'] + [0xC0 | (ra.reg << 3) | rd.reg]
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -1979,7 +1980,7 @@ class reg64_mem64(MachineInstruction):
 
     # Some SSE instructions have/need a prefix byte, but general instructions don't.
     ret = common_memref(params['opcode'], operands['mem64'], reg64.reg << 3, 0x08 | reg64.rex << 2)
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -2091,7 +2092,7 @@ class reg64_reg64(MachineInstruction):
     rd = operands['rd']
 
     ret = [0x48 | (ra.rex << 2) | rd.rex] + params['opcode'] + [0xC0 | (ra.reg << 3) | rd.reg]
-    if ret != None and params.has_key('prefix'):
+    if ret != None and 'prefix' in params.keys ():
       return params['prefix'] + ret
     return ret
   render = staticmethod(_render)
@@ -2331,25 +2332,25 @@ class rel32_8off(MachineInstruction):
   def _render(params, operands):
     rel = operands['rel32off']
     # Relative offset is computed from the end of this instruction
-    #print "lbl position", lbl.position
-    #print "inst position", operands['position']
+    #print ("lbl position", lbl.position)
+    #print ("inst position", operands['position'])
     #offset = rel - operands['position']
-    #print "offset", offset
+    #print ("offset", offset)
 
     # Will an 8bit offset do the job?
     #off = offset - (len(params['opcode'][0]) + 1)
     off = rel - (operands['position'] + len(params['opcode'][0]) + 1)
-    #print "off is", off
+    #print ("off is", off)
     if rel8off_t.fits(off):
-      #print "encoding 8bit offset", off
+      #print ("encoding 8bit offset", off)
       return params['opcode'][0] + w8(off)
 
     # Fall back to 32bit, or nothing if even that doesn't fit
     #off = offset - (len(params['opcode'][1]) + 4)
     off = rel - (operands['position'] + len(params['opcode'][1]) + 4)
-    #print "off is", off, len(params['opcode'][1]) + 4
+    #print ("off is", off, len(params['opcode'][1]) + 4)
     if rel32off_t.fits(off):
-      #print "encoding 32bit offset", off
+      #print ("encoding 32bit offset", off)
       return params['opcode'][1] + w32(off)
   render = staticmethod(_render)
 
