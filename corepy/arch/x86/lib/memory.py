@@ -71,7 +71,7 @@ class MemoryReference:
         raise Exception('Invalid scale value %s must be 1,2,4,8' % (str(scale)))
       self.scale = scale
 
-    elif isinstance(val, (int, long)):
+    elif isinstance(val, (int, int)):
       assert index is None
       assert scale == 1
       assert disp is None
