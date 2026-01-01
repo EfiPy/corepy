@@ -28,5 +28,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.          
 
 # from .extarray import extarray, extbuffer
-from .extarray import extarray
+import os
+
+if os.sys.platform == 'uefi':
+    from extarray import extarray
+else:
+    from .extarray import extarray
 

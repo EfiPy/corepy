@@ -37,6 +37,17 @@
 #define _XOPEN_SOURCE 600
 //#define _DEBUG
 
+#ifdef UEFI
+#include <Uefi.h>
+#include <Library/BaseLib.h>
+#include <Library/DebugLib.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/MemoryAllocationLib.h>
+#include <Library/UefiBootServicesTableLib.h>
+#include <Library/UefiRuntimeServicesTableLib.h>
+#include <Library/UefiLib.h>
+#endif
+
 #include <Python.h>
 #include <stdlib.h>
 
@@ -247,12 +258,19 @@ static int get_hugepage_size(void)
 
 static int get_page_size(void)
 {
+#ifdef UEFI
+    return EFI_PAGE_SIZE;
+#else
     return sysconf(_SC_PAGESIZE);
+#endif // UEFI
 }
 
 
 static void* alloc_mem(size_t size)
 {
+#ifdef UEFI
+   return AllocateZeroPool (size);
+#else
 #ifdef __MACH__
     return (void*)valloc(size);
 #else
@@ -262,6 +280,7 @@ static void* alloc_mem(size_t size)
     return addr;
     rc = rc + 1;
 #endif
+#endif // UEFI
 }
 
 
@@ -271,7 +290,11 @@ static void* realloc_mem(void* mem, Py_ssize_t oldsize, Py_ssize_t newsize)
     void* newaddr = (void*)alloc_mem(newsize);
 
     memcpy(newaddr, oldaddr, oldsize < newsize ? oldsize : newsize);
+#ifdef UEFI
+    FreePool(oldaddr);
+#else
     free(oldaddr);
+#endif // UEFI
     return newaddr;
 }
 

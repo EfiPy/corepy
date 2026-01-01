@@ -1,5 +1,4 @@
 # Copyright (c) 2006-2009 The Trustees of Indiana University.                   
-# Copyright (c) 2025 Max Wu EfiPy.Core@gmail.com
 # All rights reserved.                                                          
 #                                                                               
 # Redistribution and use in source and binary forms, with or without            
@@ -26,50 +25,4 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.          
-
-import os
-
-VERBOSE = False
-
-try:
-  sys_info = os.uname()
-except AttributeError:
-  if os.sys.platform == 'uefi':
-    sys_info = ('edk2', 'x86_64')
-  elif os.sys.platform == 'win32':
-    sys_info = ('win32', None)
-
-# Very basic architecture detection...
-if sys_info[0] == 'Darwin': 
-  OS = 'osx'
-
-  if sys_info[-1] == 'Power Macintosh':
-    ARCH = 'ppc'
-  elif sys_info[-1] == 'i386':
-    import sys
-    if sys.maxint == 9223372036854775807: # 64bit python?
-      ARCH = 'x86_64'
-    else: # assumed 32bit
-      ARCH = 'x86'
-elif sys_info[0] == 'Linux':
-  OS = 'linux'
-  if sys_info[-1] == 'ppc64':
-    ARCH = 'ppc'
-  elif sys_info[-1] == 'i686':
-    ARCH = 'x86'
-  elif sys_info[-1] == 'x86_64':
-    ARCH = 'x86_64'
-
-elif sys_info[0] == 'edk2':
-  OS, ARCH = sys_info
-
-  #cpus = [line.split(':')[1] for line in open('/proc/cpuinfo').readlines() if line[:3] == 'cpu']
-  #if len(cpus) > 0 and cpus[0][:5] == ' Cell':
-  #  ARCH = 'cell'
-  #  OS = 'linux'
-else:
-  print ("Unsupported architecture: Using 'dummy' settings")
-  OS = 'dummy'
-  ARCH = 'dummy'
-
 

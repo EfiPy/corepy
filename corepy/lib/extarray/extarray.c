@@ -952,8 +952,19 @@ static PyTypeObject ExtArrayType = {
   0,                              /* tp_del */
   0,                              /* tp_version_tag */
   0,                              /* tp_finalize */
+#ifdef UEFI
+#ifdef COUNT_ALLOCS
+    /* these must be last and never explicitly initialized */
+  0,                              /* tp_allocs */
+  0,                              /* tp_frees */
+  0,                              /* tp_maxalloc */
+  0,                              /* tp_prev */
+  0,                              /* tp_next */
+#endif // COUNT_ALLOCS
+#else
   0,                              /* tp_vectorcall */
   0,                              /* tp_watched */
+#endif // UEFI
 };
 
 static PyMethodDef module_methods[] = {
@@ -1166,8 +1177,19 @@ static PyTypeObject ExtBufferType = {
   0,                              /* tp_del */
   0,                              /* tp_version_tag */
   0,                              /* tp_finalize */
+#ifdef UEFI
+#ifdef COUNT_ALLOCS
+    /* these must be last and never explicitly initialized */
+  0,                              /* tp_allocs */
+  0,                              /* tp_frees */
+  0,                              /* tp_maxalloc */
+  0,                              /* tp_prev */
+  0,                              /* tp_next */
+#endif // COUNT_ALLOCS
+#else
   0,                              /* tp_vectorcall */
   0,                              /* tp_watched */
+#endif // UEFI
 };
 #endif // USE_extbuffer
 
