@@ -15,6 +15,9 @@ typedef int Py_ssize_t;
 //#ifndef _DEBUG
 //#define _DEBUG 0
 //#endif
+#if defined _DEBUG && 1
+#undef _DEBUG
+#endif
 
 //Make sure Py_ssize_t is defined
 
